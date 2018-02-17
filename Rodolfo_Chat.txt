@@ -1,0 +1,4 @@
+###########  NAO APAGAR ###############
+-File
+-Tudo o que é respetivo a essa file: Group, Template, Sensor, Automation, Script, Cover .... tens de repeitar sempre é a organização.. tudo o que é template só podes ter uma vez por file..
+
