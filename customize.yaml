@@ -1,0 +1,164 @@
+#DARK SKY
+sensor.dark_sky_temperature:
+  friendly_name: "Temperatura na rua"
+  icon: mdi:thermometer
+sensor.estadodotempo:
+  friendly_name: "Ceu"
+  icon: mdi:cloud
+sensor.dark_sky_humidity:
+  friendly_name: "Humidade na rua"
+  icon: mdi:water
+sensor.dark_sky_precip_type:
+  friendly_name: "Precipitação"
+  icon: mdi:water
+sensor.dark_sky_precip_probability:
+  friendly_name: "Previsão precipitação"
+  icon: mdi:water
+sensor.dark_sky_daily_high_temperature:
+  friendly_name: "Previsão Temp. máxima"
+sensor.dark_sky_daily_low_temperature:
+  friendly_name: "Previsão Temp. mínima"
+sensor.weather_wind_speed:
+  friendly_name: "Previsão Vel. vento x 3.6"
+  icon: mdi:weather-windy
+
+####### DEVICE_TRACKERS######
+sensor.luis:
+  entity_picture: /local/images/luis2.jpg
+sensor.estado_da_bateria_tlm_luis:
+  friendly_name: "Telemovel Luis" 
+  icon: mdi:battery
+sensor.monica:
+  entity_picture: /local/images/monica.jpg
+sensor.estado_da_bateria_tlm_monica:
+  friendly_name: "Telemovel Monica" 
+  icon: mdi:battery
+input_boolean.desligar_ou_ligar_alarme:
+  friendly_name: "Alarme tracker  - On/Off"
+  icon: mdi:alarm-light
+input_boolean.desligar_ou_ligar_alarme_on:
+  friendly_name: "Alarme - On/Off"
+  icon: mdi:alarm-light
+input_boolean.desligar_ou_ligar_portas:
+  friendly_name: "Notificação de portas"
+  icon: mdi:door-open
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: "Aspirador Xiaomi" 
+light.gateway_light_34ce0088aff1:
+  friendly_name: "Led GateWay"
+  icon: mdi:lightbulb-on
+switch.petra:
+  friendly_name: "Luz Petra" 
+  icon: mdi:paw
+switch.telheiro:
+  friendly_name: "Luz Telheiro" 
+  icon: mdi:lightbulb-on
+switch.anexo:
+  friendly_name: "Luz Anexo" 
+  icon: mdi:lightbulb-on
+switch.anexo_rua:
+  friendly_name: "Luz Anexo Rua" 
+  icon: mdi:lightbulb-on
+
+# Estado HA #
+script.restart_ha:
+  icon: mdi:autorenew
+script.reboot_pi:
+  icon: mdi:power
+sensor.cpu_use:
+  friendly_name: 'Uso CPU'
+sensor.ram_free:
+  friendly_name: 'RAM livre'
+  icon: mdi:chip
+sensor.disk_free_:
+  friendly_name: 'Espaço livre'
+  unit_of_measurement: 'Gb'
+sensor.last_boot:
+  friendly_name: 'Último reinício'
+sensor.hassbian_last_boot:
+  friendly_name: 'Uptime HA'
+  unit_of_measurement: 'horas'
+sensor.since_last_boot_templated:
+  friendly_name: 'Uptime Pi'
+  icon: mdi:clock
+sensor.connected_clients:
+  friendly_name: 'Clientes conectados'
+  unit_of_measurement: 'cliente(s)'
+  icon: 'mdi:account'
+
+# System #
+sensor.date:
+  friendly_name: Data
+sensor.time:
+  friendly_name: Hora
+
+# Uptime #
+sensor.Hassbian_ligado:
+  unit_of_measurement: 'horas'
+
+#####QUARTO CAROLINA#######  
+sensor.temperature_158d0001ab1740:
+  friendly_name: "Temp. Quarto da Carolina"
+  icon: mdi:thermometer
+sensor.humidity_158d0001ab1740:
+  friendly_name: "Humi. Quarto da Carolina"
+  icon: mdi:water
+
+#####TEMPERATURA RUA#######  
+sensor.humidity_158d0001fa763c:
+  friendly_name: "Humidade na rua"
+  icon: mdi:water
+sensor.temperature_158d0001fa763c:
+   friendly_name: "Temperatura na rua"
+
+#####COZINHA#######  
+sensor.illumination_34ce0088aff1:
+  friendly_name: "Lux ambiente na cozinha"
+  icon: mdi:lightbulb-on-outline
+binary_sensor.door_window_sensor_158d00018354d0:
+   friendly_name: "Porta cozinha"
+   icon: mdi:door
+binary_sensor.door_window_sensor_158d00015a954e:
+   friendly_name: "Porta principal"
+   icon: mdi:door   
+binary_sensor.door_window_sensor_158d0001d399b1:
+   friendly_name: "Janela esqueda"
+   icon: mdi:window-maximize
+binary_sensor.door_window_sensor_158d0001d39ff1:
+   friendly_name: "Janela direita"
+   icon: mdi:window-maximize
+binary_sensor.door_window_sensor_158d0001d86c17:
+   friendly_name: "Portão carro / mota"
+   icon: mdi:gate
+binary_sensor.motion_sensor_158d000152fc00:
+   friendly_name: "Correio"
+   icon: mdi:mailbox
+binary_sensor.motion_sensor_158d00015b1c11:
+   friendly_name: "Movimento Anexo"
+   icon: mdi:garage
+binary_sensor.motion_sensor_158d00015e8fdf:
+   friendly_name: "Movimento Sala"
+   icon: mdi:human-male-female
+
+######GOOGLE TRAVEL#####
+sensor.luis_trabalho:
+  friendly_name: "Luis: Casa > Trabalho"
+  icon: mdi:car
+sensor.luis_trabalho2:
+  friendly_name: "Luis: Trabalho > Casa"
+  icon: mdi:car
+sensor.monica_trabalho:
+  friendly_name: "Monica: Casa > Trabalho"
+  icon: mdi:car-sports
+sensor.monica_trabalho2:
+  friendly_name: "Monica: Trabalho > Casa"
+  icon: mdi:car-sports
+
+################
+# TAB ORDERING #
+################
+
+group.home:
+  order: 1
+
+ 

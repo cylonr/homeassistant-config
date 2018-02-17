@@ -1,0 +1,216 @@
+################################################
+#             VISTA DEFAULT                    #
+################################################
+default_view:
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.familia
+    - group.temperaturaquartocarolina
+    - group.sensoresvarios
+    - group.temponarua
+    - group.cameras
+    - group.aspirador
+    - group.rpi3
+    - group.tomada
+#   - group.transito
+#   - group.my_gateway
+#   - group.my_doors
+
+################################################
+#                   TOMADA                     #
+################################################
+tomada:
+  name: Energia Inteligente
+  entities:
+    - switch.plug_158d00015e8107
+    - sensor.plug_in_use
+    - sensor.plug_load_power
+    - sensor.plug_power_consumed_kwh
+    - sensor.plug_power_consumed_cost
+#    - sensor.plug_battery_level
+
+################################################
+#                  GRUPO RPI3                  #
+################################################
+rpi3:
+  name: Home Assistant Server
+  entities:    
+    - script.restart_ha
+    - sensor.cpu_used
+    - sensor.ram_available
+    - sensor.disk_free_
+    - sensor.last_boot
+    - sensor.since_last_boot_templated
+    - sensor.connected_clients
+
+################################################
+#               GRUPO ASPIRADOR                #
+################################################
+aspirador:
+  name: Xiaomi Vacuum
+  entities:    
+    - vacuum.xiaomi_vacuum_cleaner
+    - sensor.xiaomi_status
+    - sensor.xiaomi_battery_level
+    - sensor.xiaomi_main_brush_left
+    - sensor.xiaomi_side_brush_left
+    - sensor.xiaomi_filter_left
+
+################################################
+#             GRUPO FAMÍLIA                    #
+################################################
+familia:
+  name: Familia
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.luis
+    - sensor.monica
+    - device_tracker.luistele
+    - device_tracker.xiaomi_mi4c
+    - device_tracker.monicatele
+    - device_tracker.xiaomi_mi4c_2
+    - camera.luis_cam
+    - camera.monica_cam
+    - input_boolean.portaomota
+    - input_boolean.portaocarro
+    - input_boolean.desligar_ou_ligar_alarme
+    - input_boolean.desligar_ou_ligar_alarme_on
+    - input_boolean.desligar_ou_ligar_portas
+    - light.gateway_light_34ce0088aff1
+    - switch.petra  
+    - switch.telheiro
+    - switch.anexo
+    - switch.anexo_rua
+#    - switch.plug_158d00015e8107
+#    - weblink.portao_carro
+#    - weblink.portao_mota
+#    - input_select.hass_theme
+
+################################################
+#             GRUPO TRÂNSITO                   #
+################################################ 
+#transito:
+#  name: Tempo em viagem
+#  entities:
+#    - sensor.luis_trabalho
+#    - sensor.luis_trabalho2
+#    - sensor.monica_trabalho
+#    - sensor.monica_trabalho2
+
+################################################
+#            GRUPO AMBIENTE EM CASA            #
+################################################ 
+temperaturaquartocarolina:
+  name: Quarto da Carolina
+  entities:
+    - sensor.temperature_158d0001ab1740  
+    - sensor.humidity_158d0001ab1740
+
+################################################
+#            GRUPO AMBIENTE EM COZINHA         #
+################################################ 
+sensoresvarios:
+  name: Sensores
+  entities:
+    - sensor.illumination_34ce0088aff1
+    - binary_sensor.door_window_sensor_158d00018354d0
+    - binary_sensor.door_window_sensor_158d00015a954e
+    - binary_sensor.door_window_sensor_158d0001d399b1
+    - binary_sensor.door_window_sensor_158d0001d39ff1
+    - binary_sensor.door_window_sensor_158d0001d86c17
+    - binary_sensor.motion_sensor_158d00015e8fdf
+    - binary_sensor.motion_sensor_158d00015b1c11
+    - binary_sensor.motion_sensor_158d000152fc00
+
+################################################
+#           VISTA DISPOSITIVOS NA REDE         #
+################################################    
+dispositivos_da_rede:
+  view: yes
+  name: Dispositivos na rede
+  icon: mdi:server-network
+  entities:
+    - group.dispositivos_na_rede
+
+dispositivos_na_rede:
+  name: Dispositivos na rede
+  icon: mdi:server-network
+  entities:
+    - binary_sensor.sonoff_anexo
+    - binary_sensor.sonoff_anexo_rua
+    - binary_sensor.sonoff_petra
+    - binary_sensor.sonoff_telheiro
+    - binary_sensor.device_tracker_camanexo
+    - binary_sensor.device_tracker_campetra
+    - binary_sensor.device_tracker_camtelheiro
+    - binary_sensor.device_tracker_camcarolina
+    - binary_sensor.device_tracker_gateway
+    - binary_sensor.device_tracker_repanexo
+    - binary_sensor.device_tracker_repcasa
+
+################################################
+#               VISTA METEOROLOGIA             #
+################################################
+tab_da_meteorologia:
+  view: yes
+  name: Meteorologia
+  icon: mdi:weather-cloudy
+  entities:
+    - group.tab_meteorologia
+
+tab_meteorologia:
+  name: Meteorologia
+  icon: mdi:weather-cloudy
+  entities:
+    - sensor.estadodotempo
+    - sensor.temperature_158d0001fa763c
+    - sensor.humidity_158d0001fa763c
+    - sensor.dark_sky_daily_high_temperature
+    - sensor.dark_sky_daily_low_temperature
+    - sensor.dark_sky_precip_probability
+    - camera.cartaxo
+
+################################################
+#               BATERIA SENSORES               #
+################################################
+tab_da_bateria:
+  view: yes
+  name: Bateria dos sensores
+  icon: mdi:battery-charging-wireless-alert
+  entities:
+    - group.tab_bateria
+
+tab_bateria:
+  name: Bateria dos sensores
+  icon: mdi:battery-charging-wireless-alert
+  entities:
+    - input_boolean.battery_notifications
+    - sensor.p_cozinha_battery_level
+    - sensor.p_principal_battery_level
+    - sensor.p_esquerda_battery_level
+    - sensor.p_direita_battery_level
+    - sensor.p_portao_battery_level
+    - sensor.p_anexo_battery_level
+    - sensor.p_sala_battery_level
+    - sensor.p_correio_battery_level
+    - sensor.p_botao_battery_level
+    - sensor.p_temp1_battery_level
+    - sensor.p_temp2_battery_level
+
+################################################
+#                    CAMERAS                   #
+################################################
+tab_da_camera:
+  view: yes
+  name: Cameras
+  icon: mdi:camcorder
+  entities:
+    - group.tab_camera
+
+tab_camera:
+  name: Cameras
+  icon: mdi:camcorder
+  entities:
+    - camera.petra

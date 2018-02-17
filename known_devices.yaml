@@ -1,0 +1,170 @@
+xiaomi_mi4c_2:
+  hide_if_away: false
+  icon:
+  mac: BT_F4:8B:32:D6:DF:48
+  name: BT_Monica
+  picture:
+  track: true
+  vendor: Xiaomi
+
+xiaomi_mi4c:
+  hide_if_away: false
+  icon:
+  mac: BT_20:82:C0:61:D8:91
+  name: BT_Luis
+  picture:
+  track: true
+  vendor: Xiaomi
+
+sonoff_anexo:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:0F:AE:13
+  name: Sonoff Anexo
+  picture:
+  track: true
+  vendor: Sonoff
+
+sonoff_telheiro:
+  hide_if_away: false
+  icon:
+  mac: 
+  name: Sonoff Telheiro
+  picture:
+  track: true
+  vendor: Sonoff
+  
+camanexo:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Cam Anexo
+  picture:
+  track: true
+  vendor:
+
+camtelheiro:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Cam Telheiro
+  picture:
+  track: true
+  vendor:
+
+campetra:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Cam Petra
+  picture:
+  track: true
+  vendor:
+
+camcarolina:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Cam Carolina
+  picture:
+  track: true
+  vendor:
+
+gateway:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Gateway
+  picture:
+  track: true
+  vendor:
+
+repanexo:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Rep. Anexo
+  picture:
+  track: true
+  vendor:
+
+repcasa:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Rep. Casa
+  picture:
+  track: true
+  vendor:
+
+luistele:
+  hide_if_away: false
+  icon:
+  mac:
+  name: luistele
+  picture:
+  track: true
+  vendor:
+
+android8a3e7b90eb3ca252cylon:
+  hide_if_away: false
+  icon:
+  mac: 20:82:C0:61:D8:92
+  name: Telemovel Luis
+  picture:
+  track: true
+  vendor: unknown
+
+androida368cde6beb22035cylon:
+  hide_if_away: false
+  icon:
+  mac: 8C:BE:BE:8C:8C:32
+  name: Telemovel Monica
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+monicatele:
+  hide_if_away: false
+  icon:
+  mac:
+  name: monicatele
+  picture:
+  track: true
+  vendor:
+
+desktop6550ud5:
+  hide_if_away: false
+  icon:
+  mac: BT_F0:AB:54:16:E6:B8
+  name: Tablet Cozinha
+  picture:
+  track: true
+  vendor: MITSUMI ELECTRIC CO.,LTD.
+
+portatil:
+  hide_if_away: false
+  icon:
+  mac: BT_40:2C:F4:65:4E:FB
+  name: BT_PORTATIL
+  picture:
+  track: true
+  vendor: Universal Global Scientific Industrial Co., Ltd.
+
+mibox3:
+  hide_if_away: false
+  icon:
+  mac: BT_22:22:0E:7A:C8:5D
+  name: BT_Media_Player
+  picture:
+  track: true
+  vendor: unknown
+
+android8a3e7b90eb3ca252cylon_2:
+  hide_if_away: false
+  icon:
+  mac: 36:CE:00:00:7B:1E
+  name: Repeater Casa
+  picture:
+  track: true
+  vendor: unknown

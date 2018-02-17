@@ -1,0 +1,9 @@
+hass_theme:
+  name: Temas
+  options:
+    - Dark
+    - Lightblue
+    - Frontend
+    - Solarized
+  initial: Lightblue
+  icon: mdi:theme-light-dark

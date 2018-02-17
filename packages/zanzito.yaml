@@ -1,0 +1,13 @@
+##Estado da Bateria luis
+#- platform: mqtt
+#  state_topic: "zanzito/luis/battery_level"
+#  name: "Estado da Bateria Tlm Luis"
+#  unit_of_measurement: '%'
+#  retain: true
+
+##Estado da Bateria luis
+#- platform: mqtt
+#  state_topic: "zanzito/monica/battery_level"
+#  name: "Estado da Bateria Tlm Monica"
+#  unit_of_measurement: '%'
+#  retain: true

@@ -1,0 +1,96 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Device Tracker
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-17
+#	Description :	Set configuration to Device Tracker
+#--------------------------------------------------------------------
+
+homeassistant: 
+device_tracker:
+
+- platform: nmap_tracker
+  hosts:
+    - 192.168.2.177
+    - 192.168.2.46
+
+- platform: ping
+  interval_seconds: 20
+  consider_home: 60
+  hosts:
+    CamAnexo: 192.168.2.40
+    CamTelheiro: 192.168.2.71
+    CamPetra: 192.168.2.7
+    CamCarolina: 192.168.2.41
+    Gateway: 192.168.2.45
+    RepAnexo: 192.168.2.196
+    RepCasa: 192.168.2.233
+    LuisTele: 192.168.2.46
+    MonicaTele: 192.168.2.177
+
+- platform: bluetooth_tracker
+  consider_home: 20 
+  interval_seconds: 5
+
+# - platform: owntracks
+
+binary_sensor:    
+  - platform: device_tracker_sensor
+    entities:
+      - device_tracker.camanexo
+      - device_tracker.camanexo_rua
+      - device_tracker.camtelheiro
+      - device_tracker.campetra
+      - device_tracker.gateway
+      - device_tracker.camcarolina
+      - device_tracker.repanexo
+      - device_tracker.repcasa
+
+sensor:
+  - platform: template
+    sensors:
+          
+      luis: 
+        friendly_name: 'Estado Luis'
+        value_template: > 
+          {%- if is_state('device_tracker.xiaomi_mi4c', 'not_home') and is_state('device_tracker.luistele', 'not_home') -%}
+             Ausente
+          {%- endif -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c', 'home') and is_state('device_tracker.luistele', 'home') -%}
+             Em casa
+          {%- endif -%}   
+          {%- if is_state('device_tracker.xiaomi_mi4c', 'home') and is_state('device_tracker.luistele', 'not_home') -%}
+             Em casa
+          {%- endif -%}      
+          {%- if is_state('device_tracker.xiaomi_mi4c', 'not_home') and is_state('device_tracker.luistele', 'home') -%}
+             Em casa
+          {%- endif -%}    
+          {%- if is_state('device_tracker.xiaomi_mi4c', 'notrabalho') and is_state('device_tracker.luistele', 'not_home') -%} 
+             No Trabalho
+          {%- endif -%}           
+
+      monica: 
+        friendly_name: 'Estado Monica'
+        value_template: > 
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'not_home') -%}
+             Ausente
+          {%- endif -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'home') -%}
+             Em casa
+          {%- endif -%}   
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'not_home') -%}
+             Em casa
+          {%- endif -%}      
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
+             Em casa
+          {%- endif -%}    
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'notrabalhocampera') and is_state('device_tracker.monicatele', 'not_home') -%} 
+             No Trabalho
+          {%- endif -%}
