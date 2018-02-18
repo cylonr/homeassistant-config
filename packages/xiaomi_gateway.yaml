@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
+#	Date		:	2018-02-18
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -145,7 +145,7 @@ automation:
 #                   BOTÃO XIAOMI               #
 ################################################
 
-  - alias: 'Liga / desliga os 2 Sonoffs'
+  - alias: 'Liga / desliga os 3 Sonoffs'
     trigger:
       - platform: event
         event_type: click
@@ -158,7 +158,7 @@ automation:
       - service: switch.toggle
         entity_id: switch.telheiro
       - service: switch.toggle
-        entity_id: switch.rua
+        entity_id: switch.anexo_rua
 
   - alias: 'Abre portão carro'
     trigger:
