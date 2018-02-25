@@ -1,0 +1,39 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Cameras
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-25
+#	Description :	Set configuration to Cameras
+#--------------------------------------------------------------------
+
+################################################
+#              IP CAMs ANDROID                 #
+################################################
+android_ip_webcam:
+  - name: 'Petra'
+    host: 192.168.2.7
+    port: 8080
+
+##### MAPAS GOOGLE QUE APARECEM NO HA#####
+camera:
+
+  - name: Cartaxo
+    platform: generic
+    still_image_url: https://www.yr.no/place/Portugal/Santarém/Cartaxo//meteogram.png
+
+#- name: luis_cam
+#  platform: generic
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}
+#  limit_refetch_to_url_change: true
+
+#- name: monica_cam  
+#  platform: generic
+#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.monica.attributes.latitude }},{{ states.device_tracker.monica.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.monica.attributes.latitude }},{{ states.device_tracker.monica.attributes.longitude }}
+#  limit_refetch_to_url_change: true

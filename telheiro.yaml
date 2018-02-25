@@ -1,0 +1,71 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Portões
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-25
+#	Description :	Set configuration to Portões
+#--------------------------------------------------------------------
+
+homeassistant:
+automation:
+
+#Liga a luz do Telheiro e da Petra às 04:15
+  - alias: Liga Telheiro e petra
+    trigger:
+      platform: time
+      at: '04:15'
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.telheiro
+      - service: switch.turn_on
+        data:
+          entity_id: switch.petra
+      - service: switch.turn_on
+        data:
+          entity_id: switch.anexo_rua
+
+#Desliga a luz do Telheiro e da Petra às 04:40
+  - alias: Desliga telheiro e petra
+    trigger:
+      platform: time
+      at: '04:39' 
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.telheiro
+      - service: switch.turn_off
+        data:
+          entity_id: switch.petra
+      - service: switch.turn_off
+        data:
+          entity_id: switch.anexo_rua
+
+switch:
+
+#switch petra
+- platform: mqtt
+  name: "petra"
+  state_topic: "stat/petra/POWER"
+  command_topic: "cmnd/petra/power"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+#switch telheiro
+- platform: mqtt
+  name: "telheiro"
+  state_topic: "stat/telheiro/POWER"
+  command_topic: "cmnd/telheiro/power"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true

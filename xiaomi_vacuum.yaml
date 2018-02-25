@@ -1,0 +1,66 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Aspirador
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-25
+#	Description :	Set configuration to Aspirador
+#--------------------------------------------------------------------
+
+homeassistant:
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.2.234
+    token: !secret key_aspira
+
+################################################
+#             SENSORES ASPIRADOR               #
+################################################
+sensor:
+  - platform: template
+    sensors:
+      xiaomi_status:
+          value_template: >
+            {%- if states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Charging" %}
+              A carregar
+            {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Cleaning" %}
+              A limpar
+            {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Returning home" %}
+              A voltar à base
+            {% elif states.vacuum.xiaomi_vacuum_cleaner.attributes.status == "Idle" %}
+              Parado
+            {% else %}
+              {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}
+            {%- endif %}
+          friendly_name: Estado
+
+      xiaomi_battery_level:
+          value_template: >
+            {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}
+          friendly_name: Bateria
+          unit_of_measurement: '%'
+
+      xiaomi_main_brush_left:
+          value_template: >
+            {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.main_brush_left }}
+          friendly_name: Escova principal
+          unit_of_measurement: 'horas'
+
+      xiaomi_side_brush_left:
+          value_template: >
+            {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.side_brush_left }}
+          friendly_name: Escova lateral
+          unit_of_measurement: 'horas'
+
+      xiaomi_filter_left:
+          value_template: >
+            {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}
+          friendly_name: Filtro
+          unit_of_measurement: 'horas'

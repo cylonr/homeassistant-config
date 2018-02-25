@@ -1,0 +1,341 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Notifications
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-11
+#	Description :	Set configuration to Notifications
+#--------------------------------------------------------------------
+
+homeassistant:
+automation:
+
+# Notifica que ha update no Home Assistant
+#  - alias: 'Update Available Notifications'
+#    hide_entity: true
+#    trigger:
+#      platform: state
+#      entity_id: updater.updater
+#    action:
+#      service: notify.my_pushbullet
+#      data:
+#        message: 'O update para o Home Assistant está disponível para download.'
+
+# Notifica os utilizadores da casa se existe nova correspondência na caixa do correio.
+  - alias: Notificacao Novo Correio
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000152fc00
+      to: 'on'
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Novo Correio recebido - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o Sonoff do anexo foi desligado da rede de casa.
+  - alias: Sonoff anexo desligado
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.sonoff_anexo
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Sonoff do anexo desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o Sonoff da rua foi desligado da rede de casa.
+  - alias: Sonoff anexo desligado
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.sonoff_rua
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Sonoff da rua desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o Sonoff do Telheiro foi desligado da rede de casa.
+  - alias: Sonoff telheiro desligado
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.sonoff_telheiro
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Sonoff do telheiro desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o Sonoff da Petra foi desligado da rede de casa.
+  - alias: Sonoff petra desligado
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.sonoff_petra
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Sonoff da Petra desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que a Cam Anexo foi desconectada da rede de casa.
+  - alias: Cam anexo desconectada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_camanexo
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Câmara do Anexo desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que a Cam da Petra foi desconectada da rede de casa.
+  - alias: Cam Petra desconectada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_campetra
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que a Cam do telheiro foi desconectada da rede de casa.
+  - alias: Cam telheiro desconectada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_camtelheiro
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Câmara do telheiro desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o gateway Xiaomi foi desconectada da rede de casa.
+  - alias: Cam Gateway desconectada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_gateway
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Gateway Xiaomi desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que a Cam Carolina foi desconectada da rede de casa.
+  - alias: Cam Carolina desconectada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_camcarolina
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Câmara da Carolina desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+###############################################################################
+#                                                                             #
+#                           N O T I F I E R S                                 #
+#                                                                             #
+###############################################################################
+
+notify:
+
+  - name: my_pushbullet
+    platform: pushbullet
+    api_key: !secret key_push
+
+  - name: luiszanzito
+    platform: zanzito
+    device-name: luis
+    
+#  - name: monicazanzito
+#    platform: zanzito
+#    device-name: monica
+
+#  - name: geralzanzito
+#    platform: group
+#    services: 
+#      - service: luiszanzito
+#      - service: monicazanzito
+
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
+
+#Informa a Monica da temperatura do quarto da Carolina e o estado do tempo na rua. Automação Nº 03
+#  - alias: Estado do tempo
+#    trigger:
+#      platform: time
+#      at: '08:30:00'
+#    action:
+#      service: notify.monicazanzito
+#      data:
+#        message: "Bom dia Monica, estão {{ states.sensor.temperature_158d0001ab1740.state}} graus no quarto da carolina. Hoje o céu está {{ states.sensor.estadodotempo.state }} estão neste momento {{ states.sensor.dark_sky_temperature.state }} graus , e {{ states.sensor.dark_sky_humidity.state }}% de humidade. A temperatura máxima vai ser de {{ states.sensor.dark_sky_daily_high_temperature.state }} graus e {{ states.sensor.dark_sky_daily_low_temperature.state }} graus de mínima. Existe {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidade de chover hoje.{% if states('sensor.dark_sky_precip_probability') | int > 50 %} Não te esqueças de levar o chapéu de chuva. Tem um bom dia chuvoso ;){% else %} Tem um bom dia.{% endif %}"
+
+#Notifica os utilizadores da casa quando ambos chegam a casa.
+#  - alias: Notificaçao rua_casa
+#    trigger:
+#      platform: state
+#      entity_id: device_tracker.luis, device_tracker.luis_tlm, device_tracker.monica, device_tracker.monica_tlm
+#      from: 'not_home'
+#      to: 'home'
+#    action:
+#      service: notify.luiszanzito
+#      data_template:
+#       message: "{{ trigger.to_state.attributes.friendly_name }} chegou a casa às {{states.sensor.time.state}}"
+
+#Notifica os utilizadores da casa quando ambos saiem de casa.        
+#  - alias: Notificaçao casa_rua
+#    trigger:
+#      platform: state
+#      entity_id: device_tracker.luis, device_tracker.luis_tlm, device_tracker.monica, device_tracker.monica_tlm
+#      from: 'home'
+#      to: 'not_home'
+#    action:
+#      service: notify.luiszanzito
+#      data_template:
+#        message: "{{ trigger.to_state.attributes.friendly_name }} saiu de casa às {{states.sensor.time.state}}"
+
+##Notifica o Luis quando a Monica chega ao trabalho.         
+#  - alias: Notificaçao rua_trabalhomonica
+#    trigger:
+#      platform: state
+#      entity_id: device_tracker.monica
+#      from: 'not_home'
+#      to: 'notrabalhocampera'
+#    action:
+#      service: notify.luiszanzito
+#      data_template:
+#        message: "A Monica chegou ao trabalho às {{states.sensor.time.state}}"
+
+#Notifica o Luis quando a Monica sai do trabalho.         
+#  - alias: Notificaçao trabalhomonica_rua
+#    trigger:
+#      platform: state
+#      entity_id: device_tracker.monica
+#      from: 'notrabalhocampera'
+#      to: 'not_home'
+#    action:
+#      service: notify.luis
+#      data_template:
+#        message: "A Monica saiu do trabalho às {{states.sensor.time.state}}"
+
+#Informa o Dono da Casa se os artigos da Gearbest que definiu, se os mesmos automentaram de preço ou baixaram. Automação Nº 15
+#  - alias: "Gearbest"
+#    hide_entity: True
+#    trigger:
+#      platform: time
+#      minutes: '/60'
+#      seconds: 00
+#    condition:
+#      condition: or
+#      conditions:
+#        - condition: template
+#          value_template: '{{ states.sensor.gateway_xiaomi.state | float > 22.95 }}'
+#        - condition: template
+#          value_template: '{{ states.sensor.gateway_xiaomi.state | float < 22.95 }}'
+#    action:
+#      - service: notify.luiszanzito
+#        data:
+#          message: "O preço do artigo {{states.sensor.gateway_xiaomi.name}} é de agora: {{ states.sensor.gateway_xiaomi.state }}"
+#         
+#  - alias: "Gearbest"
+#    hide_entity: True
+#    trigger:
+#      platform: time
+#      minutes: '/60'
+#      seconds: 00
+#    condition:
+#      condition: or
+#      conditions:
+#        - condition: template
+#          value_template: '{{ states.sensor.xiaomi_temperature.state | float > 8.05 }}'
+#        - condition: template
+#          value_template: '{{ states.sensor.xiaomi_temperature.state | float < 8.05 }}'
+#    action:
+#      - service: notify.luiszanzito
+#        data:
+#          message: "O preço do artigo {{states.sensor.gateway_xiaomi.name}} é de agora: {{ states.sensor.gateway_xiaomi.state }}"    
+
+# Notifica o Luis que o aspirador iniciou a aspiração Nº 13
+#  - alias: Started Vacuuming
+#    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: sensor.xiaomi_status
+#      to: 'Cleaning'
+#    action:
+#    - service: notify.my_pushbullet
+#      data:
+#        title: "Xiaomi"
+#        message: "Mi Robot Started Vacuuming..."
+
+# Notifica o Luis que o aspirador terminou a aspiração Nº 14
+#  - alias: Finished Vacuuming
+#    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: sensor.xiaomi_status
+#      to: 'Returning home'
+#    action:
+#    - service: notify.my_pushbullet
+#      data:
+#        title: "Xiaomi"
+#        data_template:
+#          message: |
+#          Mi Robot finished Vacuuming...
+#            Cleaned {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }} m² in {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }} min.
+#    - service: notify.my_pushbullet
+#      data:
+#        title: "Xiaomi"
+#        data_template:
+#          message: |
+#           Mi Robot finished Vacuuming...
+#            Cleaned {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }} m² in {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }} min.
+#    - service: input_boolean.turn_off
+#      entity_id: input_boolean.vacuum

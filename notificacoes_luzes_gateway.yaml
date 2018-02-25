@@ -1,0 +1,155 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Portões
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-02-25
+#	Description :	Set configuration to Portões
+#--------------------------------------------------------------------
+
+homeassistant:
+automation:
+
+# Informa o estado do alarme com device tracker sendo que a encarnado está activo
+  - alias: Alarme on
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.desligar_ou_ligar_alarme
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Ausente'
+      - condition: state
+        entity_id: sensor.monica
+        state: 'Ausente'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_34ce0088aff1
+          brightness: 99
+          color_name: red
+
+# Desliga a luz do alarme com device tracker caso as condições não estejam a ser  cumpridas.
+  - alias: Alarme off
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.desligar_ou_ligar_alarme
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Em casa'
+      - condition: state
+        entity_id: sensor.monica
+        state: 'Em casa'
+    action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_34ce0088aff1
+
+# Informa o estado do alarme SEM device tracker sendo que a encarnado está activo
+  - alias: Alarme on
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.desligar_ou_ligar_alarme_on
+      to: 'on'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_34ce0088aff1
+          brightness: 99
+          color_name: red
+
+#Desliga a luz do alarme SEM device tracker.
+  - alias: Alarme off
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.desligar_ou_ligar_alarme_on
+      to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.desligar_ou_ligar_alarme
+        state: 'off'
+    action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_34ce0088aff1
+
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################          
+
+#Informa o estado do estado do tempo de manhã mudando a cor do gateway.
+#  - alias: Informa tempo cores
+#    trigger:
+#      - platform: time
+#        at: '04:16'
+#    action:
+#      - service: light.turn_on
+#        data_template:
+#          entity_id: light.gateway_light_34ce0088aff1
+#          brightness: 99
+#          color_name: >
+#            {% if states('sensor.dark_sky_precip_probability') | float >=  0 %}
+#              green
+#            {% elif states('sensor.dark_sky_precip_probability') | float >= 20 %}
+#              yellow
+#            {% elif states('sensor.dark_sky_precip_probability') | float >= 50 %}
+#              red
+#            {% endif %}
+
+#Desliga a informação visual do estado do tempo, e o gateway passa a cor azul.   
+#  - alias: Desliga informação tempo
+#    trigger:
+#      - platform: time
+#        at: '05:00'
+#    action:
+#      - service: light.turn_on
+#        data_template:
+#          entity_id: light.gateway_light_34ce0088aff1
+#          brightness: 99
+#          color_name: blue
+
+#Passa para modo de luz de presença.
+#  - alias: Modo de luz de presença
+#    trigger:
+#      - platform: time
+#        at: '21:00'
+#    action:
+#      - service: light.turn_on
+#        data_template:
+#          entity_id: light.gateway_light_34ce0088aff1
+#          brightness: 99
+#          color_name: white     
+
+#Informa o estado do Transito para Alverca mudando a cor do gateway  
+#  - alias: Informa transito
+#    trigger:
+#      - platform: time
+#        at: '21:20'
+#    action:
+#      - service: light.turn_on
+#        data_template:
+#          entity_id: light.gateway_light_34ce0088aff1
+#          brightness: 20
+#          color_name: >
+#            {% if states('sensor.luis_trabalho') | int >= 0 %}
+#              green
+#            {% elif states('sensor.luis_trabalho') | int >= 24 %}
+#              yellow
+#            {% elif states('sensor.luis_trabalho') | int >= 30 %}
+#              red
+#            {% endif %}
