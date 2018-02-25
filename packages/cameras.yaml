@@ -6,10 +6,10 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Cametas
+#	Home Assistant - Cameras
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Cameras
 #--------------------------------------------------------------------
 
@@ -20,8 +20,6 @@ android_ip_webcam:
   - name: 'Petra'
     host: 192.168.2.7
     port: 8080
-#    sensors:
-#      - battery_level
 
 ##### MAPAS GOOGLE QUE APARECEM NO HA#####
 camera:
@@ -29,11 +27,6 @@ camera:
   - name: Cartaxo
     platform: generic
     still_image_url: https://www.yr.no/place/Portugal/Santarém/Cartaxo//meteogram.png
-
-#- xpto: teste  
-#  platform: ffmpeg
-#  input: rtsp://192.168.2.106:8554
-#  name: Garagem
 
 #- name: luis_cam
 #  platform: generic

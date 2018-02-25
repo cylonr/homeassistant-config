@@ -17,15 +17,15 @@ homeassistant:
 automation:
 
 # Notifica que ha update no Home Assistant
-  - alias: 'Update Available Notifications'
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: updater.updater
-    action:
-      service: notify.my_pushbullet
-      data:
-        message: 'O update para o Home Assistant está disponível para download.'
+#  - alias: 'Update Available Notifications'
+#    hide_entity: true
+#    trigger:
+#      platform: state
+#      entity_id: updater.updater
+#    action:
+#      service: notify.my_pushbullet
+#      data:
+#        message: 'O update para o Home Assistant está disponível para download.'
 
 # Notifica os utilizadores da casa se existe nova correspondência na caixa do correio.
   - alias: Notificacao Novo Correio
@@ -48,11 +48,26 @@ automation:
       entity_id: binary_sensor.sonoff_anexo
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
         message: "Sonoff do anexo desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+
+# Notifica o Luis que o Sonoff da rua foi desligado da rede de casa.
+  - alias: Sonoff anexo desligado
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.sonoff_rua
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.my_pushbullet
+      data:
+        message: "Sonoff da rua desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
 
 # Notifica o Luis que o Sonoff do Telheiro foi desligado da rede de casa.
@@ -63,7 +78,7 @@ automation:
       entity_id: binary_sensor.sonoff_telheiro
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
@@ -78,7 +93,7 @@ automation:
       entity_id: binary_sensor.sonoff_petra
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
@@ -93,7 +108,7 @@ automation:
       entity_id: binary_sensor.device_tracker_camanexo
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
@@ -108,13 +123,13 @@ automation:
       entity_id: binary_sensor.device_tracker_campetra
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
         message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
-        
+
 # Notifica o Luis que a Cam do telheiro foi desconectada da rede de casa.
   - alias: Cam telheiro desconectada
     initial_state: true
@@ -123,7 +138,7 @@ automation:
       entity_id: binary_sensor.device_tracker_camtelheiro
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
@@ -138,7 +153,7 @@ automation:
       entity_id: binary_sensor.device_tracker_gateway
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
@@ -153,42 +168,12 @@ automation:
       entity_id: binary_sensor.device_tracker_camcarolina
       to: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
     - service: notify.my_pushbullet
       data:
         message: "Câmara da Carolina desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
-
-## Notifica o Luis que portas ou janelas em casa abertas à mais de 15min.
-#  - alias: Portas ou janelas abertas
-#    initial_state: true
-#    trigger:
-#      - platform: state
-#        entity_id: binary_sensor.door_window_sensor_158d00018354d0
-#        to: 'on'
-#        for:
-#          minutes: 15
-#      - platform: state
-#        entity_id: binary_sensor.door_window_sensor_158d00015a954e
-#        to: 'on'
-#        for:
-#          minutes: 15
-#      - platform: state
-#        entity_id: binary_sensor.door_window_sensor_158d0001d399b1
-#        to: 'on'
-#        for:
-#          minutes: 15
-#      - platform: state
-#        entity_id: binary_sensor.door_window_sensor_158d0001d39ff1
-#        to: 'on'
-#        for:
-#          minutes: 15
-#    action:
-#    - service: notify.my_pushbullet
-#      data:
-#        message: "Janela ou porta aberta à mais de 15 minutos - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-#        title: "Home Assistant"
 
 ###############################################################################
 #                                                                             #
@@ -202,14 +187,14 @@ notify:
     platform: pushbullet
     api_key: !secret key_push
 
-#  - name: luiszanzito
-#    platform: zanzito
-#    device-name: luis
+  - name: luiszanzito
+    platform: zanzito
+    device-name: luis
     
 #  - name: monicazanzito
 #    platform: zanzito
 #    device-name: monica
-    
+
 #  - name: geralzanzito
 #    platform: group
 #    services: 

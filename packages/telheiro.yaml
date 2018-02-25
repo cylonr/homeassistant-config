@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ automation:
           entity_id: switch.petra
       - service: switch.turn_on
         data:
-          entity_id: switch.anexo_fora
+          entity_id: switch.anexo_rua
 
 #Desliga a luz do Telheiro e da Petra às 04:40
   - alias: Desliga telheiro e petra
@@ -46,7 +46,7 @@ automation:
           entity_id: switch.petra
       - service: switch.turn_off
         data:
-          entity_id: switch.anexo_fora
+          entity_id: switch.anexo_rua
 
 switch:
 
@@ -69,30 +69,3 @@ switch:
   payload_on: "ON"
   payload_off: "OFF"
   retain: true
-
-
-###############################################################################
-#                                                                             #
-#                           D E S A T I V O S                                 #
-#                                                                             #
-###############################################################################
-
-#Liga a luz do telheiro às 17:30
-#  - alias: Liga telheiro tarde
-#    trigger:
-#      platform: time
-#      at: '17:29'
-#    action:
-#      service: switch.turn_on
-#      data:
-#        entity_id: switch.telheiro
-
-#Desliga a luz do telheiro às 22:30
-#  - alias: Desliga telheiro tarde
-#    trigger:
-#      platform: time
-#      at: '22:29' 
-#    action:
-#      service: switch.turn_off
-#      data:
-#        entity_id: switch.telheiro 

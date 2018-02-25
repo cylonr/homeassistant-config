@@ -9,14 +9,14 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
 homeassistant:
 automation:
 
-#Informa o estado do alarme com device tracker sendo que a encarnado está activo
+# Informa o estado do alarme com device tracker sendo que a encarnado está activo
   - alias: Alarme on
     initial_state: true
     trigger:
@@ -37,8 +37,8 @@ automation:
           brightness: 99
           color_name: red
 
-#Desliga a luz do alarme com device tracker caso as condições não estejam a ser  cumpridas.
-  - alias: Alarme on
+# Desliga a luz do alarme com device tracker caso as condições não estejam a ser  cumpridas.
+  - alias: Alarme off
     initial_state: true
     trigger:
       platform: state
@@ -56,7 +56,7 @@ automation:
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
 
-#Informa o estado do alarme SEM device tracker sendo que a encarnado está activo
+# Informa o estado do alarme SEM device tracker sendo que a encarnado está activo
   - alias: Alarme on
     initial_state: true
     trigger:

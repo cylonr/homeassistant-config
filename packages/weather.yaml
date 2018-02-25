@@ -9,7 +9,7 @@
 #	Home Assistant - Weather
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-08
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Weather
 #--------------------------------------------------------------------
 homeassistant:
@@ -71,7 +71,6 @@ sensor:
           {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Mostly Cloudy') -%}    
             Vento fraco e algumas nuvens            
           {%- endif -%}
-  
 
 automation:
 
@@ -95,7 +94,7 @@ automation:
         at: '22:00:00'
     condition:
       - condition: numeric_state
-        entity_id: sensor.dark_sky_precip_probability_1
+        entity_id: sensor.dark_sky_precip_probability
         above: '20'
     action:
       - service: notify.my_pushbullet

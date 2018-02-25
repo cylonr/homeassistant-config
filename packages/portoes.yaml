@@ -9,13 +9,13 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-08
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
 homeassistant:
 input_boolean:
-    
+
   portaomota:
     name: Portão Mota
     initial: 'off'
@@ -46,7 +46,7 @@ automation:
       - service: shell_command.portaocarro 
       - service: script.portaocarro
 
-# Notifica o Luis que o portão está aberto à mais de 15min.
+# Notifica o Luis que o portão está aberto à mais de 60 min.
   - alias: Portao aberto
     initial_state: true
     trigger:
@@ -54,11 +54,11 @@ automation:
       entity_id: binary_sensor.door_window_sensor_158d0001d86c17
       to: 'on'
       for:
-        minutes: 15
+        minutes: 60
     action:
     - service: notify.my_pushbullet
       data:
-        message: "Portão aberto à mais de 15 min - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+        message: "Portão aberto à mais de 60 min - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
         title: "Home Assistant"
 
 # Notifica o Luis que o portão está a abrir.
@@ -69,20 +69,20 @@ automation:
       entity_id: binary_sensor.door_window_sensor_158d0001d86c17
       to: 'on'
     action:
-      - service: mqtt.publish
-        data_template:
-          topic: zanzito/luis/say
-          payload: "Olá Luis. Portão a abrir!"
-      - delay: 00:00:10
-      - service: mqtt.publish
-        data_template:
-          topic: zanzito/luis/say
-          payload: "Espero ter cumprido a função"
+#      - service: mqtt.publish
+#        data_template:
+#          topic: zanzito/luis/say
+#          payload: "Olá Luis. Portão a abrir!"
+#      - delay: 00:00:10
+#      - service: mqtt.publish
+#        data_template:
+#          topic: zanzito/luis/say
+#          payload: "Espero ter cumprido a função"
       - service: notify.my_pushbullet
         data:
-          message: "Portão aberto - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+          message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
           title: "Home Assistant"  
-              
+
 # Notifica o Luis que o portão está fechado.
   - alias: Portao fechado
     initial_state: true
@@ -91,20 +91,24 @@ automation:
       entity_id: binary_sensor.door_window_sensor_158d0001d86c17
       to: 'off'
     action:
-      - service: mqtt.publish
-        data_template:
-          topic: zanzito/luis/say
-          payload: "Olá Luis. Portão fechado!"
-      - delay: 00:00:20
-      - service: mqtt.publish
-        data_template:
-          topic: zanzito/luis/say
-          payload: "Espero ter cumprido a função"
+#      - service: mqtt.publish
+#        data_template:
+#          topic: zanzito/luis/say
+#          payload: "Olá Luis. Portão fechado!"
+#      - delay: 00:00:20
+#      - service: mqtt.publish
+#        data_template:
+#          topic: zanzito/luis/say
+#          payload: "Espero ter cumprido a função"
       - service: notify.my_pushbullet
         data:
           message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
           title: "Home Assistant"
-      
+      - service: notify.luiszanzito
+        data:
+          message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+          title: "Home Assistant"
+
 script:
   
   portaomota:
@@ -113,19 +117,20 @@ script:
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.portaomota
-          
+
   portaocarro:
     sequence:
       - delay: 00:00:01
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.portaocarro
-      
-sensor:
-  platform: template
-  sensors:
-    door_portao:
-      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d86c17", "on") %} Aberto {% else %} Fechado {%- endif %}'
+
+### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
+#sensor:
+#  platform: template
+#  sensors:
+#    door_portao:
+#      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d86c17", "on") %} Aberto {% else %} Fechado {%- endif %}'
       
       
       

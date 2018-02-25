@@ -6,11 +6,11 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Gateway
+#	Home Assistant - Aspirador
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
-#	Description :	Set configuration to Gateway
+#	Date		:	2018-02-25
+#	Description :	Set configuration to Aspirador
 #--------------------------------------------------------------------
 
 homeassistant:
@@ -40,25 +40,25 @@ sensor:
               {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}
             {%- endif %}
           friendly_name: Estado
-          
+
       xiaomi_battery_level:
           value_template: >
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}
           friendly_name: Bateria
           unit_of_measurement: '%'
-          
+
       xiaomi_main_brush_left:
           value_template: >
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.main_brush_left }}
           friendly_name: Escova principal
           unit_of_measurement: 'horas'
-      
+
       xiaomi_side_brush_left:
           value_template: >
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.side_brush_left }}
           friendly_name: Escova lateral
           unit_of_measurement: 'horas'
-  
+
       xiaomi_filter_left:
           value_template: >
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}

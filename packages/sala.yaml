@@ -9,14 +9,15 @@
 #	Home Assistant - Sala
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-13
+#	Date		:	2018-02-25
 #	Description :	Set configuration to sensor da sala
 #--------------------------------------------------------------------
 
 homeassistant:
 
-sensor:
-  platform: template
-  sensors:
-    motion_sala:
-      value_template: '{% if is_state("binary_sensor.motion_sensor_158d00015e8fdf", "on") %} Sim {% else %} Não {%- endif %}'
+### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
+#sensor:
+#  platform: template
+#  sensors:
+#    motion_sala:
+#      value_template: '{% if is_state("binary_sensor.motion_sensor_158d00015e8fdf", "on") %} Sim {% else %} Não {%- endif %}'

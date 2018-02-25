@@ -9,30 +9,30 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-18
+#	Date		:	2018-02-25
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
 homeassistant:
 
 xiaomi_aqara:
-  discovery_retry: 10
+  discovery_retry: 5
   gateways:
-   - host: 192.168.2.45
-     mac: !secret key_gateway2
-     key: !secret key_gateway1
+    - host: 192.168.2.45
+      mac: 34:CE:00:88:AF:F1
+      key: !secret key_gateway1
 
-group:
-  my_gateway:
-    name: My Gateway
-    entities:
-#     - input_boolean.mute_gateway_sounds
-#     - input_select.gateway_sound
-#     - input_number.gateway_volume
-#     - input_number.loop_delay
-#     - script.play_sel_sound
-#     - script.play_sel_sound_loop
-#     - script.play_sel_sound_single
+#group:
+#  my_gateway:
+#    name: My Gateway
+#    entities:
+#      - input_boolean.mute_gateway_sounds
+#      - input_select.gateway_sound
+#      - input_number.gateway_volume
+#      - input_number.loop_delay
+#      - script.play_sel_sound
+#      - script.play_sel_sound_loop
+#      - script.play_sel_sound_single
 
 input_boolean:
     
@@ -87,11 +87,9 @@ automation:
     action:
       - service: xiaomi_aqara.play_ringtone
         data:
-          gw_mac: !secret key_gateway2
+          gw_mac: 34:CE:00:88:AF:F1
           ringtone_id: 1
           ringtone_vol: 100
-#      - service: homeassistant.turn_on                
-#        entity_id: switch.plug_158d00015e8107 
       - service: notify.my_pushbullet
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
@@ -129,17 +127,12 @@ automation:
     action:
       - service: xiaomi_aqara.play_ringtone
         data:
-          gw_mac: !secret key_gateway2
+          gw_mac: 34:CE:00:88:AF:F1
           ringtone_id: 1
           ringtone_vol: 100
       - service: notify.my_pushbullet
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-#      - service: homeassistant.turn_on                
-#        entity_id: switch.plug_158d00015e8107
-#      - delay: 00:00:10
-#      - service: homeassistant.turn_off               
-#        entity_id: switch.plug_158d00015e8107
 
 ################################################
 #                   BOTÃO XIAOMI               #

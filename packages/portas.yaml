@@ -9,7 +9,7 @@
 #	Home Assistant - Portas
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-08
+#	Date		:	2018-02-25
 #	Description :	Set configuration to portas
 #--------------------------------------------------------------------
 
@@ -23,7 +23,8 @@ input_boolean:
 
 automation: 
 
-  - alias: 'Play xiaomi sounds'
+# Notifica o Luis que as portas foram abertas.
+  - alias: 'Alerta de portas'
     initial_state: true
     trigger:
       - platform: state
@@ -41,7 +42,7 @@ automation:
         data:
           message: "Porta aberta - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
-# Notifica o Luis que portas ou janelas em casa abertas à mais de 10min.
+# Notifica o Luis que portas ou janelas em casa abertas à mais de 30 min.
   - alias: Portas ou janelas abertas
     initial_state: true
     trigger:
@@ -49,22 +50,22 @@ automation:
         entity_id: binary_sensor.door_window_sensor_158d00018354d0
         to: 'on'
         for:
-          minutes: 10
+          minutes: 30
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d00015a954e
         to: 'on'
         for:
-          minutes: 10
+          minutes: 30
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001d399b1
         to: 'on'
         for:
-          minutes: 10
+          minutes: 30
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001d39ff1
         to: 'on'
         for:
-          minutes: 10
+          minutes: 30
     action:
     - service: notify.my_pushbullet
 #      data:
@@ -72,7 +73,7 @@ automation:
       data_template:
         message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta desde - {{states.sensor.date.state}} às {{states.sensor.time.state}}'
         title: "Home Assistant"
-        
+
 sensor:
   platform: template
   sensors:
