@@ -23,7 +23,7 @@ automation:
 #      platform: state
 #      entity_id: updater.updater
 #    action:
-#      service: notify.my_pushbullet
+#      service: notify.luiszanzito
 #      data:
 #        message: 'O update para o Home Assistant está disponível para download.'
 
@@ -35,7 +35,7 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d000152fc00
       to: 'on'
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Novo Correio recebido - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -50,7 +50,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Sonoff do anexo desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -65,7 +65,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Sonoff da rua desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -80,7 +80,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Sonoff do telheiro desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -95,7 +95,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Sonoff da Petra desligado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -110,7 +110,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Câmara do Anexo desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -125,7 +125,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -140,7 +140,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Câmara do telheiro desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -155,7 +155,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Gateway Xiaomi desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -170,7 +170,7 @@ automation:
       for:
         minutes: 10
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Câmara da Carolina desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
@@ -310,7 +310,7 @@ notify:
 #      entity_id: sensor.xiaomi_status
 #      to: 'Cleaning'
 #    action:
-#    - service: notify.my_pushbullet
+#    - service: notify.luiszanzito
 #      data:
 #        title: "Xiaomi"
 #        message: "Mi Robot Started Vacuuming..."
@@ -323,14 +323,14 @@ notify:
 #      entity_id: sensor.xiaomi_status
 #      to: 'Returning home'
 #    action:
-#    - service: notify.my_pushbullet
+#    - service: notify.luiszanzito
 #      data:
 #        title: "Xiaomi"
 #        data_template:
 #          message: |
 #          Mi Robot finished Vacuuming...
 #            Cleaned {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area }} m² in {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }} min.
-#    - service: notify.my_pushbullet
+#    - service: notify.luiszanzito
 #      data:
 #        title: "Xiaomi"
 #        data_template:

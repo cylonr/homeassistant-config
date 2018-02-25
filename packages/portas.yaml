@@ -38,7 +38,7 @@ automation:
         entity_id: input_boolean.desligar_ou_ligar_portas
         state: 'on'
     action:
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Porta aberta - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
@@ -67,7 +67,7 @@ automation:
         for:
           minutes: 30
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
 #      data:
 #        message: "Janela ou porta aberta à mais de 15 minutos - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       data_template:

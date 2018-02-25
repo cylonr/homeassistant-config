@@ -56,10 +56,11 @@ automation:
       for:
         minutes: 60
     action:
-    - service: notify.my_pushbullet
+    - service: notify.luiszanzito
       data:
         message: "Portão aberto à mais de 60 min - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
         title: "Home Assistant"
+ 
 
 # Notifica o Luis que o portão está a abrir.
   - alias: Portao_aberto
@@ -78,10 +79,14 @@ automation:
 #        data_template:
 #          topic: zanzito/luis/say
 #          payload: "Espero ter cumprido a função"
-      - service: notify.my_pushbullet
+#      - service: notify.my_pushbullet
+#        data:
+#          message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+#          title: "Home Assistant"
+      - service: notify.luiszanzito
         data:
           message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
-          title: "Home Assistant"  
+          title: "Home Assistant"
 
 # Notifica o Luis que o portão está fechado.
   - alias: Portao fechado
@@ -100,10 +105,10 @@ automation:
 #        data_template:
 #          topic: zanzito/luis/say
 #          payload: "Espero ter cumprido a função"
-      - service: notify.my_pushbullet
-        data:
-          message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
-          title: "Home Assistant"
+#      - service: notify.my_pushbullet
+#        data:
+#          message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+#          title: "Home Assistant"
       - service: notify.luiszanzito
         data:
           message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "

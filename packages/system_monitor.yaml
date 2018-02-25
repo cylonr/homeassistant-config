@@ -99,7 +99,7 @@ automation:
       - condition: template
         value_template: "{{ trigger.to_state.state != 'None' }}"
     action:
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data_template:
           title: "Tentativa falhada no acesso ao Home Assistant!"
           message: "{{ states.persistent_notification.httplogin.attributes.message }}"

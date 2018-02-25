@@ -274,6 +274,6 @@ automation:
       - condition: template
         value_template: '{{ states.input_boolean.battery_notifications.state == "on" }}'
     action:
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data_template:
           message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} necessita de ser substituída, apenas tem {{ trigger.from_state.state }}% de bateria restante!!'
