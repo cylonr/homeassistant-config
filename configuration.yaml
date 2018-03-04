@@ -72,20 +72,39 @@ conversation:
 
 # Enables support for tracking state changes over time
 history:
-#  include:
-#    entities:
-#      - sensor.luis
-#      - sensor.monica
+  include:
+    entities:
+      - sensor.luis
+      - sensor.monica
+      - sensor.temperature_158d0001ab1740
+      - sensor.temperature_158d0001fa763c
+      - binary_sensor.door_window_sensor_158d0001d86c17
+      - binary_sensor.motion_sensor_158d000152fc00
+      - binary_sensor.motion_sensor_158d00015b1c11
+      - switch.petra
+      - switch.telheiro
+      - switch.anexo
+      - switch.anexo_rua
+      - binary_sensor.motion_sensor_158d00015b1c11
+      - light.gateway_light_34ce0088aff1
 
 # View all events in a logbook   
 logbook:
   include:
     entities:
+      - sensor.luis
+      - sensor.monica
+      - sensor.temperature_158d0001ab1740
+      - sensor.temperature_158d0001fa763c
+      - binary_sensor.door_window_sensor_158d0001d86c17
+      - binary_sensor.motion_sensor_158d000152fc00
+      - binary_sensor.motion_sensor_158d00015b1c11
       - switch.petra
       - switch.telheiro
       - switch.anexo
-      - sensor.temperature_158d0001ab1740
-      - sensor.temperature_158d0001fa763c
+      - switch.anexo_rua
+      - binary_sensor.motion_sensor_158d00015b1c11
+      - light.gateway_light_34ce0088aff1
 
 ############
 # INCLUDES #
@@ -95,6 +114,7 @@ zone: !include zones.yaml
 input_select: !include input_select.yaml
 automation: !include automation.yaml
 shell_command: !include shell_commands.yaml
+proximity: !include_dir_merge_named proximity
 
 # Enables a map showing the location of tracked devices
 map:
