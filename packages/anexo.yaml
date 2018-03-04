@@ -23,77 +23,22 @@ homeassistant:
 
 automation:
 
-#  - alias: Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
-#    initial_state: true
-#    trigger:
-#      platform: state
-#      entity_id: binary_sensor.motion_sensor_158d00015b1c11
-#      to: 'on'
-#    condition:
-#      condition: time
-#      after: '18:01'
-#      before: '08:00'
-#    action:
-#      service: switch.turn_on  
-#      data:      
-#        entity_id: switch.anexo     
-#
-#  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento. Entre as 18:00 e 08:00
-#    initial_state: true
-#    trigger:
-#      platform: state
-#      entity_id: binary_sensor.motion_sensor_158d00015b1c11
-#      to: 'off'
-#      for:
-#        minutes: 2
-#    condition:
-#      condition: time
-#      after: '18:01'
-#      before: '08:00'
-#    action:
-#      service: switch.turn_off
-#      data:
-#        entity_id: switch.anexo
-#        
-## Liga a luz do anexo das 08:01
-#  - alias: Liga luz do anexo de manha
-#    initial_state: true
-#    trigger:
-#      platform: time
-#      at: '08:01'                         
-#    action:
-#      service: switch.turn_on                 
-#      data:
-#        entity_id: switch.anexo
-#
-## Desliga a luz do anexo às 17:00
-#  - alias: Desliga anexo tarde
-#    trigger:
-#      platform: time
-#      at: '17:59' 
-#    action:
-#      service: switch.turn_off
-#      data:
-#        entity_id: switch.anexo
-
-
-
-  - alias: Liga a luz á noite com o sensor de movimento.
+  - alias: Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
     initial_state: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d00015b1c11
       to: 'on'
     condition:
-      condition: sun
-      after: sunset
-      before: sunrise
+      condition: time
+      after: '19:00'
+      before: '07:00'
     action:
       service: switch.turn_on  
       data:      
-        entity_id: switch.anexo
+        entity_id: switch.anexo     
 
-  - alias: Desliga a luz do anexo após 2min sem movimento depois do por do sol e antes do nascer do sol.
+  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento. Entre as 18:00 e 08:00
     initial_state: true
     trigger:
       platform: state
@@ -102,34 +47,90 @@ automation:
       for:
         minutes: 2
     condition:
-      condition: sun
-      after: sunset
-      before: sunrise
+      condition: time
+      after: '19:00'
+      before: '07:00'
     action:
       service: switch.turn_off
       data:
-        entity_id: switch.anexo    
-
-  - alias: Liga luz do anexo 5 minutos apos o nascer do sol
+        entity_id: switch.anexo
+        
+# Liga a luz do anexo das 07:01
+  - alias: Liga luz do anexo de manha
     initial_state: true
     trigger:
-      platform: sun
-      event: sunrise
-      offset: '00:05:00'                     
+      platform: time
+      at: '07:01'                         
     action:
       service: switch.turn_on                 
       data:
         entity_id: switch.anexo
 
-  - alias: Desliga luz do anexo após por do sol
+# Desliga a luz do anexo às 19:00
+  - alias: Desliga anexo tarde
     trigger:
-      platform: sun
-      event: sunset
-      offset: '+00:00:00'
+      platform: time
+      at: '18:59' 
     action:
       service: switch.turn_off
       data:
         entity_id: switch.anexo
+
+#  - alias: Liga luz do anexo 5 minutos apos o nascer do sol
+#    initial_state: true
+#    trigger:
+#      platform: sun
+#      event: sunrise
+#      offset: '00:05:00'                     
+#    action:
+#      service: switch.turn_on                 
+#      data:
+#        entity_id: switch.anexo
+#
+#  - alias: Desliga luz do anexo após por do sol
+#    trigger:
+#      platform: sun
+#      event: sunset
+#      offset: '+00:00:00'
+#    condition:
+#      condition: sun
+#      before: sunset
+#    action:
+#      service: switch.turn_off
+#      data:
+#        entity_id: switch.anexo
+#
+#  - alias: Liga a luz á noite com o sensor de movimento.
+##    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.motion_sensor_158d00015b1c11
+#      to: 'on'
+#    condition:
+#      condition: sun
+#      after: sunset
+##      before: sunrise
+#    action:
+#      service: switch.turn_on  
+#      data:      
+#        entity_id: switch.anexo
+#
+#  - alias: Desliga a luz do anexo após 2min sem movimento depois do por do sol e antes do nascer do sol.
+##    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.motion_sensor_158d00015b1c11
+#      to: 'off'
+#      for:
+#        minutes: 2
+#    condition:
+#      condition: sun
+#      after: sunset
+##      before: sunrise
+#    action:
+#      service: switch.turn_off
+#      data:
+#        entity_id: switch.anexo    
 
 ### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
 #sensor:

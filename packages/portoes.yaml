@@ -79,10 +79,11 @@ automation:
 #        data_template:
 #          topic: zanzito/luis/say
 #          payload: "Espero ter cumprido a função"
-#      - service: notify.my_pushbullet
-#        data:
-#          message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
-#          title: "Home Assistant"
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 34:CE:00:88:AF:F1
+          ringtone_id: 10007
+          ringtone_vol: 10
       - service: notify.luiszanzito
         data:
           message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
@@ -105,10 +106,11 @@ automation:
 #        data_template:
 #          topic: zanzito/luis/say
 #          payload: "Espero ter cumprido a função"
-#      - service: notify.my_pushbullet
-#        data:
-#          message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
-#          title: "Home Assistant"
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 34:CE:00:88:AF:F1
+          ringtone_id: 10008
+          ringtone_vol: 10
       - service: notify.luiszanzito
         data:
           message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "

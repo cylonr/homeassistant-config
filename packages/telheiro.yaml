@@ -14,9 +14,10 @@
 #--------------------------------------------------------------------
 
 homeassistant:
+
 automation:
 
-#Liga a luz do Telheiro e da Petra às 04:15
+#Liga a luz do Telheiro, da rua e da Petra às 04:15
   - alias: Liga Telheiro e petra
     trigger:
       platform: time
@@ -32,7 +33,7 @@ automation:
         data:
           entity_id: switch.anexo_rua
 
-#Desliga a luz do Telheiro e da Petra às 04:40
+#Desliga a luz do Telheiro, da rua e da Petra às 04:39
   - alias: Desliga telheiro e petra
     trigger:
       platform: time
@@ -47,6 +48,46 @@ automation:
       - service: switch.turn_off
         data:
           entity_id: switch.anexo_rua
+          
+## Liga / Desliga os 3 Sonoffs com o interruptor de 2 botões ##
+  - alias: 'Liga / desliga os 3 Sonoffs'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_left_158d0001e0f91d
+          click_type: single
+    action:
+      - service: switch.toggle
+        entity_id: switch.petra
+      - service: switch.toggle
+        entity_id: switch.telheiro
+      - service: switch.toggle
+        entity_id: switch.anexo_rua
+
+## Abre / Fecha portão carro com o interruptor de 2 botões##
+  - alias: 'Abre portão carro'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_right_158d0001e0f91d
+          click_type: single
+    action:
+      - service: shell_command.portaocarro 
+      - service: script.portaocarro
+
+## Ativa / Desativa tomada 220V xiaomi ##
+  - alias: 'Ativa / Desativa tomada 220V xiaomi'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.wall_switch_both_158d0001e0f91d
+          click_type: both
+    action:
+      - service: switch.toggle 
+        entity_id: switch.plug_158d00015e8107
 
 switch:
 

@@ -19,42 +19,21 @@ xiaomi_aqara:
   discovery_retry: 5
   gateways:
     - host: 192.168.2.45
-      mac: 34:CE:00:88:AF:F1
+      mac: !secret key_gateway2
       key: !secret key_gateway1
 
-#group:
-#  my_gateway:
-#    name: My Gateway
-#    entities:
-#      - input_boolean.mute_gateway_sounds
-#      - input_select.gateway_sound
-#      - input_number.gateway_volume
-#      - input_number.loop_delay
-#      - script.play_sel_sound
-#      - script.play_sel_sound_loop
-#      - script.play_sel_sound_single
-
 input_boolean:
-    
-  desligar_ou_ligar_alarme:
-    name: Alarme tracker - On/Off
-    initial: 'off'
-    icon: 'mdi:gesture-double-tap'
-    
-  desligar_ou_ligar_alarme_on:
-    name: Alarme - On/Off
+
+  proximity:
+    name: Alarme Proximity - On/Off
     initial: 'off'
     icon: 'mdi:gesture-double-tap'
 
 automation:
 
-###############################################################################
-#                                                                             #
-#                           ALARME COM DEVICE TRACKER                         #
-#                                                                             #
-###############################################################################  
-
+### ALARME COM PROXIMITY ###
   - alias: 'Play xiaomi sounds'
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d00018354d0
@@ -74,71 +53,22 @@ automation:
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d00015b1c11
         to: 'on'
+#      - platform: numeric_state
+#        entity_id: proximity.luis_casa
+#        above: 10
     condition:
       - condition: state
-        entity_id: input_boolean.desligar_ou_ligar_alarme
-        state: 'on'
-      - condition: state
-        entity_id: sensor.luis
-        state: 'Ausente'
-      - condition: state
-        entity_id: sensor.monica
-        state: 'Ausente'
-    action:
-      - service: xiaomi_aqara.play_ringtone
-        data:
-          gw_mac: 34:CE:00:88:AF:F1
-          ringtone_id: 1
-          ringtone_vol: 100
-      - service: notify.my_pushbullet
-        data:
-          message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-
-###############################################################################
-#                                                                             #
-#                           ALARME SEM DEVICE TRACKER                         #
-#                                                                             #
-############################################################################### 
-
-  - alias: 'Play xiaomi sounds'
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d00018354d0
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.motion_sensor_158d00015e8fdf
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d00015a954e
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001d399b1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001d39ff1
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.motion_sensor_158d00015b1c11
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: input_boolean.desligar_ou_ligar_alarme_on
+        entity_id: input_boolean.proximity
         state: 'on'
     action:
-      - service: xiaomi_aqara.play_ringtone
-        data:
-          gw_mac: 34:CE:00:88:AF:F1
-          ringtone_id: 1
-          ringtone_vol: 100
-      - service: notify.my_pushbullet
-        data:
-          message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      service: script.alarme
 
 ################################################
-#                   BOTÃO XIAOMI               #
-################################################
+#                      BOTÕES                  #
+################################################      
 
-  - alias: 'Liga / desliga os 3 Sonoffs'
+## Liga alarme ##
+  - alias: 'Liga alarme'
     trigger:
       - platform: event
         event_type: click
@@ -146,14 +76,17 @@ automation:
           entity_id: binary_sensor.switch_158d0001b86d3e
           click_type: single
     action:
-      - service: switch.toggle
-        entity_id: switch.petra
-      - service: switch.toggle
-        entity_id: switch.telheiro
-      - service: switch.toggle
-        entity_id: switch.anexo_rua
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10005
+          ringtone_vol: 12
+      - delay: 0:01:00
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.proximity
 
-  - alias: 'Abre portão carro'
+## Desliga o SCRIPT do alarme e o alarme ##
+  - alias: 'desliga alarme'
     trigger:
       - platform: event
         event_type: click
@@ -161,16 +94,61 @@ automation:
           entity_id: binary_sensor.switch_158d0001b86d3e
           click_type: double
     action:
-      - service: shell_command.portaocarro 
-      - service: script.portaocarro
+      - service: script.turn_off
+        data:
+          entity_id: script.alarme
+      - service: notify.luiszanzito
+        data:
+          message: "Alarme desativo por EMERGENCIA - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:01
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.proximity
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10006
+          ringtone_vol: 12
+#      - service: automation.turn_off
+#        data:
+#          entity_id: automation.Play_xiaomi_sounds
 
-#  - alias: 'Desativa a sirene'
-#    trigger:
-#      - platform: event
-#        event_type: click
-#        event_data:
-#          entity_id: binary_sensor.switch_158d000xxxxxc2
-#          click_type: long_click_press
-#    action:
-#      - service: homeassistant.turn_off 
-#      - entity_id: switch.plug_158d00015e8107
+script:
+
+  alarme:
+    sequence:
+      - delay: 0:00:01
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10001
+          ringtone_vol: 5
+      - delay: 0:00:05
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 5
+      - service: notify.luiszanzito
+        data:
+          message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:07
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 5
+      - delay: 0:00:07
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 5
+      - delay: 0:00:07
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 5

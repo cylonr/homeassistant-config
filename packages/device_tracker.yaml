@@ -28,13 +28,23 @@ device_tracker:
       CamAnexo: 192.168.2.40
       CamTelheiro: 192.168.2.71
       CamPetra: 192.168.2.7
-      CamCarolina: 192.168.2.41
+      CamCarolina: 192.168.2.15
       Gateway: 192.168.2.45
       RepAnexo: 192.168.2.196
       RepCasa: 192.168.2.233
       LuisTele: 192.168.2.46
       MonicaTele: 192.168.2.177
-  
+      
+  - platform: asuswrt
+    host: 192.168.2.1
+    username: admin
+    password: loacsa
+    protocol: telnet
+    mode: router
+    interval_seconds: 20
+    consider_home: 60
+    track_new_devices: True
+
   - platform: bluetooth_tracker
     consider_home: 20 
     interval_seconds: 5
@@ -74,6 +84,9 @@ sensor:
         value_template: > 
           {%- if is_state('device_tracker.xiaomi_mi4c_3', 'not_home') and is_state('device_tracker.luis', 'not_home') and is_state('device_tracker.luistele', 'not_home') -%}
              Ausente
+          {%- endif -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_3', 'not_home') and is_state('device_tracker.luis', 'home') and is_state('device_tracker.luistele', 'home') -%}
+             Em casa
           {%- endif -%}
           {%- if is_state('device_tracker.xiaomi_mi4c_3', 'home') and is_state('device_tracker.luis', 'home') and is_state('device_tracker.luistele', 'home') -%}
              Em casa

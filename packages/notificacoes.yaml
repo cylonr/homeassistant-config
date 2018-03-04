@@ -16,17 +16,6 @@
 homeassistant:
 automation:
 
-# Notifica que ha update no Home Assistant
-#  - alias: 'Update Available Notifications'
-#    hide_entity: true
-#    trigger:
-#      platform: state
-#      entity_id: updater.updater
-#    action:
-#      service: notify.luiszanzito
-#      data:
-#        message: 'O update para o Home Assistant está disponível para download.'
-
 # Notifica os utilizadores da casa se existe nova correspondência na caixa do correio.
   - alias: Notificacao Novo Correio
     initial_state: true
@@ -206,6 +195,17 @@ notify:
 #                           D E S A T I V O S                                 #
 #                                                                             #
 ###############################################################################
+
+# Notifica que ha update no Home Assistant
+#  - alias: 'Update Available Notifications'
+#    hide_entity: true
+#    trigger:
+#      platform: state
+#      entity_id: updater.updater
+#    action:
+#      service: notify.luiszanzito
+#      data:
+#        message: 'O update para o Home Assistant está disponível para download.'
 
 #Informa a Monica da temperatura do quarto da Carolina e o estado do tempo na rua. Automação Nº 03
 #  - alias: Estado do tempo

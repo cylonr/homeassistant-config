@@ -99,4 +99,4 @@ automation:
     action:
       - service: notify.my_pushbullet
         data:
-          message: "Há {{ states.sensor.dark_sky_precip_probability_1.state }}% de probabilidadede chover amanhã."
+          message: "Há {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidadede chover amanhã."
