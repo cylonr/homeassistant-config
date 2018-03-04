@@ -1,0 +1,23 @@
+luis_casa:
+  zone: home
+  devices:
+    - device_tracker.luis
+  unit_of_measurement: m
+  
+luis_trabalho:
+  zone: notrabalho
+  devices:
+    - device_tracker.luis
+  unit_of_measurement: m
+  
+monica_casa:
+  zone: home
+  devices:
+    - device_tracker.monica
+  unit_of_measurement: m
+  
+monica_trabalho:
+  zone: notrabalhop
+  devices:
+    - device_tracker.monica
+  unit_of_measurement: m
