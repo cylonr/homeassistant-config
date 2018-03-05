@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ automation:
 #                      BOTÕES                  #
 ################################################      
 
-## Liga alarme ##
+# Liga alarme
   - alias: 'Liga alarme'
     trigger:
       - platform: event
@@ -79,13 +79,13 @@ automation:
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2
-          ringtone_id: 10005
+          ringtone_id: 10009
           ringtone_vol: 12
-      - delay: 0:01:00
+      - delay: 0:15:00
       - service: homeassistant.turn_on
         entity_id: input_boolean.proximity
 
-## Desliga o SCRIPT do alarme e o alarme ##
+# Desliga o SCRIPT do alarme e o alarme
   - alias: 'desliga alarme'
     trigger:
       - platform: event
@@ -111,9 +111,6 @@ automation:
           gw_mac: !secret key_gateway2
           ringtone_id: 10006
           ringtone_vol: 12
-#      - service: automation.turn_off
-#        data:
-#          entity_id: automation.Play_xiaomi_sounds
 
 script:
 

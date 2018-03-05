@@ -9,7 +9,7 @@
 #	Home Assistant - Notifications
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-11
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Notifications
 #--------------------------------------------------------------------
 
@@ -179,7 +179,7 @@ notify:
   - name: luiszanzito
     platform: zanzito
     device-name: luis
-    
+
 #  - name: monicazanzito
 #    platform: zanzito
 #    device-name: monica

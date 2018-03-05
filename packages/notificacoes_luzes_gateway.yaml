@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ automation:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
           color_name: red
-          
+
   - alias: Portao fechado
     initial_state: true
     trigger:
@@ -49,6 +49,12 @@ automation:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
           color_name: green
+
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
 
 ## Informa o estado do alarme com device tracker sendo que a encarnado está activo
 #  - alias: Alarme on

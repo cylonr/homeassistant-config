@@ -9,7 +9,7 @@
 #	Home Assistant - Cameras
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Cameras
 #--------------------------------------------------------------------
 
@@ -27,6 +27,12 @@ camera:
   - name: Cartaxo
     platform: generic
     still_image_url: https://www.yr.no/place/Portugal/Santarém/Cartaxo//meteogram.png
+
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
 
 #- name: luis_cam
 #  platform: generic

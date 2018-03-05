@@ -9,7 +9,7 @@
 #	Home Assistant - Weather
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Weather
 #--------------------------------------------------------------------
 homeassistant:
@@ -25,7 +25,7 @@ sensor:
       - humidity
       - temperature_max
       - temperature_min
-    
+
   - platform: yr
     name: Weather
     forecast: 24
@@ -43,7 +43,7 @@ sensor:
       - mediumClouds
       - highClouds
       - dewpointTemperature
-      
+
   - platform: template
     sensors:
      #Estado do Tempo
@@ -65,11 +65,13 @@ sensor:
           {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Overcast') -%}    
             Vento e nublado
           {%- elif is_state('sensor.dark_sky_summary', 'Rain and Breezy') -%}    
-            Chuva e vento fraco
+            Chuva e vento
           {%- elif is_state('sensor.dark_sky_summary', 'Rain and Windy') -%}    
             Chuva e vento
           {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Mostly Cloudy') -%}    
-            Vento fraco e algumas nuvens            
+            Vento fraco e algumas nuvens
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy') -%}    
+            Vento fraco            
           {%- endif -%}
 
 automation:

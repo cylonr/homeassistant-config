@@ -9,20 +9,14 @@
 #	Home Assistant - Sonoff
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Sonoff
 #--------------------------------------------------------------------
 
 homeassistant:
-
-###############################################################################
-#                                                                             #
-#             A U T O M A T I O N S    L U Z    N O R M A L                   #
-#                                                                             #
-############################################################################### 
-
 automation:
 
+# Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
   - alias: Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
     initial_state: true
     trigger:
@@ -38,7 +32,8 @@ automation:
       data:      
         entity_id: switch.anexo     
 
-  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento. Entre as 18:00 e 08:00
+# Desliga a luz do anexo 2 minutos após o ultimo movimento. Entre as 19:00 e 07:00
+  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento. Entre as 19:00 e 07:00
     initial_state: true
     trigger:
       platform: state
@@ -75,6 +70,91 @@ automation:
       service: switch.turn_off
       data:
         entity_id: switch.anexo
+
+###############################################################################
+#                                                                             #
+#                           S C R I P T S                                     #
+#                                                                             #
+###############################################################################         
+script:
+
+  anexo:
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.anexo
+      - delay: 00:15:00
+      - service: switch.turn_off
+        data:
+          entity_id: switch.anexo
+
+###############################################################################
+#                                                                             #
+#                           S W I T C H S                                     #
+#                                                                             #
+###############################################################################           
+switch:
+
+# switch anexo
+  - platform: mqtt
+    name: "Anexo"
+    state_topic: "stat/anexo/POWER"
+    command_topic: "cmnd/anexo/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+# switch anexo rua
+  - platform: mqtt
+    name: "Anexo Rua"
+    state_topic: "stat/rua/POWER"
+    command_topic: "cmnd/rua/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+###############################################################################
+#                                                                             #
+#                           B I N A R Y _ S E N S O R S                       #
+#                                                                             #
+###############################################################################  
+binary_sensor:    
+
+  - platform: mqtt
+    name: "Sonoff Anexo"
+    state_topic: "tele/anexo/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    
+  - platform: mqtt
+    name: "Sonoff Anexo Rua"
+    state_topic: "tele/rua/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+
+  - platform: mqtt
+    name: "Sonoff Petra"
+    state_topic: "tele/petra/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+
+  - platform: mqtt
+    name: "Sonoff Telheiro"
+    state_topic: "tele/telheiro/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
 
 #  - alias: Liga luz do anexo 5 minutos apos o nascer do sol
 #    initial_state: true
@@ -138,82 +218,3 @@ automation:
 #  sensors:
 #    motion_anexo:
 #      value_template: '{% if is_state("binary_sensor.motion_sensor_158d00015b1c11", "on") %} Sim {% else %} Não {%- endif %}'
-
-###############################################################################
-#                                                                             #
-#                           S C R I P T S                                     #
-#                                                                             #
-###############################################################################         
-script:
-
-  anexo:
-    sequence:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.anexo
-      - delay: 00:15:00
-      - service: switch.turn_off
-        data:
-          entity_id: switch.anexo
-
-###############################################################################
-#                                                                             #
-#                           S W I T C H S                                     #
-#                                                                             #
-###############################################################################           
-switch:
-
-#switch anexo
-  - platform: mqtt
-    name: "Anexo"
-    state_topic: "stat/anexo/POWER"
-    command_topic: "cmnd/anexo/power"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-#switch anexo rua
-  - platform: mqtt
-    name: "Anexo Rua"
-    state_topic: "stat/rua/POWER"
-    command_topic: "cmnd/rua/power"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-###############################################################################
-#                                                                             #
-#                           B I N A R Y _ S E N S O R S                       #
-#                                                                             #
-###############################################################################  
-binary_sensor:    
-
-  - platform: mqtt
-    name: "Sonoff Anexo"
-    state_topic: "tele/anexo/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-    
-  - platform: mqtt
-    name: "Sonoff Anexo Rua"
-    state_topic: "tele/rua/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-
-  - platform: mqtt
-    name: "Sonoff Petra"
-    state_topic: "tele/petra/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-
-  - platform: mqtt
-    name: "Sonoff Telheiro"
-    state_topic: "tele/telheiro/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"

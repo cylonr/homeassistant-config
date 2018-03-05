@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ automation:
     action:
       - service: shell_command.portaomota 
       - service: script.portaomota
-          
+
   - alias: 'portao carro'
     trigger:
       - platform: state
@@ -116,8 +116,34 @@ automation:
           message: "Portão fechado - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
           title: "Home Assistant"
 
+# Liga os SONOFFs quando o portão abrir á noite e desliga 7 minutos depois
+  - alias: SONOFFs ligados com o portao
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001d86c17
+      to: 'on'
+    condition:
+      condition: time
+      after: '19:00'
+      before: '07:00'
+    action:
+      - service: switch.turn_on
+        entity_id: switch.petra
+      - service: switch.turn_on
+        entity_id: switch.telheiro
+      - service: switch.turn_on
+        entity_id: switch.anexo_rua
+      - delay: 0:07:00
+      - service: switch.turn_off
+        entity_id: switch.petra
+      - service: switch.turn_off
+        entity_id: switch.telheiro
+      - service: switch.turn_off
+        entity_id: switch.anexo_rua
+
 script:
-  
+
   portaomota:
     sequence:
       - delay: 00:00:01
@@ -132,12 +158,15 @@ script:
         data:
           entity_id: input_boolean.portaocarro
 
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
+
 ### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
 #sensor:
 #  platform: template
 #  sensors:
 #    door_portao:
 #      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d86c17", "on") %} Aberto {% else %} Fechado {%- endif %}'
-      
-      
-      

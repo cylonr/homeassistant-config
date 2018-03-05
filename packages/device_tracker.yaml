@@ -9,7 +9,7 @@
 #	Home Assistant - Device Tracker
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-17
+#	Date		:	2018-03-05
 #	Description :	Set configuration to Device Tracker
 #--------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ device_tracker:
     hosts:
       - 192.168.2.177
       - 192.168.2.46
-  
+
   - platform: ping
     interval_seconds: 20
     consider_home: 60
@@ -34,28 +34,28 @@ device_tracker:
       RepCasa: 192.168.2.233
       LuisTele: 192.168.2.46
       MonicaTele: 192.168.2.177
-      
-  - platform: asuswrt
-    host: 192.168.2.1
-    username: admin
-    password: loacsa
-    protocol: telnet
-    mode: router
-    interval_seconds: 20
-    consider_home: 60
-    track_new_devices: True
+
+#  - platform: asuswrt
+#    host: 192.168.2.1
+#    username: admin
+#    password: !secret key_mqtt2
+#    protocol: telnet
+#    mode: router
+#    interval_seconds: 20
+#    consider_home: 60
+#    track_new_devices: True
 
   - platform: bluetooth_tracker
     consider_home: 20 
     interval_seconds: 5
-    
+
   - platform: mqtt_json
     devices:
      luis: zanzito/luis/location
     track_new_devices: True
     interval_seconds: 10
     consider_home: 20
-   
+
   - platform: mqtt_json
     devices:
      monica: zanzito/monica/location
@@ -109,7 +109,7 @@ sensor:
           {%- if is_state('device_tracker.xiaomi_mi4c_3', 'not_home') and is_state('device_tracker.luis', 'notrabalho') and is_state('device_tracker.luistele', 'not_home') -%} 
              No Trabalho
           {%- endif -%} 
-          
+
       monica: 
         friendly_name: 'Estado Monica'
         value_template: > 
