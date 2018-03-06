@@ -61,7 +61,6 @@ automation:
         message: "Portão aberto à mais de 60 min - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
         title: "Home Assistant"
  
-
 # Notifica o Luis que o portão está a abrir.
   - alias: Portao_aberto
     initial_state: true

@@ -89,7 +89,6 @@ automation:
           ringtone_vol: 17
       - service: script.atraso
 
-
 # Desliga o SCRIPT do alarme e o alarme com o interruptor de 2 botões
   - alias: 'desliga alarme'
     trigger:
@@ -172,3 +171,16 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 1
           ringtone_vol: 100
+          
+sensor:
+
+  - platform: template
+    sensors:
+      proximity:
+        friendly_name: 'Estado do alarme:'
+        value_template: >
+            {%- if is_state("input_boolean.proximity", "on") -%}
+              Ligado
+             {% else %}
+              Desligado
+            {% endif %}
