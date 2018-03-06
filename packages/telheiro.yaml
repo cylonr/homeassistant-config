@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-05
+#	Date		:	2018-03-06
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -49,13 +49,13 @@ automation:
         data:
           entity_id: switch.anexo_rua
           
-# Liga / Desliga os 3 Sonoffs com o interruptor de 2 botões
+# Liga / Desliga os 3 Sonoffs com 1 click no botão
   - alias: 'Liga / desliga os 3 Sonoffs'
     trigger:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_left_158d0001e0f91d
+          entity_id: binary_sensor.switch_158d0001b86d3e
           click_type: single
     action:
       - service: switch.toggle
@@ -65,14 +65,14 @@ automation:
       - service: switch.toggle
         entity_id: switch.anexo_rua
 
-# Abre / Fecha portão carro com o interruptor de 2 botões
+# Abre / Fecha portão do carro com 2 clicks no botão
   - alias: 'Abre portão carro'
     trigger:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.wall_switch_right_158d0001e0f91d
-          click_type: single
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: double
     action:
       - service: shell_command.portaocarro 
       - service: script.portaocarro

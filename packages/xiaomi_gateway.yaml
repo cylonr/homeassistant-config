@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-05
+#	Date		:	2018-03-06
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -67,13 +67,13 @@ automation:
 #                      BOTÕES                  #
 ################################################      
 
-# Liga alarme
+# Liga alarme com o interruptor de 2 botões
   - alias: 'Liga alarme'
     trigger:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.switch_158d0001b86d3e
+          entity_id: binary_sensor.wall_switch_left_158d0001e0f91d
           click_type: single
     action:
       - service: xiaomi_aqara.play_ringtone
@@ -87,18 +87,17 @@ automation:
           gw_mac: !secret key_gateway2
           ringtone_id: 10009
           ringtone_vol: 17
-      - delay: 0:15:00
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.proximity
+      - service: script.atraso
 
-# Desliga o SCRIPT do alarme e o alarme
+
+# Desliga o SCRIPT do alarme e o alarme com o interruptor de 2 botões
   - alias: 'desliga alarme'
     trigger:
       - platform: event
         event_type: click
         event_data:
-          entity_id: binary_sensor.switch_158d0001b86d3e
-          click_type: double
+          entity_id: binary_sensor.wall_switch_right_158d0001e0f91d
+          click_type: single
     action:
       - service: xiaomi_aqara.play_ringtone
         data:
@@ -106,6 +105,9 @@ automation:
           ringtone_id: 10001
           ringtone_vol: 10
       - delay: 0:00:01
+      - service: script.turn_off
+        data:
+          entity_id: script.atraso
       - service: script.turn_off
         data:
           entity_id: script.alarme
@@ -125,6 +127,15 @@ automation:
           ringtone_vol: 17
 
 script:
+  
+  atraso:
+    sequence:
+      - delay: 0:15:00
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.proximity
+      - service: notify.luiszanzito
+        data:
+          message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
   alarme:
     sequence:
@@ -134,7 +145,7 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 10001
           ringtone_vol: 7
-      - delay: 0:00:05
+      - delay: 0:00:20
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2
