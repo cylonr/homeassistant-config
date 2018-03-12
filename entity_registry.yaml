@@ -1,0 +1,63 @@
+binary_sensor.motion_sensor_158d00015e8fdf:
+  platform: xiaomi_aqara
+  unique_id: status158d00015e8fdf
+binary_sensor.motion_sensor_158d000152fc00:
+  platform: xiaomi_aqara
+  unique_id: status158d000152fc00
+binary_sensor.door_window_sensor_158d0001d86c17:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d86c17
+binary_sensor.door_window_sensor_158d00018354d0:
+  platform: xiaomi_aqara
+  unique_id: status158d00018354d0
+binary_sensor.door_window_sensor_158d0001d399b1:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d399b1
+binary_sensor.door_window_sensor_158d0001d39ff1:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d39ff1
+binary_sensor.motion_sensor_158d00015b1c11:
+  platform: xiaomi_aqara
+  unique_id: status158d00015b1c11
+binary_sensor.switch_158d0001b86d3e:
+  platform: xiaomi_aqara
+  unique_id: status158d0001b86d3e
+binary_sensor.door_window_sensor_158d00015a954e:
+  platform: xiaomi_aqara
+  unique_id: status158d00015a954e
+switch.plug_158d00015e8107:
+  platform: xiaomi_aqara
+  unique_id: status158d00015e8107
+light.gateway_light_34ce0088aff1:
+  platform: xiaomi_aqara
+  unique_id: rgb34ce0088aff1
+sensor.temperature_158d0001ab1740:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001ab1740
+sensor.humidity_158d0001ab1740:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001ab1740
+sensor.pressure_158d0001ab1740:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001ab1740
+sensor.temperature_158d0001fa763c:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001fa763c
+sensor.humidity_158d0001fa763c:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001fa763c
+sensor.pressure_158d0001fa763c:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001fa763c
+sensor.illumination_34ce0088aff1:
+  platform: xiaomi_aqara
+  unique_id: illumination34ce0088aff1
+binary_sensor.wall_switch_right_158d0001e0f91d:
+  platform: xiaomi_aqara
+  unique_id: channel_1158d0001e0f91d
+binary_sensor.wall_switch_left_158d0001e0f91d:
+  platform: xiaomi_aqara
+  unique_id: channel_0158d0001e0f91d
+binary_sensor.wall_switch_both_158d0001e0f91d:
+  platform: xiaomi_aqara
+  unique_id: dual_channel158d0001e0f91d

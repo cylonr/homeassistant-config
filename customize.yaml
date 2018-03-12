@@ -22,28 +22,16 @@ sensor.weather_wind_speed:
   friendly_name: "Previsão Vel. vento x 3.6"
   icon: mdi:weather-windy
 
-####### DEVICE_TRACKERS######
+####### VARIOS ######
 sensor.luis:
   entity_picture: /local/images/luis2.jpg
-sensor.estado_da_bateria_tlm_luis:
-  friendly_name: "Telemovel Luis" 
-  icon: mdi:battery
 sensor.monica:
   entity_picture: /local/images/monica.jpg
-sensor.estado_da_bateria_tlm_monica:
-  friendly_name: "Telemovel Monica" 
-  icon: mdi:battery
-input_boolean.desligar_ou_ligar_alarme:
-  friendly_name: "Alarme tracker  - On/Off"
-  icon: mdi:alarm-light
-input_boolean.desligar_ou_ligar_alarme_on:
-  friendly_name: "Alarme - On/Off"
+sensor.proximity:
   icon: mdi:alarm-light
 input_boolean.desligar_ou_ligar_portas:
   friendly_name: "Notificação de portas"
   icon: mdi:door-open
-vacuum.xiaomi_vacuum_cleaner:
-  friendly_name: "Aspirador Xiaomi" 
 light.gateway_light_34ce0088aff1:
   friendly_name: "Led GateWay"
   icon: mdi:lightbulb-on
@@ -59,6 +47,9 @@ switch.anexo:
 switch.anexo_rua:
   friendly_name: "Luz Anexo Rua" 
   icon: mdi:lightbulb-on
+proximity.luis_casa:
+  friendly_name: "Proximity: Luis" 
+  icon: mdi:home-map-marker
 
 # Estado HA #
 script.restart_ha:
@@ -85,6 +76,22 @@ sensor.connected_clients:
   friendly_name: 'Clientes conectados'
   unit_of_measurement: 'cliente(s)'
   icon: 'mdi:account'
+
+# Aspirador #
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: Limpar
+sensor.xiaomi_status:
+  icon: mdi:gauge
+sensor.xiaomi_battery_level:
+  icon: mdi:battery-charging
+sensor.xiaomi_main_brush_left:
+  icon: mdi:broom
+sensor.xiaomi_side_brush_left:
+  icon: mdi:broom
+sensor.xiaomi_filter_left:
+  icon: mdi:basket-unfill
+input_boolean.disable_daily_vacuum:
+  icon: mdi:stop-circle-outline
 
 # System #
 sensor.date:

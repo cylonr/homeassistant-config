@@ -15,7 +15,7 @@
 
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Cartaxo
+  name: Home Assistant
   # Location required to calculate the time the sun rises and sets
   latitude: !secret key_lat
   longitude: !secret key_lon
@@ -49,9 +49,6 @@ http:
   api_password: !secret key_api_password
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
-  trusted_networks:
-    - 192.168.2.140
-    - 192.168.2.58
   ip_ban_enabled: True
   login_attempts_threshold: 5
 

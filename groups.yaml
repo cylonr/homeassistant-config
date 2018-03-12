@@ -48,7 +48,7 @@ rpi3:
 #               GRUPO ASPIRADOR                #
 ################################################
 aspirador:
-  name: Xiaomi Vacuum
+  name: Aspirador Xiaomi
   entities:    
     - vacuum.xiaomi_vacuum_cleaner
     - sensor.xiaomi_status
@@ -62,31 +62,26 @@ aspirador:
 ################################################
 familia:
   name: Familia
-  entities:
+  entities:  
     - sensor.time
     - sensor.date
     - sensor.luis
     - sensor.monica
-    - device_tracker.luistele
-    - device_tracker.xiaomi_mi4c
-    - device_tracker.monicatele
-    - device_tracker.xiaomi_mi4c_2
-    - camera.luis_cam
-    - camera.monica_cam
+    - sensor.proximity
+    - sensor.gate
     - input_boolean.portaomota
     - input_boolean.portaocarro
-    - input_boolean.desligar_ou_ligar_alarme
-    - input_boolean.desligar_ou_ligar_alarme_on
     - input_boolean.desligar_ou_ligar_portas
     - light.gateway_light_34ce0088aff1
     - switch.petra  
     - switch.telheiro
     - switch.anexo
     - switch.anexo_rua
-#    - switch.plug_158d00015e8107
-#    - weblink.portao_carro
-#    - weblink.portao_mota
-#    - input_select.hass_theme
+#    - device_tracker.luistele
+#    - device_tracker.xiaomi_mi4c_3
+#    - device_tracker.luis
+#    - device_tracker.monicatele
+#    - device_tracker.xiaomi_mi4c_2
 
 ################################################
 #             GRUPO TRÂNSITO                   #
@@ -196,8 +191,10 @@ tab_bateria:
     - sensor.p_sala_battery_level
     - sensor.p_correio_battery_level
     - sensor.p_botao_battery_level
+    - sensor.p_interruptor_battery_level
     - sensor.p_temp1_battery_level
     - sensor.p_temp2_battery_level
+    - input_boolean.proximity
 
 ################################################
 #                    CAMERAS                   #

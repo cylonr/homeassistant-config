@@ -2,16 +2,7 @@ xiaomi_mi4c_2:
   hide_if_away: false
   icon:
   mac: BT_F4:8B:32:D6:DF:48
-  name: BT_Monica
-  picture:
-  track: true
-  vendor: Xiaomi
-
-xiaomi_mi4c:
-  hide_if_away: false
-  icon:
-  mac: BT_20:82:C0:61:D8:91
-  name: BT_Luis
+  name: BT Monica
   picture:
   track: true
   vendor: Xiaomi
@@ -97,29 +88,128 @@ repcasa:
   track: true
   vendor:
 
-luistele:
+android8a3e7b90eb3ca252cylon_2:
   hide_if_away: false
   icon:
-  mac:
-  name: luistele
-  picture:
-  track: true
-  vendor:
-
-android8a3e7b90eb3ca252cylon:
-  hide_if_away: false
-  icon:
-  mac: 20:82:C0:61:D8:92
-  name: Telemovel Luis
+  mac: 36:CE:00:00:7B:1E
+  name: Repeater Casa
   picture:
   track: true
   vendor: unknown
+
+xiaomi_mi4c_3:
+  hide_if_away: false
+  icon:
+  mac: BT_22:22:67:C6:69:73
+  name: BT_Luis
+  picture:
+  track: true
+  vendor: unknown
+
+e0b94d064ed9:
+  hide_if_away: false
+  icon:
+  mac: E0:B9:4D:06:4E:D9
+  name: Cam Rotativa
+  picture:
+  track: true
+  vendor: SHENZHEN BILIAN ELECTRONIC CO.，LTD
+
+rockrobo:
+  hide_if_away: false
+  icon:
+  mac: 28:6C:07:F6:F0:20
+  name: rockrobo
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+portatil_2:
+  hide_if_away: false
+  icon:
+  mac: AC:81:12:A8:31:50
+  name: Portatil
+  picture:
+  track: true
+  vendor: Gemtek Technology Co., Ltd.
+
+7811dc376dfe:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:37:6D:FE
+  name: Cam Telheiro
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+2a51a9530da0:
+  hide_if_away: false
+  icon:
+  mac: 2A:51:A9:53:0D:A0
+  name: Media Center
+  picture:
+  track: true
+  vendor: unknown
+
+lumigatewayv3_miio56790352:
+  hide_if_away: false
+  icon:
+  mac: 34:CE:00:88:AF:F1
+  name: GateWay Xiaomi
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
+
+cozinha:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:CB:0E:3B
+  name: Tablet Cozinha
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+hassio:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:23:71:86
+  name: hassio
+  picture:
+  track: true
+  vendor: Raspberry Pi Foundation
+
+elitepad:
+  hide_if_away: false
+  icon:
+  mac: F0:AB:54:16:E6:B7
+  name: ElitePad
+  picture:
+  track: true
+  vendor: MITSUMI ELECTRIC CO.,LTD.
+
+36ce0000728b:
+  hide_if_away: false
+  icon:
+  mac: 36:CE:00:00:72:8B
+  name: Repeater Anexo
+  picture:
+  track: true
+  vendor: unknown
+
+7811dc373061:
+  hide_if_away: false
+  icon:
+  mac: 78:11:DC:37:30:61
+  name: Cam Carolina
+  picture:
+  track: true
+  vendor: XIAOMI Electronics,CO.,LTD
 
 androida368cde6beb22035cylon:
   hide_if_away: false
   icon:
   mac: 8C:BE:BE:8C:8C:32
-  name: Telemovel Monica
+  name: Tele Monica
   picture:
   track: true
   vendor: Xiaomi Communications Co Ltd
@@ -133,38 +223,29 @@ monicatele:
   track: true
   vendor:
 
-desktop6550ud5:
+xiaomi_mi4c:
   hide_if_away: false
   icon:
-  mac: BT_F0:AB:54:16:E6:B8
-  name: Tablet Cozinha
+  mac: BT_20:82:C0:61:D8:91
+  name: BT Luis
   picture:
   track: true
-  vendor: MITSUMI ELECTRIC CO.,LTD.
+  vendor: unknown
 
-portatil:
+luistele:
   hide_if_away: false
   icon:
-  mac: BT_40:2C:F4:65:4E:FB
-  name: BT_PORTATIL
+  mac:
+  name: Luis Router
   picture:
   track: true
-  vendor: Universal Global Scientific Industrial Co., Ltd.
+  vendor:
 
 mibox3:
   hide_if_away: false
   icon:
   mac: BT_22:22:0E:7A:C8:5D
-  name: BT_Media_Player
-  picture:
-  track: true
-  vendor: unknown
-
-android8a3e7b90eb3ca252cylon_2:
-  hide_if_away: false
-  icon:
-  mac: 36:CE:00:00:7B:1E
-  name: Repeater Casa
+  name: MIBOX3
   picture:
   track: true
   vendor: unknown
