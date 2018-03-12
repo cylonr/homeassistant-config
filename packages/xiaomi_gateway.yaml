@@ -18,7 +18,7 @@ homeassistant:
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - host: 192.168.2.45
+    - host: 192.168.1.68
       mac: !secret key_gateway2
       key: !secret key_gateway1
 

@@ -54,6 +54,10 @@ sensor:
             Parcialmente Nublado
           {%- elif is_state('sensor.dark_sky_summary', 'Clear') -%}
             Limpo
+          {%- elif is_state('sensor.dark_sky_summary', 'Light Rain and Breezy') -%}
+            Aguaceiros e vento fraco
+          {%- elif is_state('sensor.dark_sky_summary', 'Light Rain') -%}
+            Aguaceiros
           {%- elif is_state('sensor.dark_sky_summary', 'Rain') -%}
             Chuvoso
           {%- elif is_state('sensor.dark_sky_summary', 'Mostly Cloudy') -%}    
@@ -99,6 +103,6 @@ automation:
         entity_id: sensor.dark_sky_precip_probability
         above: '20'
     action:
-      - service: notify.my_pushbullet
-        data:
-          message: "Há {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidadede chover amanhã."
+      service: notify.my_pushbullet
+      data:
+        message: "Há {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidadede chover amanhã."

@@ -17,7 +17,7 @@ homeassistant:
 
 vacuum:
   - platform: xiaomi_miio
-    host: 192.168.2.234
+    host: 192.168.1.73
     token: !secret key_aspira
 
 ################################################
