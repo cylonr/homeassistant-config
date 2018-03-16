@@ -65,18 +65,6 @@ automation:
       - service: switch.toggle
         entity_id: switch.anexo_rua
 
-# Abre / Fecha portão do carro com 2 clicks no botão
-  - alias: 'Abre portão carro'
-    trigger:
-      - platform: event
-        event_type: click
-        event_data:
-          entity_id: binary_sensor.switch_158d0001b86d3e
-          click_type: double
-    action:
-      - service: shell_command.portaocarro 
-      - service: script.portaocarro
-
 # Ativa / Desativa tomada 220V xiaomi
   - alias: 'Ativa / Desativa tomada 220V xiaomi'
     trigger:

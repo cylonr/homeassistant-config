@@ -18,7 +18,7 @@ homeassistant:
     switch.plug_158d00015e8107:
       friendly_name: Tomada Xiaomi
       icon: mdi:power-settings
-      initial: 'on'
+      initial: 'off'
     sensor.plug_load_power:
       friendly_name: Energia atual
       icon: mdi:flash-auto
