@@ -34,10 +34,10 @@ camera:
 #                                                                             #
 ###############################################################################
 
-#- name: luis_cam
-#  platform: generic
-#  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}
-#  limit_refetch_to_url_change: true
+#  - name: luis_cam
+#    platform: generic
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}
+#    limit_refetch_to_url_change: true
 
 #- name: monica_cam  
 #  platform: generic

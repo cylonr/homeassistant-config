@@ -16,8 +16,8 @@
 homeassistant:
   customize:
     switch.plug_158d00015e8107:
-      friendly_name: Tomada Xiaomi
-      icon: mdi:power-settings
+      friendly_name: Luz do Alarme
+      icon: mdi:lightbulb-on
       initial: 'off'
     sensor.plug_load_power:
       friendly_name: Energia atual
@@ -34,16 +34,16 @@ homeassistant:
     sensor.plug_battery_level:
       friendly_name: Bateria
 
-group:
-  Smart Power:
-    name: Energia Inteligente
-    entities:
-      - switch.plug_158d00015e8107
-      - sensor.plug_load_power
-      - sensor.plug_power_consumed_kwh
-      - sensor.plug_power_consumed_cost
-      - sensor.plug_in_use
-      - sensor.plug_battery_level
+#group:
+#  Smart Power:
+#    name: Energia Inteligente
+#    entities:
+#      - switch.plug_158d00015e8107
+#      - sensor.plug_load_power
+#      - sensor.plug_power_consumed_kwh
+#      - sensor.plug_power_consumed_cost
+#      - sensor.plug_in_use
+#      - sensor.plug_battery_level
 
 sensor:
   platform: template
