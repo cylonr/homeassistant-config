@@ -20,14 +20,14 @@ default_view:
 ################################################
 #                   TOMADA                     #
 ################################################
-tomada:
-  name: Energia Inteligente
-  entities:
-    - switch.plug_158d00015e8107
-    - sensor.plug_in_use
-    - sensor.plug_load_power
-    - sensor.plug_power_consumed_kwh
-    - sensor.plug_power_consumed_cost
+#tomada:
+#  name: Energia Inteligente
+#  entities:
+#    - switch.plug_158d00015e8107
+#    - sensor.plug_in_use
+#    - sensor.plug_load_power
+#    - sensor.plug_power_consumed_kwh
+#    - sensor.plug_power_consumed_cost
 #    - sensor.plug_battery_level
 
 ################################################
@@ -195,6 +195,7 @@ tab_bateria:
     - sensor.p_temp1_battery_level
     - sensor.p_temp2_battery_level
     - input_boolean.proximity
+    - switch.plug_158d00015e8107
 
 ################################################
 #                    CAMERAS                   #
