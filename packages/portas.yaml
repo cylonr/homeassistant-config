@@ -9,7 +9,7 @@
 #	Home Assistant - Portas
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-25
+#	Date		:	2018-03-18
 #	Description :	Set configuration to portas
 #--------------------------------------------------------------------
 
@@ -26,6 +26,7 @@ automation:
 # Notifica o Luis que as portas foram abertas.
   - alias: 'Alerta de portas'
     initial_state: true
+    hide_entity: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d00018354d0
@@ -38,13 +39,14 @@ automation:
         entity_id: input_boolean.desligar_ou_ligar_portas
         state: 'on'
     action:
-      - service: notify.luiszanzito
+      - service: notify.my_pushbullet
         data:
           message: "Porta aberta - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
 # Notifica o Luis que portas ou janelas em casa abertas à mais de 30 min.
   - alias: Portas ou janelas abertas
     initial_state: true
+    hide_entity: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d00018354d0
@@ -67,12 +69,12 @@ automation:
         for:
           minutes: 30
     action:
-    - service: notify.luiszanzito
+      - service: notify.luiszanzito
+        data_template:
+          message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta desde - {{states.sensor.date.state}} às {{states.sensor.time.state}}'
+          title: "Home Assistant"
 #      data:
 #        message: "Janela ou porta aberta à mais de 15 minutos - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-      data_template:
-        message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta desde - {{states.sensor.date.state}} às {{states.sensor.time.state}}'
-        title: "Home Assistant"
 
 sensor:
   platform: template

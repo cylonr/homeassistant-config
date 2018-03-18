@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-16
+#	Date		:	2018-03-18
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ automation:
         state: 'on'
     action:
       service: script.alarme
-      
+
 # Acende LED quando o alarme está ligado.
   - alias: Alarme ligado
     initial_state: true
@@ -73,8 +73,8 @@ automation:
     action:
       - service: homeassistant.turn_on                
         entity_id: switch.plug_158d00015e8107
-        
-# Apaga LED quando o alarme está ligado.
+
+# Apaga LED quando o alarme está desligado.
   - alias: Alarme ligado
     initial_state: true
     trigger:
@@ -83,7 +83,107 @@ automation:
       to: 'off'
     action:
       - service: homeassistant.turn_off            
-        entity_id: switch.plug_158d00015e8107 
+        entity_id: switch.plug_158d00015e8107
+
+# Notifica se portas ou janelas estão abertas quando ligo o alarme.
+  - alias: 'Notificador de portas janelas abertas'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: script.atraso
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: group.sensoresportajanela
+      state: 'on'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          title: "Home Assistant"
+          message: >
+           {%- if states.binary_sensor.door_window_sensor_158d00018354d0.state  == "on" -%}
+           {% if doors | trim != "" %}
+           {%- set doors = doors ~ "a porta cozinha " -%}
+           {% else %}
+           {%- set doors = doors ~ "porta cozinha " -%}
+           {% endif %}
+           {%- endif -%}
+                
+           {%- if states.binary_sensor.door_window_sensor_158d0001d399b1.state  == "on" -%}
+           {% if doors | trim != "" %}
+           {%- set doors = doors ~ "a porta esquerda " -%}
+           {% else %}
+           {%- set doors = doors ~ "porta esquerda " -%}
+           {% endif %}
+           {%- endif -%}  
+           
+           {%- if states.binary_sensor.door_window_sensor_158d0001d39ff1.state == "on" -%}
+           {% if doors | trim != "" %}
+           {%- set doors = doors ~ "a porta direita " -%}
+           {% else %}
+           {%- set doors = doors ~ "porta direita " -%}
+           {% endif %}
+           {%- endif -%}
+           
+           {%- if states.binary_sensor.door_window_sensor_158d00015a954e.state == "on"  -%}
+           {% if doors | trim != "" %}
+           {%- set doors = doors ~ "a porta principal " -%}
+           {% else %}
+           {%- set doors = doors ~ "porta principal " -%}
+           {% endif %}
+           {%- endif -%}
+           A/s {{ doors}} {%- if 'a' in doors -%} estão {%- else %} está {%- endif %} aberta/s. O Alarme não pode ser ativo.
+
+###############################################################################
+# Alerta após 20 minutos sem ninguem estar em casa e que o alrme está desactivo
+###############################################################################
+
+  - alias: Home Security System WatchDog 20 minutes
+    initial_state: true
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: input_boolean.proximity
+        to: 'off'
+        for: 
+          minutes: 20
+    condition:
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Ausente'
+      - condition: state
+        entity_id: sensor.monica
+        state: 'Ausente'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "Ninguem em casa á 20 min. Ativar alarme. - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+
+###############################################################################
+# Alerta após 60 minutos sem ninguem estar em casa e que o alrme está desactivo
+###############################################################################
+
+  - alias: Home Security System WatchDog 60 minutes
+    initial_state: true
+    hide_entity: true
+    trigger:
+      - platform: state
+        entity_id: input_boolean.proximity
+        to: 'off'
+        for: 
+          minutes: 60
+    condition:
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Ausente'
+      - condition: state
+        entity_id: sensor.monica
+        state: 'Ausente'
+    action:
+      - service: notify.my_pushbullet
+        data:
+          message: "Ninguem em casa à 1 hora. Ativar alarme. - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
 ################################################
 #                      BOTÕES                  #
@@ -107,7 +207,7 @@ automation:
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2
-          ringtone_id: 10009
+          ringtone_id: 10010
           ringtone_vol: 17
       - service: script.atraso
 
@@ -132,7 +232,7 @@ automation:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.luiszanzito
+      - service: notify.my_pushbullet
         data:
           message: "Alarme desativado MANUALMENTE - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -151,10 +251,10 @@ script:
 
   atraso:
     sequence:
-      - delay: 0:15:00
+      - delay: 0:05:00
       - service: homeassistant.turn_on
         entity_id: input_boolean.proximity
-      - service: notify.luiszanzito
+      - service: notify.my_pushbullet
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
@@ -172,7 +272,7 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 1
           ringtone_vol: 100
-      - service: notify.luiszanzito
+      - service: notify.my_pushbullet
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:25
@@ -206,3 +306,13 @@ sensor:
              {% else %}
               Desligado
             {% endif %}
+
+group:
+
+  sensoresportajanela:
+    name: notificaportasjanelas
+    entities:
+      - binary_sensor.door_window_sensor_158d00018354d0
+      - binary_sensor.door_window_sensor_158d0001d399b1 
+      - binary_sensor.door_window_sensor_158d0001d39ff1 
+      - binary_sensor.door_window_sensor_158d00015a954e
