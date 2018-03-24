@@ -6,95 +6,91 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Portões
+#	Home Assistant - Telheiro
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-06
-#	Description :	Set configuration to Portões
+#	Date		:	2018-03-24
+#	Description :	Set configuration to Telheiro
 #--------------------------------------------------------------------
 
 homeassistant:
 
+input_datetime:
+  luz1:
+    name: ON Sonoffs Ext.
+    has_time: true      
+    initial: '04:15:00'
+  luz2:
+    name: OFF Sonoffs Ext.
+    has_time: true      
+    initial: '04:39:00'
+
 automation:
 
-# Liga a luz do telheiro, da rua e da Petra às 04:15
-  - alias: Liga Telheiro e petra
+  - alias: Liga Rua / Telheiro / Petra
     trigger:
-      platform: time
-      at: '04:15'
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.luz1.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     action:
       - service: switch.turn_on
         data:
           entity_id: switch.telheiro
       - service: switch.turn_on
         data:
-          entity_id: switch.petra
+          entity_id: switch.luz_petra
       - service: switch.turn_on
-        data:
-          entity_id: switch.anexo_rua
-
-# Desliga a luz do telheiro, da rua e da Petra às 04:39
-  - alias: Desliga telheiro e petra
-    trigger:
-      platform: time
-      at: '04:39' 
-    action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.telheiro
-      - service: switch.turn_off
-        data:
-          entity_id: switch.petra
-      - service: switch.turn_off
         data:
           entity_id: switch.anexo_rua
           
-# Liga / Desliga os 3 Sonoffs com 1 click no botão
-  - alias: 'Liga / desliga os 3 Sonoffs'
+  - alias: Desliga Anexo / Telheiro / Petra
     trigger:
-      - platform: event
-        event_type: click
-        event_data:
-          entity_id: binary_sensor.switch_158d0001b86d3e
-          click_type: single
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.luz2.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
     action:
-      - service: switch.toggle
-        entity_id: switch.petra
-      - service: switch.toggle
-        entity_id: switch.telheiro
-      - service: switch.toggle
-        entity_id: switch.anexo_rua
+      - service: switch.turn_off
+        data:
+          entity_id: switch.telheiro
+      - service: switch.turn_off
+        data:
+          entity_id: switch.luz_petra
+      - service: switch.turn_off
+        data:
+          entity_id: switch.anexo_rua
 
-# Ativa / Desativa tomada 220V xiaomi
-  - alias: 'Ativa / Desativa tomada 220V xiaomi'
-    trigger:
-      - platform: event
-        event_type: click
-        event_data:
-          entity_id: binary_sensor.wall_switch_both_158d0001e0f91d
-          click_type: both
-    action:
-      - service: switch.toggle 
-        entity_id: switch.plug_158d00015e8107
+###############################################################################
+#                                                                             #
+#                           D E S A T I V O S                                 #
+#                                                                             #
+###############################################################################
 
-switch:
-
-# switch petra
-- platform: mqtt
-  name: "petra"
-  state_topic: "stat/petra/POWER"
-  command_topic: "cmnd/petra/power"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: true
-
-# switch telheiro
-- platform: mqtt
-  name: "telheiro"
-  state_topic: "stat/telheiro/POWER"
-  command_topic: "cmnd/telheiro/power"
-  qos: 1
-  payload_on: "ON"
-  payload_off: "OFF"
-  retain: true
+## Liga a luz do telheiro, da rua e da Petra às 04:15
+#  - alias: Liga Telheiro e petra
+#    trigger:
+#      platform: time
+#      at: '04:15'
+#    action:
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.telheiro
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.luz_petra
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.anexo_rua
+#
+## Desliga a luz do telheiro, da rua e da Petra às 04:39
+#  - alias: Desliga telheiro e petra
+#    trigger:
+#      platform: time
+#      at: '04:39' 
+#    action:
+#      - service: switch.turn_off
+#        data:
+#          entity_id: switch.telheiro
+#      - service: switch.turn_off
+#        data:
+#          entity_id: switch.luz_petra
+#      - service: switch.turn_off
+#        data:
+#          entity_id: switch.anexo_rua

@@ -6,18 +6,49 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Sonoff
+#	Home Assistant - Anexo
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-05
-#	Description :	Set configuration to Sonoff
+#	Date		:	2018-03-24
+#	Description :	Set configuration to Anexo
 #--------------------------------------------------------------------
 
 homeassistant:
+
+input_datetime:
+  luz3:
+    name: ON Anexo.
+    has_time: true      
+    initial: '07:01:00'
+  luz4:
+    name: OFF Anexo.
+    has_time: true      
+    initial: '18:59:00'
+
 automation:
 
-# Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
-  - alias: Liga a luz do anexo quando há movimento. Entre as 18:00 e 08:00
+# Liga a luz do anexo das 07:01
+  - alias: Liga luz do anexo de manha
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.luz3.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.anexo
+
+# Desliga a luz do anexo às 19:00          
+  - alias: Desliga anexo tarde
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == (states.input_datetime.luz4.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.anexo
+
+# Liga a luz do anexo quando há movimento entre as 19:00 e 07:00
+  - alias: Liga a luz do anexo quando há movimento. Entre as 19:00 e 07:00
     initial_state: true
     trigger:
       platform: state
@@ -49,112 +80,33 @@ automation:
       service: switch.turn_off
       data:
         entity_id: switch.anexo
-        
-# Liga a luz do anexo das 07:01
-  - alias: Liga luz do anexo de manha
-    initial_state: true
-    trigger:
-      platform: time
-      at: '07:01'                         
-    action:
-      service: switch.turn_on                 
-      data:
-        entity_id: switch.anexo
-
-# Desliga a luz do anexo às 19:00
-  - alias: Desliga anexo tarde
-    trigger:
-      platform: time
-      at: '18:59' 
-    action:
-      service: switch.turn_off
-      data:
-        entity_id: switch.anexo
-
-###############################################################################
-#                                                                             #
-#                           S C R I P T S                                     #
-#                                                                             #
-###############################################################################         
-script:
-
-  anexo:
-    sequence:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.anexo
-      - delay: 00:15:00
-      - service: switch.turn_off
-        data:
-          entity_id: switch.anexo
-
-###############################################################################
-#                                                                             #
-#                           S W I T C H S                                     #
-#                                                                             #
-###############################################################################           
-switch:
-
-# switch anexo
-  - platform: mqtt
-    name: "Anexo"
-    state_topic: "stat/anexo/POWER"
-    command_topic: "cmnd/anexo/power"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-# switch anexo rua
-  - platform: mqtt
-    name: "Anexo Rua"
-    state_topic: "stat/rua/POWER"
-    command_topic: "cmnd/rua/power"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-###############################################################################
-#                                                                             #
-#                           B I N A R Y _ S E N S O R S                       #
-#                                                                             #
-###############################################################################  
-binary_sensor:    
-
-  - platform: mqtt
-    name: "Sonoff Anexo"
-    state_topic: "tele/anexo/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-    
-  - platform: mqtt
-    name: "Sonoff Anexo Rua"
-    state_topic: "tele/rua/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-
-  - platform: mqtt
-    name: "Sonoff Petra"
-    state_topic: "tele/petra/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-
-  - platform: mqtt
-    name: "Sonoff Telheiro"
-    state_topic: "tele/telheiro/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
 
 ###############################################################################
 #                                                                             #
 #                           D E S A T I V O S                                 #
 #                                                                             #
 ###############################################################################
+        
+## Liga a luz do anexo das 07:01
+#  - alias: Liga luz do anexo de manha
+#    initial_state: true
+#    trigger:
+#      platform: time
+#      at: '07:01'                         
+#    action:
+#      service: switch.turn_on                 
+#      data:
+#        entity_id: switch.anexo
+#
+## Desliga a luz do anexo às 19:00
+#  - alias: Desliga anexo tarde
+#    trigger:
+#      platform: time
+#      at: '18:59' 
+#    action:
+#      service: switch.turn_off
+#      data:
+#        entity_id: switch.anexo
 
 #  - alias: Liga luz do anexo 5 minutos apos o nascer do sol
 #    initial_state: true

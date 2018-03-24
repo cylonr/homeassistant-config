@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-18
+#	Date		:	2018-03-23
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -53,9 +53,6 @@ automation:
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d00015b1c11
         to: 'on'
-#      - platform: numeric_state
-#        entity_id: proximity.luis_casa
-#        above: 10
     condition:
       - condition: state
         entity_id: input_boolean.proximity
@@ -136,7 +133,7 @@ automation:
            A/s {{ doors}} {%- if 'a' in doors -%} estão {%- else %} está {%- endif %} aberta/s. O Alarme não pode ser ativo.
 
 ###############################################################################
-# Alerta após 20 minutos sem ninguem estar em casa e que o alrme está desactivo
+# Alerta após 20 minutos sem ninguem estar em casa e que o alarme está desactivo
 ###############################################################################
 
   - alias: Home Security System WatchDog 20 minutes
@@ -159,31 +156,6 @@ automation:
       - service: notify.my_pushbullet
         data:
           message: "Ninguem em casa á 20 min. Ativar alarme. - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-
-###############################################################################
-# Alerta após 60 minutos sem ninguem estar em casa e que o alrme está desactivo
-###############################################################################
-
-  - alias: Home Security System WatchDog 60 minutes
-    initial_state: true
-    hide_entity: true
-    trigger:
-      - platform: state
-        entity_id: input_boolean.proximity
-        to: 'off'
-        for: 
-          minutes: 60
-    condition:
-      - condition: state
-        entity_id: sensor.luis
-        state: 'Ausente'
-      - condition: state
-        entity_id: sensor.monica
-        state: 'Ausente'
-    action:
-      - service: notify.my_pushbullet
-        data:
-          message: "Ninguem em casa à 1 hora. Ativar alarme. - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
 ################################################
 #                      BOTÕES                  #
@@ -225,6 +197,9 @@ automation:
           gw_mac: !secret key_gateway2
           ringtone_id: 10001
           ringtone_vol: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
       - delay: 0:00:01
       - service: script.turn_off
         data:
@@ -267,6 +242,9 @@ script:
           ringtone_id: 10001
           ringtone_vol: 7
       - delay: 0:00:10
+      - service: switch.turn_on
+        data:
+          entity_id: switch.sirene
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2
@@ -293,6 +271,57 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 1
           ringtone_vol: 100
+      - delay: 0:05:00
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
+          
+  alarmeoff:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10001
+          ringtone_vol: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
+      - delay: 0:00:01
+      - service: script.turn_off
+        data:
+          entity_id: script.atraso
+      - service: script.turn_off
+        data:
+          entity_id: script.alarme
+      - service: notify.my_pushbullet
+        data:
+          message: "Alarme desativado pelo telemovel - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:01
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.proximity
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10006
+          ringtone_vol: 17
+
+  alarmeon:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10010
+          ringtone_vol: 17
+      - delay: 0:05:00
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.proximity
+      - delay: 0:00:01
+      - service: notify.my_pushbullet
+        data:
+          message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
 sensor:
 

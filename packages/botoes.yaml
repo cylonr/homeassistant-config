@@ -1,0 +1,51 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Botões
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-03-24
+#	Description :	Set configuration to botões
+#--------------------------------------------------------------------
+
+homeassistant:
+
+automation:
+
+# Liga / Desliga os 3 Sonoffs com 1 click no botão
+  - alias: 'Liga / desliga os 3 Sonoffs'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: single
+    action:
+      - service: switch.toggle
+        entity_id: switch.luz_petra
+      - service: switch.toggle
+        entity_id: switch.telheiro
+      - service: switch.toggle
+        entity_id: switch.anexo_rua
+        
+# Abre / Fecha portão do carro com 2 clicks no botão
+  - alias: 'Abre portão carro'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: double
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_34ce0088aff1
+          brightness: 99
+          color_name: blue
+      - service: shell_command.portaocarro 
+      - service: script.portaocarro

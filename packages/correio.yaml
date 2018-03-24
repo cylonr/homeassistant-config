@@ -6,14 +6,15 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Sala
+#	Home Assistant - Correio
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-02-13
-#	Description :	Set configuration to sensor da sala
+#	Date		:	2018-03-24
+#	Description :	Set configuration to sensor do Correio
 #--------------------------------------------------------------------
 
 homeassistant:
+
 ### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
 #sensor:
 #  platform: template

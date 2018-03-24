@@ -16,7 +16,7 @@
 homeassistant:
   customize:
     switch.plug_158d00015e8107:
-      friendly_name: Luz do Alarme
+      friendly_name: ON/OFF - LED alarme
       icon: mdi:lightbulb-on
       initial: 'off'
     sensor.plug_load_power:

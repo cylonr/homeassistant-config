@@ -1,0 +1,120 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Sonoff
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-03-24
+#	Description :	Set configuration to Sonoff
+#--------------------------------------------------------------------
+
+#homeassistant:
+
+switch:
+
+# switch anexo
+  - platform: mqtt
+    name: "Anexo"
+    state_topic: "stat/anexo/POWER"
+    command_topic: "cmnd/anexo/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+# switch rua
+  - platform: mqtt
+    name: "Anexo Rua"
+    state_topic: "stat/rua/POWER"
+    command_topic: "cmnd/rua/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+# switch telheiro
+  - platform: mqtt
+    name: "telheiro"
+    state_topic: "stat/telheiro/POWER"
+    command_topic: "cmnd/telheiro/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+    
+  # switch petra Duo 1
+  - platform: mqtt
+    name: "Sirene"
+    state_topic: "stat/Petra_Duo/POWER1"
+    command_topic: "cmnd/Petra_Duo/power1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+    
+  # switch petra Duo 2
+  - platform: mqtt
+    name: "Luz Petra"
+    state_topic: "stat/Petra_Duo/POWER2"
+    command_topic: "cmnd/Petra_Duo/power2"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  
+  # switch TESTES
+  - platform: mqtt
+    name: "teste"
+    state_topic: "stat/teste/POWER"
+    command_topic: "cmnd/teste/power"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+###############################################################################
+#                                                                             #
+#                           B I N A R Y _ S E N S O R S                       #
+#                                                                             #
+###############################################################################  
+binary_sensor:    
+
+  - platform: mqtt
+    name: "Sonoff Anexo"
+    state_topic: "tele/anexo/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    
+  - platform: mqtt
+    name: "Sonoff Anexo Rua"
+    state_topic: "tele/rua/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+
+  - platform: mqtt
+    name: "Sonoff Telheiro"
+    state_topic: "tele/telheiro/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    
+  - platform: mqtt
+    name: "Sonoff Petra"
+    state_topic: "tele/Petra_Duo/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
+    
+  - platform: mqtt
+    name: "Sonoff Teste"
+    state_topic: "tele/teste/LWT"
+    value_template: "{{ value }}"
+    payload_on: "Online"
+    payload_off: "Offline"
