@@ -1,3 +1,18 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Groups
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-03-24
+#	Description :	Set configuration to Groups
+#--------------------------------------------------------------------
+
 ################################################
 #             VISTA DEFAULT                    #
 ################################################
@@ -13,29 +28,14 @@ default_view:
     - group.aspirador
     - group.rpi3
     - group.tomada
-#   - group.transito
-#   - group.my_gateway
-#   - group.my_doors
-
-################################################
-#                   TOMADA                     #
-################################################
-#tomada:
-#  name: Energia Inteligente
-#  entities:
-#    - switch.plug_158d00015e8107
-#    - sensor.plug_in_use
-#    - sensor.plug_load_power
-#    - sensor.plug_power_consumed_kwh
-#    - sensor.plug_power_consumed_cost
-#    - sensor.plug_battery_level
 
 ################################################
 #                  GRUPO RPI3                  #
 ################################################
 rpi3:
   name: Home Assistant Server
-  entities:    
+  control: hidden
+  entities:
     - script.restart_ha
     - sensor.cpu_used
     - sensor.ram_available
@@ -62,6 +62,7 @@ aspirador:
 ################################################
 familia:
   name: Familia
+  control: hidden
   entities:  
     - sensor.time
     - sensor.date
@@ -73,26 +74,17 @@ familia:
     - input_boolean.portaocarro
     - input_boolean.desligar_ou_ligar_portas
     - light.gateway_light_34ce0088aff1
+    - switch.luz_petra
     - switch.petra  
     - switch.telheiro
     - switch.anexo
     - switch.anexo_rua
+    - switch.teste
 #    - device_tracker.luistele
 #    - device_tracker.xiaomi_mi4c_3
 #    - device_tracker.luis
 #    - device_tracker.monicatele
 #    - device_tracker.xiaomi_mi4c_2
-
-################################################
-#             GRUPO TRÂNSITO                   #
-################################################ 
-#transito:
-#  name: Tempo em viagem
-#  entities:
-#    - sensor.luis_trabalho
-#    - sensor.luis_trabalho2
-#    - sensor.monica_trabalho
-#    - sensor.monica_trabalho2
 
 ################################################
 #            GRUPO AMBIENTE EM CASA            #
@@ -119,6 +111,7 @@ sensoresvarios:
     - binary_sensor.motion_sensor_158d00015b1c11
     - binary_sensor.motion_sensor_158d000152fc00
 
+
 ################################################
 #           VISTA DISPOSITIVOS NA REDE         #
 ################################################    
@@ -128,22 +121,38 @@ dispositivos_da_rede:
   icon: mdi:server-network
   entities:
     - group.dispositivos_na_rede
+    - group.sonoffs
+    - group.counter
 
 dispositivos_na_rede:
   name: Dispositivos na rede
-  icon: mdi:server-network
   entities:
     - binary_sensor.sonoff_anexo
     - binary_sensor.sonoff_anexo_rua
     - binary_sensor.sonoff_petra
     - binary_sensor.sonoff_telheiro
     - binary_sensor.device_tracker_camanexo
-    - binary_sensor.device_tracker_campetra
     - binary_sensor.device_tracker_camtelheiro
     - binary_sensor.device_tracker_camcarolina
     - binary_sensor.device_tracker_gateway
     - binary_sensor.device_tracker_repanexo
     - binary_sensor.device_tracker_repcasa
+    - binary_sensor.device_tracker_campetra
+    - binary_sensor.sonoff_teste
+    
+sonoffs:
+  name: Agenda ON/OFF luzes
+  entities:
+    - input_datetime.luz1
+    - input_datetime.luz2
+    - input_datetime.luz3
+    - input_datetime.luz4
+    
+counter:
+  name: Contadores diários
+  entities:
+    - sensor.ccorreio
+    - sensor.portao
 
 ################################################
 #               VISTA METEOROLOGIA             #
@@ -179,6 +188,7 @@ tab_da_bateria:
 
 tab_bateria:
   name: Bateria dos sensores
+  control: hidden
   icon: mdi:battery-charging-wireless-alert
   entities:
     - input_boolean.battery_notifications
@@ -194,8 +204,11 @@ tab_bateria:
     - sensor.p_interruptor_battery_level
     - sensor.p_temp1_battery_level
     - sensor.p_temp2_battery_level
-    - input_boolean.proximity
+    - script.alarmeon
+    - script.alarmeoff
+    - switch.sirene
     - switch.plug_158d00015e8107
+
 
 ################################################
 #                    CAMERAS                   #
@@ -212,3 +225,29 @@ tab_camera:
   icon: mdi:camcorder
   entities:
     - camera.petra
+    
+
+    
+################################################
+#             GRUPO TRÂNSITO                   #
+################################################ 
+#transito:
+#  name: Tempo em viagem
+#  entities:
+#    - sensor.luis_trabalho
+#    - sensor.luis_trabalho2
+#    - sensor.monica_trabalho
+#    - sensor.monica_trabalho2
+
+################################################
+#                   TOMADA                     #
+################################################
+#tomada:
+#  name: Energia Inteligente
+#  entities:
+#    - switch.plug_158d00015e8107
+#    - sensor.plug_in_use
+#    - sensor.plug_load_power
+#    - sensor.plug_power_consumed_kwh
+#    - sensor.plug_power_consumed_cost
+#    - sensor.plug_battery_level

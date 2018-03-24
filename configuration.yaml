@@ -84,6 +84,7 @@ history:
       - switch.anexo_rua
       - binary_sensor.motion_sensor_158d00015b1c11
       - light.gateway_light_34ce0088aff1
+      - binary_sensor.switch_158d0001b86d3e
 
 # View all events in a logbook   
 logbook:
@@ -102,7 +103,8 @@ logbook:
       - switch.anexo_rua
       - binary_sensor.motion_sensor_158d00015b1c11
       - light.gateway_light_34ce0088aff1
-
+      - binary_sensor.switch_158d0001b86d3e
+      
 ############
 # INCLUDES #
 ############

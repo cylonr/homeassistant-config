@@ -36,8 +36,14 @@ light.gateway_light_34ce0088aff1:
   friendly_name: "Led GateWay"
   icon: mdi:lightbulb-on
 switch.petra:
+  friendly_name: "Luz Petra OLD"
+  icon: mdi:lightbulb-on
+switch.sirene:
+  friendly_name: "ON/OFF - Sirene" 
+  icon: mdi:bullhorn
+switch.luz_petra:
   friendly_name: "Luz Petra" 
-  icon: mdi:paw
+  icon: mdi:lightbulb-on
 switch.telheiro:
   friendly_name: "Luz Telheiro" 
   icon: mdi:lightbulb-on
@@ -47,9 +53,12 @@ switch.anexo:
 switch.anexo_rua:
   friendly_name: "Luz Anexo Rua" 
   icon: mdi:lightbulb-on
-proximity.luis_casa:
-  friendly_name: "Proximity: Luis" 
-  icon: mdi:home-map-marker
+script.alarmeoff:
+  friendly_name: 'Desativar alarme'
+  icon: mdi:alarm-light
+script.alarmeon:
+  friendly_name: 'Ativar alarme'
+  icon: mdi:alarm-light
 
 # Estado HA #
 script.restart_ha:

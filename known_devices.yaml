@@ -209,7 +209,7 @@ androida368cde6beb22035cylon:
   hide_if_away: false
   icon:
   mac: 8C:BE:BE:8C:8C:32
-  name: Tele Monica
+  name: Monica Router2
   picture:
   track: true
   vendor: Xiaomi Communications Co Ltd
@@ -218,7 +218,7 @@ monicatele:
   hide_if_away: false
   icon:
   mac:
-  name: monicatele
+  name: Monica Router1
   picture:
   track: true
   vendor:
