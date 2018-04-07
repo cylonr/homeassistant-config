@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-24
+#	Date		:	2018-04-07
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -82,6 +82,8 @@ automation:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
           color_name: red
+      - service: switch.turn_on
+        entity_id: switch.teste
 
 # Notifica o em Luis que o portão está fechado
   - alias: Portao fechado
@@ -119,6 +121,8 @@ automation:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
           color_name: green
+      - service: switch.turn_off
+        entity_id: switch.teste
 
 # Liga os SONOFFs quando o portão abrir á noite e desliga 7 minutos depois
   - alias: Liga tudo
@@ -129,7 +133,7 @@ automation:
       to: 'on'
     condition:
       condition: time
-      after: '19:00'
+      after: '20:00'
       before: '06:30'
     action:
       - service: switch.turn_on

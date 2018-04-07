@@ -16,22 +16,22 @@
 homeassistant: 
 device_tracker:
 
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.1.65
-      - 192.168.1.68
+ # - platform: nmap_tracker
+ #   hosts:
+ #     - 192.168.1.65
+ #     - 192.168.1.68
 
   - platform: ping
     interval_seconds: 20
     consider_home: 60
     hosts:
-      CamAnexo: 192.168.1.77
-      CamTelheiro: 192.168.1.67
-      CamPetra: 192.168.2.7
-      CamCarolina: 192.168.1.71
-      Gateway: 192.168.1.68
-      RepAnexo: 192.168.1.79
+      CamAnexo: 192.168.1.81
+      CamTelheiro: 192.168.1.84
+      CamCarolina: 192.168.1.82
+      Gateway: 192.168.1.75
+      RepAnexo: 192.168.1.71
       RepCasa: 192.168.1.83
+#      CamPetra: 192.168.2.7
 #      LuisTele: 192.168.1.78
 #      MonicaTele: 192.168.2.177
 

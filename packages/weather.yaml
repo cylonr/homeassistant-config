@@ -73,6 +73,8 @@ sensor:
           {%- elif is_state('sensor.dark_sky_summary', 'Rain and Windy') -%}    
             Chuva e vento
           {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Mostly Cloudy') -%}    
+            Vento fraco e muitas nuvens
+          {%- elif is_state('sensor.dark_sky_summary', 'Breezy and Partly Cloudy') -%}    
             Vento fraco e algumas nuvens
           {%- elif is_state('sensor.dark_sky_summary', 'Breezy') -%}    
             Vento fraco            

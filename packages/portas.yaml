@@ -71,8 +71,10 @@ automation:
     action:
       - service: notify.luiszanzito
         data_template:
-          message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta desde - {{states.sensor.date.state}} às {{states.sensor.time.state}}'
-          title: "Home Assistant"
+          message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta à mais de 30min - {{states.sensor.time.state}}'
+          title: "Home Assistant"       
+#          message: 'Alerta! {{ trigger.from_state.attributes.friendly_name }} está aberta desde - {{states.sensor.date.state}} às {{states.sensor.time.state}}'
+#          title: "Home Assistant"
 #      data:
 #        message: "Janela ou porta aberta à mais de 15 minutos - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 

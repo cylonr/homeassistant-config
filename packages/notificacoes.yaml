@@ -180,6 +180,16 @@ notify:
     platform: zanzito
     device-name: luis
 
+  - name: telegram
+    platform: telegram
+    chat_id: !secret key_telegram
+    
+telegram_bot:
+  - platform: polling
+    api_key: !secret key_telegram1
+    allowed_chat_ids:
+      - !secret key_telegram
+
 #  - name: monicazanzito
 #    platform: zanzito
 #    device-name: monica

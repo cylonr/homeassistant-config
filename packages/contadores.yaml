@@ -56,7 +56,6 @@ sensor:
   - platform: template
     sensors:
       ccorreio:
-        friendly_name: "Caixa de ccorreio"
         value_template: >-
          {% if is_state('counter.ccorreio', '0') %}
           Aberta: {{ states.counter.ccorreio.state }} vezes
