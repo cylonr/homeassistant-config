@@ -76,11 +76,19 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
+          color_name: red
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1
+          brightness: 35
           color_name: red
       - service: switch.turn_on
         entity_id: switch.teste
@@ -115,11 +123,19 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
+          color_name: green
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1
+          brightness: 35
           color_name: green
       - service: switch.turn_off
         entity_id: switch.teste
@@ -131,10 +147,14 @@ automation:
       platform: state
       entity_id: binary_sensor.door_window_sensor_158d0001d86c17
       to: 'on'
+#    condition:
+#      condition: time
+#      after: '20:00'
+#      before: '06:30'
     condition:
-      condition: time
-      after: '20:00'
-      before: '06:30'
+      condition: numeric_state
+      entity_id: sensor.illumination_158d0001e51352
+      below: 300
     action:
       - service: switch.turn_on
         entity_id: switch.luz_petra
@@ -142,34 +162,22 @@ automation:
         entity_id: switch.telheiro
       - service: switch.turn_on
         entity_id: switch.anexo_rua
-      - delay: 0:07:00
-      - service: switch.turn_off
-        entity_id: switch.luz_petra
-      - service: switch.turn_off
-        entity_id: switch.telheiro
-      - service: switch.turn_off
-        entity_id: switch.anexo_rua
-        
-# Desliga os 3 SONOFFs durante o dia caso estejam ligados mais que 1 minutos.
-  - alias: Desligar tudo
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: group.todos
-        to: 'on'
-        for:
-          minutes: 1
-    condition:
-      condition: time
-      after: '06:31'
-      before: '18:59'
-    action:
-      - service: switch.turn_off
-        entity_id: switch.luz_petra
-      - service: switch.turn_off
-        entity_id: switch.telheiro
-      - service: switch.turn_off
-        entity_id: switch.anexo_rua
+      - service: switch.turn_on
+        entity_id: switch.luz1
+      - service: switch.turn_on
+        entity_id: switch.luz2
+#### Condição adicionada no ficheiro RUA.yaml - Linha 40 ####
+#      - delay: 0:07:00
+#      - service: switch.turn_off
+#        entity_id: switch.luz_petra
+#      - service: switch.turn_off
+#        entity_id: switch.telheiro
+#      - service: switch.turn_off
+#        entity_id: switch.anexo_rua
+#      - service: switch.turn_off
+#        entity_id: switch.luz1
+#      - service: switch.turn_off
+#        entity_id: switch.luz2
 
 # Notifica o Luis que o portão está aberto à mais de 60 min.
   - alias: Portao aberto
@@ -210,6 +218,9 @@ group:
       - switch.anexo_rua
       - switch.telheiro
       - switch.luz_petra
+      - switch.luz1
+      - switch.luz2
+
 
 ###############################################################################
 #                                                                             #

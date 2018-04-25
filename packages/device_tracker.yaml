@@ -16,10 +16,8 @@
 homeassistant: 
 device_tracker:
 
- # - platform: nmap_tracker
- #   hosts:
- #     - 192.168.1.65
- #     - 192.168.1.68
+  - platform: nmap_tracker
+    hosts: 192.168.1.64/253
 
   - platform: ping
     interval_seconds: 20
@@ -31,9 +29,8 @@ device_tracker:
       Gateway: 192.168.1.75
       RepAnexo: 192.168.1.71
       RepCasa: 192.168.1.83
-#      CamPetra: 192.168.2.7
-#      LuisTele: 192.168.1.78
-#      MonicaTele: 192.168.2.177
+      LuisTele: 192.168.1.78
+      MonicaTele: 192.168.1.72
 
   - platform: bluetooth_tracker
     consider_home: 20 
@@ -93,18 +90,18 @@ sensor:
       monica: 
         friendly_name: 'Estado Monica'
         value_template: > 
-          {%- if is_state('device_tracker.androida368cde6beb22035cylon', 'not_home') and is_state('device_tracker.monicatele', 'not_home') -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'not_home') -%}
              Ausente
           {%- endif -%}
-          {%- if is_state('device_tracker.androida368cde6beb22035cylon', 'home') and is_state('device_tracker.monicatele', 'home') -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'home') -%}
              Em casa
           {%- endif -%}   
-          {%- if is_state('device_tracker.androida368cde6beb22035cylon', 'home') and is_state('device_tracker.monicatele', 'not_home') -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'not_home') -%}
              Em casa
           {%- endif -%}      
-          {%- if is_state('ddevice_tracker.androida368cde6beb22035cylon', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
+          {%- if is_state('ddevice_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
              Em casa
           {%- endif -%}    
-          {%- if is_state('device_tracker.androida368cde6beb22035cylon', 'notrabalhocampera') and is_state('device_tracker.monicatele', 'not_home') -%} 
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'notrabalhocampera') and is_state('device_tracker.monicatele', 'not_home') -%} 
              No Trabalho
           {%- endif -%}

@@ -21,6 +21,9 @@ xiaomi_aqara:
     - host: 192.168.1.75
       mac: !secret key_gateway2
       key: !secret key_gateway1
+    - host: 192.168.1.99
+      mac: !secret key_gateway4
+      key: !secret key_gateway3
 
 input_boolean:
 
@@ -51,7 +54,7 @@ automation:
         entity_id: binary_sensor.door_window_sensor_158d0001d39ff1
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d00015b1c11
+        entity_id: binary_sensor.motion_sensor_158d0001e516b8
         to: 'on'
     condition:
       - condition: state
@@ -250,6 +253,11 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 1
           ringtone_vol: 100
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway4
+          ringtone_id: 1
+          ringtone_vol: 100
       - service: notify.my_pushbullet
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
@@ -259,16 +267,31 @@ script:
           gw_mac: !secret key_gateway2
           ringtone_id: 1
           ringtone_vol: 100
-      - delay: 0:00:25
       - service: xiaomi_aqara.play_ringtone
         data:
-          gw_mac: !secret key_gateway2
+          gw_mac: !secret key_gateway4
           ringtone_id: 1
           ringtone_vol: 100
       - delay: 0:00:25
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 100
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway4
+          ringtone_id: 1
+          ringtone_vol: 100
+      - delay: 0:00:25
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 1
+          ringtone_vol: 100
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway4
           ringtone_id: 1
           ringtone_vol: 100
       - delay: 0:05:00
@@ -302,6 +325,9 @@ script:
       - service: xiaomi_aqara.stop_ringtone
         data:
           gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway4
       - service: xiaomi_aqara.play_ringtone
         data:
           gw_mac: !secret key_gateway2

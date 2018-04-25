@@ -22,7 +22,7 @@ switch:
     name: "Anexo"
     state_topic: "stat/anexo/POWER"
     command_topic: "cmnd/anexo/power"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -32,7 +32,7 @@ switch:
     name: "Anexo Rua"
     state_topic: "stat/rua/POWER"
     command_topic: "cmnd/rua/power"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -42,7 +42,7 @@ switch:
     name: "telheiro"
     state_topic: "stat/telheiro/POWER"
     command_topic: "cmnd/telheiro/power"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -52,7 +52,7 @@ switch:
     name: "Sirene"
     state_topic: "stat/Petra_Duo/POWER1"
     command_topic: "cmnd/Petra_Duo/power1"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -62,7 +62,7 @@ switch:
     name: "Luz Petra"
     state_topic: "stat/Petra_Duo/POWER2"
     command_topic: "cmnd/Petra_Duo/power2"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
@@ -72,10 +72,34 @@ switch:
     name: "teste"
     state_topic: "stat/teste/POWER"
     command_topic: "cmnd/teste/power"
-    qos: 1
+    qos: 0
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+    
+  # switch BH OnOfre 1
+  - platform: mqtt
+    name: "Luz1"
+    state_topic: "stat/bhonofre/POWER1"
+    command_topic: "cmnd/bhonofre/power1"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    retain: true
+    
+  # switch BH OnOfre 2
+  - platform: mqtt
+    name: "Luz2"
+    state_topic: "stat/bhonofre/POWER2"
+    command_topic: "cmnd/bhonofre/power2"
+    qos: 0
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    retain: true
+    
+
 
 ###############################################################################
 #                                                                             #

@@ -6,80 +6,85 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - Anexo
+#	Home Assistant - Rua
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-25
+#	Date		:	2018-04-25
 #	Description :	Set configuration to Anexo
 #--------------------------------------------------------------------
 
 homeassistant:
 
-input_datetime:
-  luz3:
-    name: ON Anexo.
-    has_time: true      
-    initial: '07:01:00'
-  luz4:
-    name: OFF Anexo.
-    has_time: true      
-    initial: '18:59:00'
-
 automation:
 
-# Liga a luz do anexo das 07:01
-  - alias: Liga luz do anexo de manha
-    trigger:
-      platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.luz3.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-    action:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.anexo
-
-# Desliga a luz do anexo às 19:00          
-  - alias: Desliga anexo tarde
-    trigger:
-      platform: template
-      value_template: "{{ states('sensor.time') == (states.input_datetime.luz4.attributes.timestamp | int | timestamp_custom('%H:%M', False)) }}"
-    action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.anexo
-
-# Liga a luz do anexo quando há movimento e temo LUX inferior a 150
-  - alias: Liga a luz do anexo quando há movimento e temo LUX inferior a 150
+# Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 300.
+  - alias: Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 300.
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e516b8
+      entity_id: binary_sensor.motion_sensor_158d0001e51352
       to: 'on'
     condition:
       condition: numeric_state
-      entity_id: sensor.illumination_158d0001e516b8
-      below: '150'
+      entity_id: sensor.illumination_158d0001e51352
+      below: '300'
     action:
-      service: switch.turn_on  
-      data:      
-        entity_id: switch.anexo     
+      - service: switch.turn_on
+        entity_id: switch.luz_petra
+      - service: switch.turn_on
+        entity_id: switch.telheiro
+      - service: switch.turn_on
+        entity_id: switch.anexo_rua
 
-# Desliga a luz do anexo 2 minutos após o ultimo movimento e qundo temos LUX inferior a 150
-  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento e qundo temos LUX inferior a 150
+# Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 300.
+  - alias: Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 300.
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e516b8
+      entity_id: binary_sensor.motion_sensor_158d0001e51352
       to: 'off'
       for:
-        minutes: 2
+        minutes: 4
     condition:
       condition: numeric_state
-      entity_id: sensor.illumination_158d0001e516b8
-      below: '150'
+      entity_id: sensor.illumination_158d0001e51352
+      below: 300
     action:
-      service: switch.turn_off
-      data:
-        entity_id: switch.anexo
+      - service: switch.turn_off
+        entity_id: switch.luz_petra
+      - service: switch.turn_off
+        entity_id: switch.telheiro
+      - service: switch.turn_off
+        entity_id: switch.anexo_rua
+      - service: switch.turn_off
+        entity_id: switch.luz1
+      - service: switch.turn_off
+        entity_id: switch.luz2
+
+# Desliga os SONOFFs de rua durante o dia caso estejam ligados mais que 30 segundos.
+  - alias: Desliga os SONOFFs de rua durante o dia caso estejam ligados mais que 30 segundos.
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: group.todos
+        to: 'on'
+        for:
+          seconds: 30
+    condition:
+      condition: numeric_state
+      entity_id: sensor.illumination_158d0001e51352
+      above: 600
+    action:
+      - service: switch.turn_off
+        entity_id: switch.luz_petra
+      - service: switch.turn_off
+        entity_id: switch.telheiro
+      - service: switch.turn_off
+        entity_id: switch.anexo_rua
+      - service: switch.turn_off
+        entity_id: switch.luz1
+      - service: switch.turn_off
+        entity_id: switch.luz2
 
 ###############################################################################
 #                                                                             #

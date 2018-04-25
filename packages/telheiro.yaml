@@ -41,6 +41,12 @@ automation:
       - service: switch.turn_on
         data:
           entity_id: switch.anexo_rua
+      - service: switch.turn_on
+        data:
+          entity_id: switch.luz1
+      - service: switch.turn_on
+        data:
+          entity_id: switch.luz2
           
   - alias: Desliga Anexo / Telheiro / Petra
     trigger:
@@ -56,6 +62,12 @@ automation:
       - service: switch.turn_off
         data:
           entity_id: switch.anexo_rua
+      - service: switch.turn_off
+        data:
+          entity_id: switch.luz1
+      - service: switch.turn_off
+        data:
+          entity_id: switch.luz2
 
 ###############################################################################
 #                                                                             #
