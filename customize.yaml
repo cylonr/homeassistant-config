@@ -21,6 +21,10 @@ sensor.dark_sky_daily_low_temperature:
 sensor.weather_wind_speed:
   friendly_name: "Previsão Vel. vento x 3.6"
   icon: mdi:weather-windy
+sensor.dark_sky_hourly_summary:
+  friendly_name: "Previsão próximos dias"
+sensor.dark_sky_daily_summary:
+  friendly_name: "Previsão de hoje"
 
 ####### VARIOS ######
 sensor.luis:
@@ -35,6 +39,9 @@ input_boolean.desligar_ou_ligar_portas:
 light.gateway_light_34ce0088aff1:
   friendly_name: "Led GateWay"
   icon: mdi:lightbulb-on
+light.gateway_light_7811dcdedcf1:
+  friendly_name: "Led GateWay 1º andar"
+  icon: mdi:lightbulb-on  
 switch.petra:
   friendly_name: "Luz Petra OLD"
   icon: mdi:lightbulb-on
@@ -53,12 +60,28 @@ switch.anexo:
 switch.anexo_rua:
   friendly_name: "Luz Anexo Rua" 
   icon: mdi:lightbulb-on
+switch.teste:
+  friendly_name: "Leds Sala" 
+  icon: mdi:lightbulb-on
 script.alarmeoff:
   friendly_name: 'Desativar alarme'
   icon: mdi:alarm-light
 script.alarmeon:
   friendly_name: 'Ativar alarme'
   icon: mdi:alarm-light
+sensor.ccorreio:
+  friendly_name: "Correio"
+  icon: mdi:mailbox
+sensor.portao:
+  friendly_name: "Portão"
+  icon: mdi:gate
+switch.luz1:
+  friendly_name: "Luz Casa Esq."
+  icon: mdi:lightbulb-on
+switch.luz2:
+  friendly_name: "Luz Casa Drt."
+  icon: mdi:lightbulb-on
+
 
 # Estado HA #
 script.restart_ha:
@@ -131,6 +154,15 @@ sensor.temperature_158d0001fa763c:
 sensor.illumination_34ce0088aff1:
   friendly_name: "Lux ambiente na cozinha"
   icon: mdi:lightbulb-on-outline
+sensor.illumination_7811dcdedcf1:
+  friendly_name: "Lux ambiente na 1º andar"
+  icon: mdi:lightbulb-on-outline
+sensor.illumination_158d0001e51352:
+  friendly_name: "Lux ambiente na rua"
+  icon: mdi:lightbulb-on-outline
+sensor.illumination_158d0001e516b8:
+  friendly_name: "Lux ambiente no anexo"
+  icon: mdi:lightbulb-on-outline
 binary_sensor.door_window_sensor_158d00018354d0:
    friendly_name: "Porta cozinha"
    icon: mdi:door
@@ -149,11 +181,14 @@ binary_sensor.door_window_sensor_158d0001d86c17:
 binary_sensor.motion_sensor_158d000152fc00:
    friendly_name: "Correio"
    icon: mdi:mailbox
-binary_sensor.motion_sensor_158d00015b1c11:
+binary_sensor.motion_sensor_158d0001e516b8:
    friendly_name: "Movimento Anexo"
    icon: mdi:garage
 binary_sensor.motion_sensor_158d00015e8fdf:
    friendly_name: "Movimento Sala"
+   icon: mdi:human-male-female
+binary_sensor.motion_sensor_158d0001e51352:
+   friendly_name: "Movimento Rua"
    icon: mdi:human-male-female
 
 ######GOOGLE TRAVEL#####

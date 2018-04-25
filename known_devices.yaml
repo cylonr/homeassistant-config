@@ -97,31 +97,13 @@ android8a3e7b90eb3ca252cylon_2:
   track: true
   vendor: unknown
 
-xiaomi_mi4c_3:
-  hide_if_away: false
-  icon:
-  mac: BT_22:22:67:C6:69:73
-  name: BT_Luis
-  picture:
-  track: true
-  vendor: unknown
-
-e0b94d064ed9:
-  hide_if_away: false
-  icon:
-  mac: E0:B9:4D:06:4E:D9
-  name: Cam Rotativa
-  picture:
-  track: true
-  vendor: SHENZHEN BILIAN ELECTRONIC CO.，LTD
-
 rockrobo:
   hide_if_away: false
   icon:
   mac: 28:6C:07:F6:F0:20
   name: rockrobo
   picture:
-  track: true
+  track: false
   vendor: XIAOMI Electronics,CO.,LTD
 
 portatil_2:
@@ -130,7 +112,7 @@ portatil_2:
   mac: AC:81:12:A8:31:50
   name: Portatil
   picture:
-  track: true
+  track: false
   vendor: Gemtek Technology Co., Ltd.
 
 7811dc376dfe:
@@ -148,7 +130,7 @@ portatil_2:
   mac: 2A:51:A9:53:0D:A0
   name: Media Center
   picture:
-  track: true
+  track: false
   vendor: unknown
 
 lumigatewayv3_miio56790352:
@@ -166,7 +148,7 @@ cozinha:
   mac: 6C:AD:F8:CB:0E:3B
   name: Tablet Cozinha
   picture:
-  track: true
+  track: false
   vendor: AzureWave Technology Inc.
 
 hassio:
@@ -184,7 +166,7 @@ elitepad:
   mac: F0:AB:54:16:E6:B7
   name: ElitePad
   picture:
-  track: true
+  track: false
   vendor: MITSUMI ELECTRIC CO.,LTD.
 
 36ce0000728b:
@@ -205,24 +187,6 @@ elitepad:
   track: true
   vendor: XIAOMI Electronics,CO.,LTD
 
-androida368cde6beb22035cylon:
-  hide_if_away: false
-  icon:
-  mac: 8C:BE:BE:8C:8C:32
-  name: Monica Router2
-  picture:
-  track: true
-  vendor: Xiaomi Communications Co Ltd
-
-monicatele:
-  hide_if_away: false
-  icon:
-  mac:
-  name: Monica Router1
-  picture:
-  track: true
-  vendor:
-
 xiaomi_mi4c:
   hide_if_away: false
   icon:
@@ -232,20 +196,56 @@ xiaomi_mi4c:
   track: true
   vendor: unknown
 
-luistele:
-  hide_if_away: false
-  icon:
-  mac:
-  name: Luis Router
-  picture:
-  track: true
-  vendor:
-
 mibox3:
   hide_if_away: false
   icon:
   mac: BT_22:22:0E:7A:C8:5D
   name: MIBOX3
   picture:
-  track: true
+  track: false
   vendor: unknown
+
+08606e9a8450:
+  hide_if_away: false
+  icon:
+  mac: 08:60:6E:9A:84:50
+  name: Router Asus
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+awei_music:
+  hide_if_away: false
+  icon:
+  mac: BT_AD:CD:EE:FE:02:5F
+  name: AWEI MUSIC
+  picture:
+  track: false
+  vendor: unknown
+
+portatil:
+  hide_if_away: false
+  icon:
+  mac: BT_40:2C:F4:65:4E:FB
+  name: PORTATIL
+  picture:
+  track: false
+  vendor: Universal Global Scientific Industrial Co., Ltd.
+
+luistele:
+  hide_if_away: false
+  icon:
+  mac:
+  name: luistele
+  picture:
+  track: true
+  vendor:
+
+monicatele:
+  hide_if_away: false
+  icon:
+  mac:
+  name: monicatele
+  picture:
+  track: true
+  vendor:

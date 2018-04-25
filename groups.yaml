@@ -74,11 +74,14 @@ familia:
     - input_boolean.portaocarro
     - input_boolean.desligar_ou_ligar_portas
     - light.gateway_light_34ce0088aff1
+    - light.gateway_light_7811dcdedcf1
     - switch.luz_petra
     - switch.petra  
     - switch.telheiro
     - switch.anexo
     - switch.anexo_rua
+    - switch.luz1
+    - switch.luz2
     - switch.teste
 #    - device_tracker.luistele
 #    - device_tracker.xiaomi_mi4c_3
@@ -102,15 +105,18 @@ sensoresvarios:
   name: Sensores
   entities:
     - sensor.illumination_34ce0088aff1
+    - sensor.illumination_7811dcdedcf1
+    - sensor.illumination_158d0001e51352
+    - sensor.illumination_158d0001e516b8
     - binary_sensor.door_window_sensor_158d00018354d0
     - binary_sensor.door_window_sensor_158d00015a954e
     - binary_sensor.door_window_sensor_158d0001d399b1
     - binary_sensor.door_window_sensor_158d0001d39ff1
     - binary_sensor.door_window_sensor_158d0001d86c17
     - binary_sensor.motion_sensor_158d00015e8fdf
-    - binary_sensor.motion_sensor_158d00015b1c11
+    - binary_sensor.motion_sensor_158d0001e51352
+    - binary_sensor.motion_sensor_158d0001e516b8
     - binary_sensor.motion_sensor_158d000152fc00
-
 
 ################################################
 #           VISTA DISPOSITIVOS NA REDE         #
@@ -168,9 +174,11 @@ tab_meteorologia:
   name: Meteorologia
   icon: mdi:weather-cloudy
   entities:
-    - sensor.estadodotempo
     - sensor.temperature_158d0001fa763c
     - sensor.humidity_158d0001fa763c
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_hourly_summary
     - sensor.dark_sky_daily_high_temperature
     - sensor.dark_sky_daily_low_temperature
     - sensor.dark_sky_precip_probability
@@ -204,6 +212,7 @@ tab_bateria:
     - sensor.p_interruptor_battery_level
     - sensor.p_temp1_battery_level
     - sensor.p_temp2_battery_level
+    - sensor.p_rua_battery_level
     - script.alarmeon
     - script.alarmeoff
     - switch.sirene
