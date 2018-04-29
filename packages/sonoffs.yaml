@@ -99,6 +99,18 @@ switch:
     optimistic: false
     retain: true
     
+sensor:
+  - platform: mqtt
+    name: "Temp. rua - Petra"
+    state_topic: "tele/Petra_Duo/SENSOR"
+    value_template: "{{ value_json['SI7021'].Temperature }}"
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Humi. rua - Petra"
+    state_topic: "tele/Petra_Duo/SENSOR"
+    value_template: "{{ value_json['SI7021'].Humidity }}"
+    unit_of_measurement: "%"
+    
 
 
 ###############################################################################

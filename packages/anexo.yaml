@@ -47,8 +47,8 @@ automation:
         data:
           entity_id: switch.anexo
 
-# Liga a luz do anexo quando há movimento e temo LUX inferior a 150
-  - alias: Liga a luz do anexo quando há movimento e temo LUX inferior a 150
+# Liga a luz do anexo quando há movimento e temos LUX inferior a 300
+  - alias: Liga a luz do anexo quando há movimento e temo LUX inferior a 300
     initial_state: true
     trigger:
       platform: state
@@ -57,14 +57,14 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e516b8
-      below: '150'
+      below: '300'
     action:
       service: switch.turn_on  
       data:      
         entity_id: switch.anexo     
 
-# Desliga a luz do anexo 2 minutos após o ultimo movimento e qundo temos LUX inferior a 150
-  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento e qundo temos LUX inferior a 150
+# Desliga a luz do anexo 2 minutos após o ultimo movimento e quando temos LUX inferior a 150
+  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento e quando temos LUX inferior a 150
     initial_state: true
     trigger:
       platform: state
@@ -75,7 +75,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e516b8
-      below: '150'
+      below: '300'
     action:
       service: switch.turn_off
       data:
