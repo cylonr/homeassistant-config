@@ -17,8 +17,8 @@ homeassistant:
 
 automation:
 
-# Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 300.
-  - alias: Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 300.
+# Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 80.
+  - alias: Liga as luzes da rua quando há movimento à noite com luminosidade abaixo dos 80.
     initial_state: true
     trigger:
       platform: state
@@ -27,7 +27,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e51352
-      below: '300'
+      below: '80'
     action:
       - service: switch.turn_on
         entity_id: switch.luz_petra
@@ -38,8 +38,8 @@ automation:
       - service: switch.turn_on
         entity_id: switch.luz1
 
-# Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 300.
-  - alias: Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 300.
+# Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 100.
+  - alias: Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 100.
     initial_state: true
     trigger:
       platform: state
@@ -50,7 +50,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e51352
-      below: 300
+      below: 100
     action:
       - service: switch.turn_off
         entity_id: switch.luz_petra

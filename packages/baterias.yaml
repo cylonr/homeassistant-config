@@ -9,7 +9,7 @@
 #	Home Assistant - Pilhas
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-04-24
+#	Date		:	2018-04-30
 #	Description :	Set configuration to pilhas
 #--------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ sensor:
           {% endif %}         
 
       p_anexo_battery_level:
-        friendly_name: Anexo
+        friendly_name: Mov. Anexo
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.binary_sensor.motion_sensor_158d0001e516b8.attributes.battery_level %}
@@ -146,7 +146,7 @@ sensor:
           {% endif %}             
 
       p_sala_battery_level:
-        friendly_name: Sala
+        friendly_name: Mov. Sala
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.binary_sensor.motion_sensor_158d00015e8fdf.attributes.battery_level %}
@@ -166,7 +166,7 @@ sensor:
           {% endif %} 
 
       p_correio_battery_level:
-        friendly_name: Correio
+        friendly_name: Mov. Correio
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.binary_sensor.motion_sensor_158d000152fc00.attributes.battery_level %}
@@ -186,7 +186,7 @@ sensor:
           {% endif %}       
 
       p_botao_battery_level:
-        friendly_name: Botão Anexo
+        friendly_name: Interruptor Anexo
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.binary_sensor.switch_158d0001b86d3e.attributes.battery_level %}
@@ -246,7 +246,7 @@ sensor:
           {% endif %}
 
       p_temp2_battery_level:
-        friendly_name: Temp. rua
+        friendly_name: Temp. Casa
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.sensor.temperature_158d0001fa763c.attributes.battery_level %}
@@ -266,7 +266,7 @@ sensor:
           {% endif %}
           
       p_rua_battery_level:
-        friendly_name: Movimento. rua
+        friendly_name: Mov. Rua
         unit_of_measurement: '%'
         value_template: >-
           {%- if states.binary_sensor.motion_sensor_158d0001e51352.attributes.battery_level %}

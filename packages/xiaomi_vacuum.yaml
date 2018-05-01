@@ -64,3 +64,77 @@ sensor:
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}
           friendly_name: Filtro
           unit_of_measurement: 'horas'
+          
+      xiaomi_succao_aspirador:
+        friendly_name: 'Velocidade de Sucção'
+        value_template: "{{states.vacuum.xiaomi_vacuum_cleaner.attributes.fan_speed}}"
+        
+      xiaomi_erro_aspirador:
+        friendly_name: 'Erros'
+        value_template: >
+          {%- if 'Error' in states.vacuum.xiaomi_vacuum_cleaner.attributes -%}
+          {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.Error }}
+          {%- else -%}
+          Sem Erros
+          {%- endif -%}
+
+input_select:
+  
+  estados_de_succao:
+    name: 'Estados de Sucção'
+    initial: Silencioso
+    options:
+      - Silencioso
+      - Balanceado
+      - Turbo
+      - Turbo Maximo
+      
+automation:
+
+#Coloca o aspirador em modo silencioso    
+  - alias: Modo Silencioso
+    trigger:
+      platform: state
+      entity_id: input_select.estados_de_succao
+      to: "Silencioso"
+    action:
+      - service: vacuum.set_fan_speed
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Quiet
+
+#Coloca o aspirador em modo balanceado           
+  - alias: Modo Balanceado
+    trigger:
+      platform: state
+      entity_id: input_select.estados_de_succao
+      to: "Balanceado"
+    action:
+      - service: vacuum.set_fan_speed
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Balanced
+
+#Coloca o aspirador em modo turbo        
+  - alias: Modo Turbo
+    trigger:
+      platform: state
+      entity_id: input_select.estados_de_succao
+      to: "Turbo"
+    action:
+      - service: vacuum.set_fan_speed
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Turbo
+ 
+#Coloca o aspirador em modo turbo maximo
+  - alias: Modo Turbo
+    trigger:
+      platform: state
+      entity_id: input_select.estados_de_succao
+      to: "Turbo Maximo"
+    action:
+      - service: vacuum.set_fan_speed
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          fan_speed: Max
