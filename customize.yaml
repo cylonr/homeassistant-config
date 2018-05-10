@@ -81,6 +81,17 @@ switch.luz1:
 switch.luz2:
   friendly_name: "Luz Casa Drt."
   icon: mdi:lightbulb-on
+binary_sensor.device_tracker_gateway1:
+  friendly_name: "GateWay 1"
+binary_sensor.device_tracker_gateway2:
+  friendly_name: "GateWay 2"
+binary_sensor.device_tracker_BhOnOfre:
+  friendly_name: "BhOnOfre"
+binary_sensor.sonoff_teste:
+  friendly_name: "Sonoff Led sala"
+
+
+
 
 
 # Estado HA #
@@ -137,25 +148,33 @@ sensor.Hassbian_ligado:
 
 #####QUARTO CAROLINA#######  
 sensor.temperature_158d0001ab1740:
-  friendly_name: "Temp. Quarto da Carolina"
+  friendly_name: "Temp. Carolina"
   icon: mdi:thermometer
 sensor.humidity_158d0001ab1740:
-  friendly_name: "Humi. Quarto da Carolina"
+  friendly_name: "Humi. Carolina"
   icon: mdi:water
 
 #####TEMPERATURA RUA#######  
 sensor.humidity_158d0001fa763c:
-  friendly_name: "Humidade na rua"
+  friendly_name: "Humi. Casa"
   icon: mdi:water
 sensor.temperature_158d0001fa763c:
-   friendly_name: "Temperatura na rua"
+   friendly_name: "Temp. Casa"
+sensor.temp_rua__petra:
+  icon: mdi:thermometer
+sensor.humi_rua__petra:
+  icon: mdi:water
+sensor.temp_anexo:
+  icon: mdi:thermometer
+sensor.humi_anexo:
+  icon: mdi:water
 
 #####COZINHA#######  
 sensor.illumination_34ce0088aff1:
   friendly_name: "Lux ambiente na cozinha"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_7811dcdedcf1:
-  friendly_name: "Lux ambiente na 1º andar"
+  friendly_name: "Lux ambiente no 1º andar"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_158d0001e51352:
   friendly_name: "Lux ambiente na rua"
@@ -189,6 +208,9 @@ binary_sensor.motion_sensor_158d00015e8fdf:
    icon: mdi:human-male-female
 binary_sensor.motion_sensor_158d0001e51352:
    friendly_name: "Movimento Rua"
+   icon: mdi:human-male-female
+binary_sensor.motion_sensor_158d0001e53332:
+   friendly_name: "Movimento 1º andar"
    icon: mdi:human-male-female
 
 ######GOOGLE TRAVEL#####

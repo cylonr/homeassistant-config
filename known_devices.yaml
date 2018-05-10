@@ -249,3 +249,27 @@ monicatele:
   picture:
   track: true
   vendor:
+
+bhonofre:
+  hide_if_away: false
+  icon:
+  mac:
+  name: bhonofre
+  picture:
+  track: true
+
+gateway1:
+  hide_if_away: false
+  icon:
+  mac:
+  name: gateway1
+  picture:
+  track: true
+
+gateway2:
+  hide_if_away: false
+  icon:
+  mac:
+  name: gateway2
+  picture:
+  track: true
