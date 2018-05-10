@@ -87,7 +87,7 @@ input_select:
       - Silencioso
       - Balanceado
       - Turbo
-      - Turbo Maximo
+      - Maximo
       
 automation:
 
@@ -127,12 +127,12 @@ automation:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: Turbo
  
-#Coloca o aspirador em modo turbo maximo
-  - alias: Modo Turbo
+#Coloca o aspirador em modo maximo
+  - alias: Modo maximo
     trigger:
       platform: state
       entity_id: input_select.estados_de_succao
-      to: "Turbo Maximo"
+      to: "Maximo"
     action:
       - service: vacuum.set_fan_speed
         data:

@@ -110,6 +110,16 @@ sensor:
     state_topic: "tele/Petra_Duo/SENSOR"
     value_template: "{{ value_json['SI7021'].Humidity }}"
     unit_of_measurement: "%"
+  - platform: mqtt
+    name: "Temp. Anexo"
+    state_topic: "tele/anexo/SENSOR"
+    value_template: "{{ value_json['SI7021'].Temperature }}"
+    unit_of_measurement: "°C"
+  - platform: mqtt
+    name: "Humi. Anexo"
+    state_topic: "tele/anexo/SENSOR"
+    value_template: "{{ value_json['SI7021'].Humidity }}"
+    unit_of_measurement: "%"
     
 
 

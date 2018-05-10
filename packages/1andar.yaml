@@ -1,0 +1,50 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - 1º andar
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-05-02
+#	Description :	Set configuration to 1º andar
+#--------------------------------------------------------------------
+
+homeassistant:
+
+automation:
+
+# Liga a luz do 1º andar quando há movimento e temos LUX inferior a 400
+  - alias: Liga a luz do 1 andar
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e53332
+      to: 'on'
+    condition:
+      condition: numeric_state
+      entity_id: sensor.illumination_7811dcdedcf1
+      below: '400'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1
+          brightness: 40
+          color_name: green   
+
+# Desliga a luz do 1º andar 3 minutos após o ultimo movimento.
+  - alias: Desliga a luz do 1 andar
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001e53332
+      to: 'off'
+      for:
+        minutes: 3
+    action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcdedcf1

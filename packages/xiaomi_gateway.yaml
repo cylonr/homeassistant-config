@@ -56,6 +56,9 @@ automation:
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d0001e516b8
         to: 'on'
+      - platform: state
+        entity_id: binary_sensor.motion_sensor_158d0001e53332
+        to: 'on'
     condition:
       - condition: state
         entity_id: input_boolean.proximity

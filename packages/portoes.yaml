@@ -72,23 +72,15 @@ automation:
         data:
           message: "Portão a abrir - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
           title: "Home Assistant"
-      - delay: 00:00:02
+      - delay: 00:00:01
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-      - service: light.turn_off
-        data_template:
-          entity_id: light.gateway_light_7811dcdedcf1
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
-          color_name: red
-      - service: light.turn_on
-        data_template:
-          entity_id: light.gateway_light_7811dcdedcf1
-          brightness: 20
           color_name: red
       - service: switch.turn_on
         entity_id: switch.teste
@@ -123,19 +115,11 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-      - service: light.turn_off
-        data_template:
-          entity_id: light.gateway_light_7811dcdedcf1
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 99
-          color_name: green
-      - service: light.turn_on
-        data_template:
-          entity_id: light.gateway_light_7811dcdedcf1
-          brightness: 20
           color_name: green
       - service: switch.turn_off
         entity_id: switch.teste

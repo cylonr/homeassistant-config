@@ -26,11 +26,13 @@ device_tracker:
       CamAnexo: 192.168.1.81
       CamTelheiro: 192.168.1.84
       CamCarolina: 192.168.1.82
-      Gateway: 192.168.1.75
+      Gateway1: 192.168.1.75
+      Gateway2: 192.168.1.99
       RepAnexo: 192.168.1.71
       RepCasa: 192.168.1.83
       LuisTele: 192.168.1.78
       MonicaTele: 192.168.1.72
+      BhOnOfre: 192.168.1.97 
 
   - platform: bluetooth_tracker
     consider_home: 20 
@@ -56,13 +58,14 @@ binary_sensor:
     off_state_text: nao 
     entities:
       - device_tracker.camanexo
-      - device_tracker.camanexo_rua
       - device_tracker.camtelheiro
       - device_tracker.campetra
-      - device_tracker.gateway
       - device_tracker.camcarolina
       - device_tracker.repanexo
       - device_tracker.repcasa
+      - device_tracker.BhOnOfre
+      - device_tracker.gateway2
+      - device_tracker.gateway1
 
 sensor:
   - platform: template

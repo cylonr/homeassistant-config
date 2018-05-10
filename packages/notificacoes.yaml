@@ -49,7 +49,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.sonoff_rua
+      entity_id: binary_sensor.sonoff_anexo_rua
       to: 'off'
       for:
         minutes: 10
@@ -105,19 +105,19 @@ automation:
         title: "Home Assistant"
 
 # Notifica o Luis que a Cam da Petra foi desconectada da rede de casa.
-  - alias: Cam Petra desconectada
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: binary_sensor.device_tracker_campetra
-      to: 'off'
-      for:
-        minutes: 10
-    action:
-    - service: notify.luiszanzito
-      data:
-        message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-        title: "Home Assistant"
+#  - alias: Cam Petra desconectada
+#    initial_state: true
+#    trigger:
+#      platform: state
+#      entity_id: binary_sensor.device_tracker_campetra
+#      to: 'off'
+#      for:
+#        minutes: 10
+#    action:
+#    - service: notify.luiszanzito
+#      data:
+#        message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+#        title: "Home Assistant"
 
 # Notifica o Luis que a Cam do telheiro foi desconectada da rede de casa.
   - alias: Cam telheiro desconectada
@@ -146,7 +146,7 @@ automation:
     action:
     - service: notify.luiszanzito
       data:
-        message: "Gateway Xiaomi desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        message: "Gateway Xiaomi1  desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
 
 # Notifica o Luis que a Cam Carolina foi desconectada da rede de casa.
@@ -162,6 +162,97 @@ automation:
     - service: notify.luiszanzito
       data:
         message: "Câmara da Carolina desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o gateway2 Xiaomi foi desconectada da rede de casa.
+  - alias: gateway2 Xiaomi
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_gateway2
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Gateway Xiaomi2  desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o repetidor do anexo foi desconectado da rede de casa.
+  - alias: repetidor do anexo
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_repanexo
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Repetidor do anexo desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o repetidor de casa foi desconectado da rede de casa.
+  - alias: repetidor de casa
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_repcasa
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Repetidor de casa desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+        
+# Notifica o Luis que o SONOFF da sala foi desconectado da rede de casa.
+  - alias: SONOFF da sala
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_sonoff_teste
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Sonoff da sala desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o BhOnOfre foi desconectado da rede de casa.
+  - alias: BhOnOfre
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.device_tracker_BhOnOfre
+      to: 'off'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "BhOnOfre foi desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o SENSOR DE TEMP DE CASA foi desconectado da rede de casa.
+  - alias: SENSOR DE TEMP DE CASA
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: sensor.temperature_158d0001fa763c
+      to: 'unknown'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "SENSOR DE TEMP DE CASA foi desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
 
 ###############################################################################

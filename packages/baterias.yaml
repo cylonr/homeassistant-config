@@ -283,6 +283,26 @@ sensor:
             mdi:battery-{{ battery_round }}
           {% else %}
             mdi:battery-alert
+          {% endif %}
+          
+      p_1andar_battery_level:
+        friendly_name: Mov. Rua
+        unit_of_measurement: '%'
+        value_template: >-
+          {%- if states.binary_sensor.motion_sensor_158d0001e53332.attributes.battery_level %}
+            {{ states.binary_sensor.motion_sensor_158d0001e53332.attributes.battery_level|round }}
+          {% else %}
+            {{ states.sensor.motion_sensor.state }}
+          {%- endif %}
+        icon_template: >
+          {% set battery_level = states.sensor.motion_sensor.state|default(0)|int %}
+          {% set battery_round = (battery_level / 10) |int * 10 %}
+          {% if battery_round >= 100 %}
+            mdi:battery
+          {% elif battery_round > 0 %}
+            mdi:battery-{{ battery_round }}
+          {% else %}
+            mdi:battery-alert
           {% endif %}   
 
   - platform: mqtt
@@ -310,6 +330,7 @@ automation:
         - sensor.p_temp2_battery_level
         - sensor.p_inerruptor_battery_level
         - sensor.p_rua_battery_level
+        - sensor.p_1andar_battery_level
       below: 5
     condition:
       - condition: template
