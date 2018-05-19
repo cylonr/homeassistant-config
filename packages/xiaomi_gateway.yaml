@@ -54,7 +54,7 @@ automation:
         entity_id: binary_sensor.door_window_sensor_158d0001d39ff1
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.motion_sensor_158d0001e516b8
+        entity_id: binary_sensor.door_window_sensor_158d0001b91cef
         to: 'on'
       - platform: state
         entity_id: binary_sensor.motion_sensor_158d0001e53332

@@ -87,6 +87,34 @@ automation:
         entity_id: switch.luz1
       - service: switch.turn_off
         entity_id: switch.luz2
+        
+script:
+
+  allluzeson:
+    sequence:
+      - service: switch.turn_on
+        entity_id: switch.luz_petra
+      - service: switch.turn_on
+        entity_id: switch.telheiro
+      - service: switch.turn_on
+        entity_id: switch.anexo_rua
+      - service: switch.turn_on
+        entity_id: switch.luz1
+      - service: switch.turn_on
+        entity_id: switch.luz2
+        
+  allluzesoff:
+    sequence:
+      - service: switch.turn_off
+        entity_id: switch.luz_petra
+      - service: switch.turn_off
+        entity_id: switch.telheiro
+      - service: switch.turn_off
+        entity_id: switch.anexo_rua
+      - service: switch.turn_off
+        entity_id: switch.luz1
+      - service: switch.turn_off
+        entity_id: switch.luz2
 
 ###############################################################################
 #                                                                             #

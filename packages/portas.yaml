@@ -68,6 +68,11 @@ automation:
         to: 'on'
         for:
           minutes: 30
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b91cef
+        to: 'on'
+        for:
+          minutes: 30
     action:
       - service: notify.luiszanzito
         data_template:
@@ -89,3 +94,5 @@ sensor:
       value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001d39ff1", "on") %} Aberta {% else %} Fechada {%- endif %}'      
     door_principal:
       value_template: '{% if is_state("binary_sensor.door_window_sensor_158d00015a954e", "on") %} Aberta {% else %} Fechada {%- endif %}'
+    door_anexo:
+      value_template: '{% if is_state("binary_sensor.door_window_sensor_158d0001b91cef", "on") %} Aberta {% else %} Fechada {%- endif %}'
