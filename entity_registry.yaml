@@ -27,7 +27,7 @@ binary_sensor.motion_sensor_158d00015b1c11:
   platform: xiaomi_aqara
   unique_id: status158d00015b1c11
 binary_sensor.switch_158d0001b86d3e:
-  name:
+  name: Botão Anexo
   platform: xiaomi_aqara
   unique_id: status158d0001b86d3e
 binary_sensor.door_window_sensor_158d00015a954e:
@@ -110,3 +110,27 @@ sensor.illumination_158d0001e516b8:
   name:
   platform: xiaomi_aqara
   unique_id: lux158d0001e516b8
+binary_sensor.wall_switch_right_158d0001e0f8b3:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_1158d0001e0f8b3
+binary_sensor.wall_switch_left_158d0001e0f8b3:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_0158d0001e0f8b3
+binary_sensor.wall_switch_both_158d0001e0f8b3:
+  name:
+  platform: xiaomi_aqara
+  unique_id: dual_channel158d0001e0f8b3
+binary_sensor.motion_sensor_158d0001e53332:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e53332
+sensor.illumination_158d0001e53332:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d0001e53332
+binary_sensor.door_window_sensor_158d0001b91cef:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001b91cef

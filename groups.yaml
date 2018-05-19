@@ -71,6 +71,8 @@ familia:
     - switch.luz1
     - switch.luz2
     - switch.teste
+    - script.allluzeson
+    - script.allluzesoff
 #    - device_tracker.luistele
 #    - device_tracker.xiaomi_mi4c_3
 #    - device_tracker.luis
@@ -104,6 +106,7 @@ sensoresvarios:
     - sensor.illumination_158d0001e516b8
     - binary_sensor.door_window_sensor_158d00018354d0
     - binary_sensor.door_window_sensor_158d00015a954e
+    - binary_sensor.door_window_sensor_158d0001b91cef
     - binary_sensor.door_window_sensor_158d0001d399b1
     - binary_sensor.door_window_sensor_158d0001d39ff1
     - binary_sensor.door_window_sensor_158d0001d86c17
@@ -212,6 +215,7 @@ tab_bateria:
     - sensor.p_principal_battery_level
     - sensor.p_esquerda_battery_level
     - sensor.p_direita_battery_level
+    - sensor.p_portaanexo_battery_level
     - sensor.p_portao_battery_level
     - sensor.p_anexo_battery_level
     - sensor.p_rua_battery_level

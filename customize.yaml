@@ -81,6 +81,12 @@ switch.luz1:
 switch.luz2:
   friendly_name: "Luz Casa Drt."
   icon: mdi:lightbulb-on
+script.allluzeson:
+  friendly_name: "Ligar todas as luzes - Rua"
+  entity_picture: /local/images/luz1.png
+script.allluzesoff:
+  friendly_name: "Desligar todas as luzes - Rua"
+  entity_picture: /local/images/luz1.png
 binary_sensor.device_tracker_gateway1:
   friendly_name: "GateWay 1"
 binary_sensor.device_tracker_gateway2:
@@ -212,6 +218,9 @@ binary_sensor.motion_sensor_158d0001e51352:
 binary_sensor.motion_sensor_158d0001e53332:
    friendly_name: "Movimento 1º andar"
    icon: mdi:human-male-female
+binary_sensor.door_window_sensor_158d0001b91cef:
+   friendly_name: "Porta Anexo"
+   icon: mdi:door   
 
 ######GOOGLE TRAVEL#####
 sensor.luis_trabalho:
