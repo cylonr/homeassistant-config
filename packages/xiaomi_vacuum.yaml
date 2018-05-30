@@ -79,16 +79,16 @@ sensor:
           {%- endif -%}
 
 input_select:
-  
+
   estados_de_succao:
     name: 'Estados de Sucção'
-    initial: Silencioso
+    initial: Balanceado
     options:
       - Silencioso
       - Balanceado
       - Turbo
       - Maximo
-      
+
 automation:
 
 #Coloca o aspirador em modo silencioso    

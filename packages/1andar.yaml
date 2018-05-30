@@ -6,11 +6,11 @@
 #       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
 #       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
 #
-#	Home Assistant - 1º andar
+#	Home Assistant - 1º andar e Hall
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-05-02
-#	Description :	Set configuration to 1º andar
+#	Date		:	2018-05-30
+#	Description :	Set configuration to 1º andar e Hall
 #--------------------------------------------------------------------
 
 homeassistant:
@@ -18,7 +18,7 @@ homeassistant:
 automation:
 
 # Liga a luz do 1º andar quando há movimento e temos LUX inferior a 400
-  - alias: Liga a luz do 1 andar
+  - alias: Liga a luz do 1 andar #1
     initial_state: true
     trigger:
       platform: state
@@ -34,8 +34,25 @@ automation:
           entity_id: light.gateway_light_7811dcdedcf1
           brightness: 40
           color_name: green   
+          
+  - alias: Liga a luz do Hall de entrada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000222ccca
+      to: 'on'
+    condition:
+      condition: numeric_state
+      entity_id: sensor.illumination_7811dcb3556e
+      below: '200'
+    action:
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e
+          brightness: 100
+          color_name: mediumturquoise   
 
-# Desliga a luz do 1º andar 3 minutos após o ultimo movimento.
+# Desliga a luz do 1º andar 1 minutos após o ultimo movimento.
   - alias: Desliga a luz do 1 andar
     initial_state: true
     trigger:
@@ -43,8 +60,22 @@ automation:
       entity_id: binary_sensor.motion_sensor_158d0001e53332
       to: 'off'
       for:
-        minutes: 3
+        minutes: 1
     action:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_7811dcdedcf1
+          
+# Desliga a luz do Hall Entrada 1 minutos após o ultimo movimento.
+  - alias: Desliga a luz do Hall Entrada
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000222ccca
+      to: 'off'
+      for:
+        minutes: 1
+    action:
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e

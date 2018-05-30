@@ -14,6 +14,25 @@
 #--------------------------------------------------------------------
 
 homeassistant:
+automation:
+
+# Notifica os utilizadores da casa se existe nova correspondência na caixa do correio.
+  - alias: Notificacao Novo Correio
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000152fc00
+      to: 'on'
+    action:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: 34:CE:00:88:AF:F1
+          ringtone_id: 10011
+          ringtone_vol: 10
+      - service: notify.luiszanzito
+        data:
+          message: "Novo Correio recebido - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+          title: "Home Assistant"
 
 ### CRIA UM SENSOR MAS NO PAINEL SEMPRE QUE HA ALTERAÇÃO DE ESTADO ELE NÃO FICA AMARELO - NÃO ESTÁ EM USO ###
 #sensor:

@@ -58,6 +58,41 @@ automation:
       data:
         message: "Há {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidadede chover amanhã."
         
+#  #dark theme at night
+#  - alias: Set dark theme for the night
+#    initial_state: true
+#    trigger:
+#      - platform: sun
+#        event: sunset
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.dark_theme_status
+#        state: 'on'
+#    action:
+#      service: frontend.set_theme
+#      data:
+#        name: dark
+#  #normal theme at day
+#  - alias: Set normal theme for day
+#    initial_state: true
+#    trigger:
+#      - platform: sun
+#        event: sunrise
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.dark_theme_status
+#        state: 'on'
+#    action:
+#      service: frontend.set_theme
+#      data:
+#        name: lightblue
+#        
+#input_boolean:
+#
+#  dark_theme_status:
+#    name: Auto Night Theme
+#    initial: 'on'
+        
 
 #  - platform: yr
 #    name: Weather

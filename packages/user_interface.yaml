@@ -1,0 +1,53 @@
+﻿#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Auto User Interface
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-05-26
+#	Description :	Set configuration to Auto User Interface
+#--------------------------------------------------------------------
+homeassistant:
+
+automation:
+
+  #dark theme at night
+  - alias: Set dark theme for the night
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunset
+    condition:
+      - condition: state
+        entity_id: input_boolean.dark_theme_status
+        state: 'on'
+    action:
+      service: frontend.set_theme
+      data:
+        name: dark
+  #normal theme at day
+  - alias: Set normal theme for day
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunrise
+    condition:
+      - condition: state
+        entity_id: input_boolean.dark_theme_status
+        state: 'on'
+    action:
+      service: frontend.set_theme
+      data:
+        name: lightblue
+
+input_boolean:
+
+  dark_theme_status:
+    name: Auto Night Theme
+    icon: mdi:theme-light-dark
+    initial: 'on'

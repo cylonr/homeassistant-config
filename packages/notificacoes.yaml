@@ -16,19 +16,6 @@
 homeassistant:
 automation:
 
-# Notifica os utilizadores da casa se existe nova correspondência na caixa do correio.
-  - alias: Notificacao Novo Correio
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_158d000152fc00
-      to: 'on'
-    action:
-    - service: notify.luiszanzito
-      data:
-        message: "Novo Correio recebido - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-        title: "Home Assistant"
-
 # Notifica o Luis que o Sonoff do anexo foi desligado da rede de casa.
   - alias: Sonoff anexo desligado
     initial_state: true
@@ -135,7 +122,7 @@ automation:
         title: "Home Assistant"
 
 # Notifica o Luis que o gateway Xiaomi foi desconectada da rede de casa.
-  - alias: Cam Gateway desconectada
+  - alias: Gateway desconectada
     initial_state: true
     trigger:
       platform: state
