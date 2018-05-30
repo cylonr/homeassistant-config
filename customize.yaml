@@ -41,7 +41,10 @@ light.gateway_light_34ce0088aff1:
   icon: mdi:lightbulb-on
 light.gateway_light_7811dcdedcf1:
   friendly_name: "Led GateWay 1º andar"
-  icon: mdi:lightbulb-on  
+  icon: mdi:lightbulb-on
+light.gateway_light_7811dcb3556e:
+  friendly_name: "Led GateWay Hall entrada"
+  icon: mdi:lightbulb-on 
 switch.petra:
   friendly_name: "Luz Petra OLD"
   icon: mdi:lightbulb-on
@@ -179,6 +182,9 @@ sensor.humi_anexo:
 sensor.illumination_34ce0088aff1:
   friendly_name: "Lux ambiente na cozinha"
   icon: mdi:lightbulb-on-outline
+sensor.illumination_7811dcb3556e:
+  friendly_name: "Lux ambiente no Hall entrada"
+  icon: mdi:lightbulb-on-outline
 sensor.illumination_7811dcdedcf1:
   friendly_name: "Lux ambiente no 1º andar"
   icon: mdi:lightbulb-on-outline
@@ -203,6 +209,9 @@ binary_sensor.door_window_sensor_158d0001d39ff1:
 binary_sensor.door_window_sensor_158d0001d86c17:
    friendly_name: "Portão carro / mota"
    icon: mdi:gate
+binary_sensor.door_window_sensor_158d0001b91cef:
+   friendly_name: "Porta Anexo"
+   icon: mdi:door  
 binary_sensor.motion_sensor_158d000152fc00:
    friendly_name: "Correio"
    icon: mdi:mailbox
@@ -218,9 +227,10 @@ binary_sensor.motion_sensor_158d0001e51352:
 binary_sensor.motion_sensor_158d0001e53332:
    friendly_name: "Movimento 1º andar"
    icon: mdi:human-male-female
-binary_sensor.door_window_sensor_158d0001b91cef:
-   friendly_name: "Porta Anexo"
-   icon: mdi:door   
+binary_sensor.motion_sensor_158d000222ccca:
+   friendly_name: "Movimento Hall entrada"
+   icon: mdi:human-male-female
+ 
 
 ######GOOGLE TRAVEL#####
 sensor.luis_trabalho:

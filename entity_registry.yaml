@@ -134,3 +134,19 @@ binary_sensor.door_window_sensor_158d0001b91cef:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001b91cef
+binary_sensor.motion_sensor_158d000222ccca:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000222ccca
+sensor.illumination_158d000222ccca:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d000222ccca
+light.gateway_light_7811dcb3556e:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb7811dcb3556e
+sensor.illumination_7811dcb3556e:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination7811dcb3556e

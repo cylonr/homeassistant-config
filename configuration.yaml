@@ -136,3 +136,4 @@ tts:
     language: 'pt'
 
 logger:
+#  default: error

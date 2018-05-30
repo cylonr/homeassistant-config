@@ -63,6 +63,7 @@ familia:
     - input_boolean.desligar_ou_ligar_portas
     - light.gateway_light_34ce0088aff1
     - light.gateway_light_7811dcdedcf1
+    - light.gateway_light_7811dcb3556e
     - switch.luz_petra
     - switch.petra  
     - switch.telheiro
@@ -102,6 +103,7 @@ sensoresvarios:
   entities:
     - sensor.illumination_34ce0088aff1
     - sensor.illumination_7811dcdedcf1
+    - sensor.illumination_7811dcb3556e
     - sensor.illumination_158d0001e51352
     - sensor.illumination_158d0001e516b8
     - binary_sensor.door_window_sensor_158d00018354d0
@@ -113,8 +115,10 @@ sensoresvarios:
     - binary_sensor.motion_sensor_158d00015e8fdf
     - binary_sensor.motion_sensor_158d0001e51352
     - binary_sensor.motion_sensor_158d0001e53332
+    - binary_sensor.motion_sensor_158d000222ccca
     - binary_sensor.motion_sensor_158d0001e516b8
     - binary_sensor.motion_sensor_158d000152fc00
+
 
 ################################################
 #           VISTA DISPOSITIVOS NA REDE         #
@@ -128,6 +132,7 @@ dispositivos_da_rede:
     - group.sonoffs
     - group.counter
     - group.rpi
+    - group.theme
 
 dispositivos_na_rede:
   name: Dispositivos na rede
@@ -146,6 +151,11 @@ dispositivos_na_rede:
     - binary_sensor.device_tracker_repcasa
     - binary_sensor.device_tracker_sonoff_teste
     - binary_sensor.device_tracker_BhOnOfre
+    
+theme:
+  name: Temas
+  entities:
+    - input_boolean.dark_theme_status
 
 rpi:
   name: Home Assistant Server
@@ -222,6 +232,8 @@ tab_bateria:
     - sensor.p_sala_battery_level
     - sensor.p_correio_battery_level
     - sensor.p_rua_battery_level
+    - sensor.p_1andar_battery_level
+    - sensor.p_1andar2_battery_level
     - sensor.p_botao_battery_level
     - sensor.p_interruptor_battery_level
     - sensor.p_temp1_battery_level
