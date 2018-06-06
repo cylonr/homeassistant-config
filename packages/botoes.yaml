@@ -67,9 +67,9 @@ automation:
       - service: shell_command.portaocarro 
       - service: script.portaocarro
 
-## CAMPAINHA UM CLICK - INTERRUPTOR PORTÃO -
+## CAMPAINHA UM CLICK - INTERRUPTOR PORTÃO INPUT BOOLEAN ON -
 
-  - alias: 'Toca campainha'
+  - alias: 'Toca campainha1'
     trigger:
       - platform: event
         event_type: click
@@ -109,9 +109,9 @@ automation:
           ringtone_id: 10
           ringtone_vol: 50
 
-## CAMPAINHA DOIS CLICKs - INTERRUPTOR PORTÃO -
+## CAMPAINHA DOIS CLICKs - INTERRUPTOR PORTÃO INPUT BOOLEAN ON -
 
-  - alias: 'Toca campainha'
+  - alias: 'Toca campainha3'
     trigger:
       - platform: event
         event_type: click
@@ -133,7 +133,7 @@ automation:
           message: "Campainha a tocar - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
           title: "Home Assistant"
 
-  - alias: 'Toca campainha2'
+  - alias: 'Toca campainha4'
     trigger:
       - platform: event
         event_type: click
@@ -150,6 +150,44 @@ automation:
           gw_mac: !secret key_gateway2
           ringtone_id: 10
           ringtone_vol: 50
+          
+## CAMPAINHA UM CLICK - INTERRUPTOR PORTÃO INPUT BOOLEAN OFF -
+
+  - alias: 'Toca campainha5'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.on_off_campainha
+        state: 'off'
+    action:
+      - service: notify.luiszanzito
+        data:
+          message: "Campainha desligada a tocar - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+          title: "Home Assistant"
+
+## CAMPAINHA DOIS CLICKs - INTERRUPTOR PORTÃO INPUT BOOLEAN ON -
+
+  - alias: 'Toca campainha6'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: double
+    condition:
+      - condition: state
+        entity_id: input_boolean.on_off_campainha
+        state: 'off'
+    action:
+      - service: notify.luiszanzito
+        data:
+          message: "Campainha desligada a tocar - {{states.sensor.time.state}} - {{states.sensor.date.state}} "
+          title: "Home Assistant"
 
       ############### DESACTIVADOS ###############
 
