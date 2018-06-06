@@ -64,6 +64,8 @@ familia:
     - light.gateway_light_34ce0088aff1
     - light.gateway_light_7811dcdedcf1
     - light.gateway_light_7811dcb3556e
+    - input_boolean.on_off_luzes_auto
+    - input_boolean.on_off_campainha
     - switch.luz_petra
     - switch.petra  
     - switch.telheiro
@@ -147,6 +149,7 @@ dispositivos_na_rede:
     - binary_sensor.device_tracker_camcarolina
     - binary_sensor.device_tracker_gateway1
     - binary_sensor.device_tracker_gateway2
+    - binary_sensor.device_tracker_gateway3
     - binary_sensor.device_tracker_repanexo
     - binary_sensor.device_tracker_repcasa
     - binary_sensor.device_tracker_sonoff_teste
@@ -191,19 +194,26 @@ tab_da_meteorologia:
   name: Meteorologia
   icon: mdi:weather-cloudy
   entities:
-    - group.tab_meteorologia
+#    - group.tab_meteorologia
+    - group.tempo
 
-tab_meteorologia:
-  name: Meteorologia
-  icon: mdi:weather-cloudy
-  entities:
-    - sensor.dark_sky_summary
-    - sensor.dark_sky_daily_summary
-    - sensor.dark_sky_hourly_summary
-    - sensor.dark_sky_daily_high_temperature
-    - sensor.dark_sky_daily_low_temperature
-    - sensor.dark_sky_precip_probability
-    - camera.cartaxo
+tempo:
+  name: Meteorologia IPMA
+  control: hidden
+  entities:    
+    - weather.santarem
+
+#tab_meteorologia:
+#  name: Meteorologia DarkSky
+#  icon: mdi:weather-cloudy
+#  entities:
+#    - sensor.dark_sky_summary
+#    - sensor.dark_sky_daily_summary
+#    - sensor.dark_sky_hourly_summary
+#    - sensor.dark_sky_daily_high_temperature
+#    - sensor.dark_sky_daily_low_temperature
+#    - sensor.dark_sky_precip_probability
+#    - camera.cartaxo
 
 ################################################
 #               BATERIA SENSORES               #
