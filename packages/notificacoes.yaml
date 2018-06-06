@@ -121,21 +121,6 @@ automation:
         message: "Câmara do telheiro desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
 
-# Notifica o Luis que o gateway Xiaomi foi desconectada da rede de casa.
-  - alias: Gateway desconectada
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: binary_sensor.device_tracker_gateway
-      to: 'off'
-      for:
-        minutes: 10
-    action:
-    - service: notify.luiszanzito
-      data:
-        message: "Gateway Xiaomi1  desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-        title: "Home Assistant"
-
 # Notifica o Luis que a Cam Carolina foi desconectada da rede de casa.
   - alias: Cam Carolina desconectada
     initial_state: true
@@ -150,20 +135,50 @@ automation:
       data:
         message: "Câmara da Carolina desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
+
+# Notifica o Luis que o gateway1 foi desconectada da rede de casa.
+  - alias: gateway1 Xiaomi
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: device_tracker.gateway1
+      to: 'not_home'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Gateway Cozinha desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"        
         
 # Notifica o Luis que o gateway2 Xiaomi foi desconectada da rede de casa.
   - alias: gateway2 Xiaomi
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.device_tracker_gateway2
-      to: 'off'
+      entity_id: device_tracker.gateway2
+      to: 'not_home'
       for:
         minutes: 10
     action:
     - service: notify.luiszanzito
       data:
-        message: "Gateway Xiaomi2  desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        message: "Gateway 1º andar desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        title: "Home Assistant"
+        
+# Notifica o Luis que o gateway3 Xiaomi foi desconectada da rede de casa.
+  - alias: gateway3 Xiaomi
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: device_tracker.gateway3
+      to: 'not_home'
+      for:
+        minutes: 10
+    action:
+    - service: notify.luiszanzito
+      data:
+        message: "Gateway Hall desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
         
 # Notifica o Luis que o repetidor do anexo foi desconectado da rede de casa.

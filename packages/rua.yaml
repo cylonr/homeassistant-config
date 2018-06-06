@@ -9,11 +9,18 @@
 #	Home Assistant - Rua
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-04-25
+#	Date		:	2018-06-06
 #	Description :	Set configuration to Anexo
 #--------------------------------------------------------------------
 
 homeassistant:
+
+input_boolean:
+
+  on_off_luzes_auto:
+    name: Desl. Luzes rua Auto
+    initial: 'on'
+    icon: 'mdi:gesture-double-tap'
 
 automation:
 
@@ -48,9 +55,12 @@ automation:
       for:
         minutes: 4
     condition:
-      condition: numeric_state
-      entity_id: sensor.illumination_158d0001e51352
-      below: 100
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0001e51352
+        below: 100
+      - condition: state
+        entity_id: input_boolean.on_off_luzes_auto
+        state: 'on'
     action:
       - service: switch.turn_off
         entity_id: switch.luz_petra

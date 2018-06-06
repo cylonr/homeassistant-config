@@ -9,7 +9,7 @@
 #	Home Assistant - Portões
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-04-07
+#	Date		:	2018-06-06
 #	Description :	Set configuration to Portões
 #--------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ automation:
 #          payload: "Espero ter cumprido a função"
       - service: xiaomi_aqara.play_ringtone
         data:
-          gw_mac: 34:CE:00:88:AF:F1
+          gw_mac: !secret key_gateway2
           ringtone_id: 10007
           ringtone_vol: 10
       - service: notify.luiszanzito
@@ -76,11 +76,19 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-          brightness: 99
+          brightness: 250
+          color_name: red
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e
+          brightness: 100
           color_name: red
       - service: switch.turn_on
         entity_id: switch.teste
@@ -104,7 +112,7 @@ automation:
 #          payload: "Espero ter cumprido a função"
       - service: xiaomi_aqara.play_ringtone
         data:
-          gw_mac: 34:CE:00:88:AF:F1
+          gw_mac: !secret key_gateway2
           ringtone_id: 10008
           ringtone_vol: 10
       - service: notify.luiszanzito
@@ -115,11 +123,19 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
+      - service: light.turn_off
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-          brightness: 99
+          brightness: 250
+          color_name: green
+      - service: light.turn_on
+        data_template:
+          entity_id: light.gateway_light_7811dcb3556e
+          brightness: 100
           color_name: green
       - service: switch.turn_off
         entity_id: switch.teste

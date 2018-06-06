@@ -28,6 +28,7 @@ device_tracker:
       CamCarolina: 192.168.1.82
       Gateway1: 192.168.1.75
       Gateway2: 192.168.1.99
+      Gateway3: 192.168.1.100
       RepAnexo: 192.168.1.71
       RepCasa: 192.168.1.83
       LuisTele: 192.168.1.78
@@ -66,6 +67,7 @@ binary_sensor:
       - device_tracker.BhOnOfre
       - device_tracker.gateway2
       - device_tracker.gateway1
+      - device_tracker.gateway3
 
 sensor:
   - platform: template
