@@ -143,7 +143,6 @@ automation:
            {% endif %}
            {%- endif -%}
            A/s {{ doors}} {%- if 'a' in doors -%} estão {%- else %} está {%- endif %} aberta/s. O Alarme não pode ser ativo.
-
 ###############################################################################
 # Alerta após 20 minutos sem ninguem estar em casa e que o alarme está desactivo
 ###############################################################################
@@ -239,8 +238,51 @@ automation:
           gw_mac: !secret key_gateway2
           ringtone_id: 10006
           ringtone_vol: 17
-          
 
+## Desliga o SCRIPT do alarme e o alarme no botão - INTERRUPTOR ANEXO - 
+  - alias: 'desliga alarme - ANEXO'
+    trigger:
+      - platform: event
+        event_type: click
+        event_data:
+          entity_id: binary_sensor.switch_158d0001b86d3e
+          click_type: double
+    action:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10001
+          ringtone_vol: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
+      - delay: 0:00:01
+      - service: script.turn_off
+        data:
+          entity_id: script.atraso
+      - service: script.turn_off
+        data:
+          entity_id: script.alarme
+      - service: notify.my_pushbullet
+        data:
+          message: "Alarme desativado MANUALMENTE no anexo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:01
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.proximity
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway4
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway6
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10006
+          ringtone_vol: 17         
 
 script:
 
@@ -401,7 +443,6 @@ sensor:
              {% else %}
               Desligado
             {% endif %}
-
 group:
 
   sensoresportajanela:
@@ -411,50 +452,3 @@ group:
       - binary_sensor.door_window_sensor_158d0001d399b1 
       - binary_sensor.door_window_sensor_158d0001d39ff1 
       - binary_sensor.door_window_sensor_158d00015a954e
-      
-      ############### DESACTIVADOS ###############
-
-## Desliga o SCRIPT do alarme e o alarme no botão - INTERRUPTOR ANEXO - 
-#  - alias: 'desliga alarme - ANEXO'
-#    trigger:
-#      - platform: event
-#        event_type: click
-#        event_data:
-#          entity_id: binary_sensor.switch_158d0001b86d3e
-#          click_type: double
-#    action:
-#      - service: xiaomi_aqara.play_ringtone
-#        data:
-#          gw_mac: !secret key_gateway2
-#          ringtone_id: 10001
-#          ringtone_vol: 10
-#      - service: switch.turn_off
-#        data:
-#          entity_id: switch.sirene
-#      - delay: 0:00:01
-#      - service: script.turn_off
-#        data:
-#          entity_id: script.atraso
-#      - service: script.turn_off
-#        data:
-#          entity_id: script.alarme
-#      - service: notify.my_pushbullet
-#        data:
-#          message: "Alarme desativado MANUALMENTE no anexo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-#      - delay: 0:00:01
-#      - service: homeassistant.turn_off
-#        entity_id: input_boolean.proximity
-#      - service: xiaomi_aqara.stop_ringtone
-#        data:
-#          gw_mac: !secret key_gateway2
-#      - service: xiaomi_aqara.stop_ringtone
-#        data:
-#          gw_mac: !secret key_gateway4
-#      - service: xiaomi_aqara.stop_ringtone
-#        data:
-#          gw_mac: !secret key_gateway6
-#      - service: xiaomi_aqara.play_ringtone
-#        data:
-#          gw_mac: !secret key_gateway2
-#          ringtone_id: 10006
-#          ringtone_vol: 17
