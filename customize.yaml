@@ -90,14 +90,16 @@ script.allluzeson:
 script.allluzesoff:
   friendly_name: "Desligar todas as luzes - Rua"
   entity_picture: /local/images/luz1.png
-binary_sensor.device_tracker_gateway1:
-  friendly_name: "GateWay 1"
-binary_sensor.device_tracker_gateway2:
-  friendly_name: "GateWay 2"
 binary_sensor.device_tracker_BhOnOfre:
   friendly_name: "BhOnOfre"
 binary_sensor.sonoff_teste:
   friendly_name: "Sonoff Led sala"
+binary_sensor.device_tracker_gateway1:
+  friendly_name: "GateWay Cozinha"
+binary_sensor.device_tracker_gateway2:
+  friendly_name: "GateWay 1º andar"
+binary_sensor.device_tracker_gateway3:
+  friendly_name: "GateWay Hall"
 
 
 
@@ -180,19 +182,19 @@ sensor.humi_anexo:
 
 #####COZINHA#######  
 sensor.illumination_34ce0088aff1:
-  friendly_name: "Lux ambiente na cozinha"
+  friendly_name: "Lux - Cozinha"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_7811dcb3556e:
-  friendly_name: "Lux ambiente no Hall entrada"
+  friendly_name: "Lux - Hall entrada"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_7811dcdedcf1:
-  friendly_name: "Lux ambiente no 1º andar"
+  friendly_name: "Lux - 1º andar"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_158d0001e51352:
-  friendly_name: "Lux ambiente na rua"
+  friendly_name: "Lux - Rua"
   icon: mdi:lightbulb-on-outline
 sensor.illumination_158d0001e516b8:
-  friendly_name: "Lux ambiente no anexo"
+  friendly_name: "Lux - Anexo"
   icon: mdi:lightbulb-on-outline
 binary_sensor.door_window_sensor_158d00018354d0:
    friendly_name: "Porta cozinha"

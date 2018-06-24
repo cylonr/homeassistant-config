@@ -34,6 +34,12 @@ config:
 
 # Enables the frontend
 
+panel_iframe:
+  mdiindex:
+    title: MDI Icon Index
+    icon: mdi:vector-square
+    url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
+
 frontend:
   themes: !include_dir_merge_named themes/
 
@@ -137,3 +143,6 @@ tts:
 
 logger:
 #  default: error
+
+weather:
+  - platform: ipma

@@ -83,7 +83,7 @@ binary_sensor.wall_switch_both_158d0001e0f91d:
   platform: xiaomi_aqara
   unique_id: dual_channel158d0001e0f91d
 binary_sensor.smoke_sensor_158d0001b7dbbd:
-  name:
+  name: Sensor de Fumo
   platform: xiaomi_aqara
   unique_id: alarm158d0001b7dbbd
 light.gateway_light_7811dcdedcf1:

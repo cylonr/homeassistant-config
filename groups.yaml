@@ -65,7 +65,6 @@ familia:
     - light.gateway_light_7811dcdedcf1
     - light.gateway_light_7811dcb3556e
     - input_boolean.on_off_luzes_auto
-    - input_boolean.on_off_campainha
     - switch.luz_petra
     - switch.petra  
     - switch.telheiro
