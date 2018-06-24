@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-06-06
+#	Date		:	2018-06-24
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -143,6 +143,78 @@ automation:
            {% endif %}
            {%- endif -%}
            A/s {{ doors}} {%- if 'a' in doors -%} estão {%- else %} está {%- endif %} aberta/s. O Alarme não pode ser ativo.
+
+# Notifica qual foi o sensor que fez disparar o alarme.           
+  - alias: Sensor alarme on
+    initial_state: true
+    hide_entity: true
+    trigger:
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.door_window_sensor_158d00018354d0.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d00018354d0.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.motion_sensor_158d00015e8fdf.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_sensor_158d00015e8fdf.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.door_window_sensor_158d00015a954e.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d00015a954e.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.door_window_sensor_158d0001d399b1.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0001d399b1.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.door_window_sensor_158d0001d39ff1.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0001d39ff1.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.door_window_sensor_158d0001b91cef.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0001b91cef.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.motion_sensor_158d0001e53332.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_sensor_158d0001e53332.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+      platform: template
+      value_template: >
+         {%- if states.binary_sensor.motion_sensor_158d000222ccca.last_changed -%}
+           {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_sensor_158d000222ccca.last_changed)) < 30 }}
+         {%- else -%}
+           true
+         {%- endif -%}
+    condition:
+      - condition: state
+        entity_id: switch.sirene
+        state: 'on'
+    action:
+      - service: notify.luiszanzito
+        data_template:
+          title: "Luis, o ALARME de CASA disparou!"
+          message: "O Sensor {{ trigger.from_state.attributes.friendly_name }} foi acionado dia {{states.sensor.date.state}} às {{states.sensor.time.state}}h"
+
 ###############################################################################
 # Alerta após 20 minutos sem ninguem estar em casa e que o alarme está desactivo
 ###############################################################################
