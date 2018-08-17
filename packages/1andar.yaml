@@ -9,7 +9,7 @@
 #	Home Assistant - 1º andar e Hall
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-05-30
+#	Date		:	2018-07-01
 #	Description :	Set configuration to 1º andar e Hall
 #--------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ homeassistant:
 
 automation:
 
-# Liga a luz do 1º andar quando há movimento e temos LUX inferior a 400
+# Liga a luz do 1º andar quando há movimento e temos LUX inferior a 750
   - alias: Liga a luz do 1 andar #1
     initial_state: true
     trigger:
@@ -27,13 +27,13 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_7811dcdedcf1
-      below: '400'
+      below: '750'
     action:
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_7811dcdedcf1
           brightness: 40
-          color_name: green
+          color_name: mediumturquoise
 
 # Desliga a luz do 1º andar 1 minutos após o ultimo movimento.
   - alias: Desliga a luz do 1 andar
@@ -49,7 +49,7 @@ automation:
         data_template:
           entity_id: light.gateway_light_7811dcdedcf1
 
-# Liga a luz do Hall Entrada quando temos LUX inferior a 200
+# Liga a luz do Hall Entrada quando temos LUX inferior a 400
   - alias: Liga a luz do Hall de entrada
     initial_state: true
     trigger:
@@ -59,7 +59,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_7811dcb3556e
-      below: '200'
+      below: '400'
     action:
       - service: light.turn_on
         data_template:

@@ -84,7 +84,7 @@ sensor:
 script:
 
   restart_ha:
-    alias: 'Reiniciar HA'
+#    alias: 'Reiniciar HA'
     sequence:
       - service: homeassistant.restart
 

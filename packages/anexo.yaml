@@ -19,15 +19,15 @@ input_datetime:
   luz3:
     name: ON Anexo.
     has_time: true      
-    initial: '07:01:00'
+    initial: '07:00:00'
   luz4:
     name: OFF Anexo.
     has_time: true      
-    initial: '18:59:00'
+    initial: '21:00:00'
 
 automation:
 
-# Liga a luz do anexo das 07:01
+# Liga a luz do anexo pelo UI
   - alias: Liga luz do anexo de manha
     trigger:
       platform: template
@@ -37,7 +37,7 @@ automation:
         data:
           entity_id: switch.anexo
 
-# Desliga a luz do anexo às 19:00          
+# Desliga a luz do anexo pelo UI         
   - alias: Desliga anexo tarde
     trigger:
       platform: template
@@ -47,8 +47,8 @@ automation:
         data:
           entity_id: switch.anexo
 
-# Liga a luz do anexo quando há movimento e temos LUX inferior a 300
-  - alias: Liga a luz do anexo quando há movimento e temo LUX inferior a 300
+# Liga a luz do anexo quando há movimento e temos LUX inferior a 200
+  - alias: Liga a luz do anexo quando há movimento e temo LUX inferior a 200
     initial_state: true
     trigger:
       platform: state
@@ -57,25 +57,25 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e516b8
-      below: '300'
+      below: '200'
     action:
       service: switch.turn_on  
       data:      
         entity_id: switch.anexo     
 
-# Desliga a luz do anexo 2 minutos após o ultimo movimento e quando temos LUX inferior a 150
-  - alias: Desliga a luz do anexo 2 minutos após o ultimo movimento e quando temos LUX inferior a 150
+# Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 50
+  - alias: Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 50
     initial_state: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001e516b8
       to: 'off'
       for:
-        minutes: 2
+        minutes: 5
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e516b8
-      below: '300'
+      below: '50'
     action:
       service: switch.turn_off
       data:
@@ -158,7 +158,7 @@ automation:
 #    condition:
 #      condition: sun
 #      after: sunset
-##      before: sunrise
+#      before: sunrise
 #    action:
 #      service: switch.turn_off
 #      data:

@@ -1,0 +1,54 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Comboios
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-07-29
+#	Description :	Set configuration to Comboios
+#--------------------------------------------------------------------
+
+automation:
+
+  - alias: comboio
+    trigger:
+      platform: time
+      at: '04:20:00'
+    condition:
+    - condition: template
+      value_template: >
+          {% if states.sensor.comboio_str_alv.state >= "25" %}                
+            true
+          {% else %}
+            false
+          {% endif %}
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+    action:
+      - service: notify.luiszanzito
+        data:
+          title: "Home Assistant"            
+          message: "O comboio regional está atrasado {{ (((states.sensor.comboio_str_alv.state | int) - (25))) | int}} min - {{states.sensor.time.state}}"
+
+sensor:
+
+  - platform: google_travel_time
+    name: comboio_str_alv
+    api_key: !secret key_comboios
+    origin: !secret key_comboios1
+    destination: !secret key_comboios2
+    options:
+      mode: transit
+      transit_mode: train
+  
+binary_sensor:
+
+  - platform: workday
+    country: PT
+    workdays: [mon, tue, wed, thu, fri]

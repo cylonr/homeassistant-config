@@ -70,6 +70,7 @@ binary_sensor:
       - device_tracker.gateway3
 
 sensor:
+  
   - platform: template
     sensors:
           
@@ -104,7 +105,7 @@ sensor:
           {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'not_home') -%}
              Em casa
           {%- endif -%}      
-          {%- if is_state('ddevice_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
+          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
              Em casa
           {%- endif -%}    
           {%- if is_state('device_tracker.xiaomi_mi4c_2', 'notrabalhocampera') and is_state('device_tracker.monicatele', 'not_home') -%} 
