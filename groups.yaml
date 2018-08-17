@@ -9,7 +9,7 @@
 #	Home Assistant - Groups
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-24
+#	Date		:	2018-08-12
 #	Description :	Set configuration to Groups
 #--------------------------------------------------------------------
 
@@ -28,6 +28,21 @@ default_view:
     - group.aspirador
     - group.rpi3
     - group.tomada
+    - group.consumos
+
+################################################
+#                GRUPO CONSUMOS                #
+################################################
+consumos:
+  name: Consumos Energeticos
+  entities:    
+    - sensor.power
+    - sensor.voltage
+    - sensor.current
+    - sensor.energy_today
+    - sensor.energy_yesterday
+    - sensor.energy_total
+    - sensor.power_factor
 
 ################################################
 #               GRUPO ASPIRADOR                #
@@ -52,6 +67,7 @@ familia:
   name: Familia
   control: hidden
   entities:  
+    - sensor.comboio_str_alv
     - sensor.time
     - sensor.date
     - sensor.luis

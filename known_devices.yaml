@@ -133,15 +133,6 @@ portatil_2:
   track: false
   vendor: unknown
 
-lumigatewayv3_miio56790352:
-  hide_if_away: false
-  icon:
-  mac: 34:CE:00:88:AF:F1
-  name: GateWay Xiaomi
-  picture:
-  track: true
-  vendor: XIAOMI Electronics,CO.,LTD
-
 cozinha:
   hide_if_away: false
   icon:
@@ -271,5 +262,21 @@ gateway2:
   icon:
   mac:
   name: gateway2
+  picture:
+  track: true
+
+gateway3:
+  hide_if_away: false
+  icon:
+  mac:
+  name: gateway3
+  picture:
+  track: true
+
+iphone:
+  hide_if_away: false
+  icon:
+  mac: BT_A8:5C:2C:7E:76:FA
+  name: iPhone
   picture:
   track: true

@@ -79,10 +79,10 @@ sensor.portao:
   friendly_name: "Portão"
   icon: mdi:gate
 switch.luz1:
-  friendly_name: "Luz Casa Esq."
+  friendly_name: "Luz rua - Piscina"
   icon: mdi:lightbulb-on
 switch.luz2:
-  friendly_name: "Luz Casa Drt."
+  friendly_name: "Luz rua - Entrada."
   icon: mdi:lightbulb-on
 script.allluzeson:
   friendly_name: "Ligar todas as luzes - Rua"
