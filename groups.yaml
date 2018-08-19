@@ -9,7 +9,7 @@
 #	Home Assistant - Groups
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-08-12
+#	Date		:	2018-08-19
 #	Description :	Set configuration to Groups
 #--------------------------------------------------------------------
 
@@ -80,15 +80,14 @@ familia:
     - light.gateway_light_34ce0088aff1
     - light.gateway_light_7811dcdedcf1
     - light.gateway_light_7811dcb3556e
-    - input_boolean.on_off_luzes_auto
+    - switch.anexo
     - switch.luz_petra
     - switch.petra  
     - switch.telheiro
-    - switch.anexo
     - switch.anexo_rua
     - switch.luz1
     - switch.luz2
-    - switch.teste
+    - input_boolean.on_off_luzes_auto
     - script.allluzeson
     - script.allluzesoff
 #    - device_tracker.luistele
@@ -158,7 +157,6 @@ dispositivos_na_rede:
     - binary_sensor.sonoff_anexo_rua
     - binary_sensor.sonoff_petra
     - binary_sensor.sonoff_telheiro
-    - binary_sensor.sonoff_teste
     - binary_sensor.device_tracker_camanexo
     - binary_sensor.device_tracker_camtelheiro
     - binary_sensor.device_tracker_camcarolina
@@ -167,13 +165,8 @@ dispositivos_na_rede:
     - binary_sensor.device_tracker_gateway3
     - binary_sensor.device_tracker_repanexo
     - binary_sensor.device_tracker_repcasa
-    - binary_sensor.device_tracker_sonoff_teste
     - binary_sensor.device_tracker_BhOnOfre
-    
-theme:
-  name: Temas
-  entities:
-    - input_boolean.dark_theme_status
+    - binary_sensor.device_tracker_Pzem
 
 rpi:
   name: Home Assistant Server
@@ -272,18 +265,18 @@ tab_bateria:
 ################################################
 #                    CAMERAS                   #
 ################################################
-tab_da_camera:
-  view: yes
-  name: Cameras
-  icon: mdi:camcorder
-  entities:
-    - group.tab_camera
-
-tab_camera:
-  name: Cameras
-  icon: mdi:camcorder
-  entities:
-    - camera.petra
+#tab_da_camera:
+#  view: yes
+#  name: Cameras
+#  icon: mdi:camcorder
+#  entities:
+#    - group.tab_camera
+#
+#tab_camera:
+#  name: Cameras
+#  icon: mdi:camcorder
+#  entities:
+#    - camera.petra
     
 
     

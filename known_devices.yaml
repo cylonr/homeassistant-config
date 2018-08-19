@@ -280,3 +280,11 @@ iphone:
   name: iPhone
   picture:
   track: true
+
+pzem:
+  hide_if_away: false
+  icon:
+  mac:
+  name: pzem
+  picture:
+  track: true
