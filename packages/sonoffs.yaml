@@ -9,7 +9,7 @@
 #	Home Assistant - Sonoff
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-24
+#	Date		:	2018-08-19
 #	Description :	Set configuration to Sonoff
 #--------------------------------------------------------------------
 
@@ -67,11 +67,11 @@ switch:
     payload_off: "OFF"
     retain: true
   
-  # switch TESTES
+  # switch PZEM
   - platform: mqtt
-    name: "teste"
-    state_topic: "stat/teste/POWER"
-    command_topic: "cmnd/teste/power"
+    name: "Pzem"
+    state_topic: "stat/Pzem/POWER"
+    command_topic: "cmnd/Pzem/power"
     qos: 0
     payload_on: "ON"
     payload_off: "OFF"
@@ -154,13 +154,6 @@ binary_sensor:
   - platform: mqtt
     name: "Sonoff Petra"
     state_topic: "tele/Petra_Duo/LWT"
-    value_template: "{{ value }}"
-    payload_on: "Online"
-    payload_off: "Offline"
-    
-  - platform: mqtt
-    name: "Sonoff Teste"
-    state_topic: "tele/teste/LWT"
     value_template: "{{ value }}"
     payload_on: "Online"
     payload_off: "Offline"

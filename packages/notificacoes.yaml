@@ -91,21 +91,6 @@ automation:
         message: "Câmara do Anexo desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
 
-# Notifica o Luis que a Cam da Petra foi desconectada da rede de casa.
-#  - alias: Cam Petra desconectada
-#    initial_state: true
-#    trigger:
-#      platform: state
-#      entity_id: binary_sensor.device_tracker_campetra
-#      to: 'off'
-#      for:
-#        minutes: 10
-#    action:
-#    - service: notify.luiszanzito
-#      data:
-#        message: "Câmara da Petra desconectada - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
-#        title: "Home Assistant"
-
 # Notifica o Luis que a Cam do telheiro foi desconectada da rede de casa.
   - alias: Cam telheiro desconectada
     initial_state: true
@@ -210,21 +195,20 @@ automation:
       data:
         message: "Repetidor de casa desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
-        
-        
-# Notifica o Luis que o SONOFF da sala foi desconectado da rede de casa.
-  - alias: SONOFF da sala
+
+# Notifica o Luis que o Pzem foi desconectado da rede de casa.
+  - alias: Pzem
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.device_tracker_sonoff_teste
+      entity_id: binary_sensor.device_tracker_pzem
       to: 'off'
       for:
         minutes: 10
     action:
     - service: notify.luiszanzito
       data:
-        message: "Sonoff da sala desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+        message: "Pzem desconectado - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
         title: "Home Assistant"
         
 # Notifica o Luis que o BhOnOfre foi desconectado da rede de casa.

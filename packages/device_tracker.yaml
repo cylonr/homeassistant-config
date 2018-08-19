@@ -23,8 +23,8 @@ device_tracker:
     interval_seconds: 20
     consider_home: 60
     hosts:
-      CamAnexo: 192.168.1.81
-      CamTelheiro: 192.168.1.84
+      CamAnexo: 192.168.1.106
+      CamTelheiro: 192.168.1.81
       CamCarolina: 192.168.1.82
       Gateway1: 192.168.1.75
       Gateway2: 192.168.1.99
@@ -33,7 +33,8 @@ device_tracker:
       RepCasa: 192.168.1.83
       LuisTele: 192.168.1.78
       MonicaTele: 192.168.1.72
-      BhOnOfre: 192.168.1.97 
+      BhOnOfre: 192.168.1.97
+      Pzem: 192.168.1.96
 
   - platform: bluetooth_tracker
     consider_home: 20 
@@ -68,6 +69,7 @@ binary_sensor:
       - device_tracker.gateway2
       - device_tracker.gateway1
       - device_tracker.gateway3
+      - device_tracker.Pzem
 
 sensor:
   
