@@ -1,0 +1,61 @@
+#--------------------------------------------------------------------
+#         _   _        ____      _____  _     ______      ______ 
+#       | \ | |      / __ \    |  __ \| |   |  ____|    |  ____|
+#       |  \| | ___ | |  | |___| |__) | |__ | |__   _ __| |__   
+#       | . ` |/ _ \| |  | / __|  ___/| '_ \|  __| | '__|  __|  
+#       | |\  | (_) | |__| \__ \ |    | | | | |____| |  | |____ 
+#       |_| \_|\___/ \____/|___/_|    |_| |_|______|_|  |______|
+#
+#	Home Assistant - Groups
+#--------------------------------------------------------------------
+#	Author		:	Luis Belo
+#	Date		:	2018-09-01
+#	Description :	Set configuration to Costum UI
+#--------------------------------------------------------------------
+
+binary_sensor.door_window_sensor_158d00018354d0:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.door_window_sensor_158d00015a954e:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.door_window_sensor_158d0001b91cef:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.door_window_sensor_158d0001d399b1:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.door_window_sensor_158d0001d39ff1:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.door_window_sensor_158d0001d86c17:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d00015e8fdf:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d0001e51352:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d0001e53332:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d000222ccca:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d0001e516b8:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+binary_sensor.motion_sensor_158d000152fc00:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+switch.sirene:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+sensor.luis:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+sensor.normal:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+

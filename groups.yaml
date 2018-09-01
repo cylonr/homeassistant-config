@@ -9,7 +9,7 @@
 #	Home Assistant - Groups
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-08-19
+#	Date		:	2018-09-01
 #	Description :	Set configuration to Groups
 #--------------------------------------------------------------------
 
@@ -24,7 +24,6 @@ default_view:
     - group.temperaturaquartocarolina
     - group.sensoresvarios
     - group.temponarua
-    - group.cameras
     - group.aspirador
     - group.rpi3
     - group.tomada
@@ -67,13 +66,11 @@ familia:
   name: Familia
   control: hidden
   entities:  
-    - sensor.comboio_str_alv
     - sensor.time
     - sensor.date
     - sensor.luis
     - sensor.monica
-    - sensor.proximity
-    - sensor.gate
+    - sensor.normal
     - input_boolean.portaomota
     - input_boolean.portaocarro
     - input_boolean.desligar_ou_ligar_portas
@@ -90,11 +87,6 @@ familia:
     - input_boolean.on_off_luzes_auto
     - script.allluzeson
     - script.allluzesoff
-#    - device_tracker.luistele
-#    - device_tracker.xiaomi_mi4c_3
-#    - device_tracker.luis
-#    - device_tracker.monicatele
-#    - device_tracker.xiaomi_mi4c_2
 
 ################################################
 #            GRUPO AMBIENTE EM CASA            #
@@ -202,7 +194,6 @@ tab_da_meteorologia:
   name: Meteorologia
   icon: mdi:weather-cloudy
   entities:
-#    - group.tab_meteorologia
     - group.tempo
 
 tempo:
@@ -210,18 +201,6 @@ tempo:
   control: hidden
   entities:    
     - weather.santarem
-
-#tab_meteorologia:
-#  name: Meteorologia DarkSky
-#  icon: mdi:weather-cloudy
-#  entities:
-#    - sensor.dark_sky_summary
-#    - sensor.dark_sky_daily_summary
-#    - sensor.dark_sky_hourly_summary
-#    - sensor.dark_sky_daily_high_temperature
-#    - sensor.dark_sky_daily_low_temperature
-#    - sensor.dark_sky_precip_probability
-#    - camera.cartaxo
 
 ################################################
 #               BATERIA SENSORES               #
@@ -261,35 +240,22 @@ tab_bateria:
     - script.alarmeoff
     - switch.sirene
     - switch.plug_158d00015e8107
+    - input_boolean.auto_alarme
 
 ################################################
-#                    CAMERAS                   #
-################################################
-#tab_da_camera:
-#  view: yes
-#  name: Cameras
-#  icon: mdi:camcorder
-#  entities:
-#    - group.tab_camera
-#
-#tab_camera:
-#  name: Cameras
-#  icon: mdi:camcorder
-#  entities:
-#    - camera.petra
-    
+#                  VISTA CAMS                  #
+################################################    
+cams:
+  view: yes
+  name: Cameras
+  icon: mdi:video
+  entities:
+    - group.tab_cams
 
-    
-################################################
-#             GRUPO TRÂNSITO                   #
-################################################ 
-#transito:
-#  name: Tempo em viagem
-#  entities:
-#    - sensor.luis_trabalho
-#    - sensor.luis_trabalho2
-#    - sensor.monica_trabalho
-#    - sensor.monica_trabalho2
+tab_cams:
+  name: Cameras
+  entities:
+    - camera.sricam
 
 ################################################
 #                   TOMADA                     #

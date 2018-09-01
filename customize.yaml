@@ -31,7 +31,7 @@ sensor.luis:
   entity_picture: /local/images/luis2.jpg
 sensor.monica:
   entity_picture: /local/images/monica.jpg
-sensor.proximity:
+sensor.normal:
   icon: mdi:alarm-light
 input_boolean.desligar_ou_ligar_portas:
   friendly_name: "Notificação de portas"

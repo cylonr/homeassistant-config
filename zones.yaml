@@ -1,29 +1,17 @@
 - name: home
   latitude: !secret key_lat
   longitude: !secret key_lon
-  radius: 200
+  radius: 300
   icon: mdi:home
 
-  ### FAKE HOME ###  
-#- name: home
-#  latitude: 40.8584
-#  longitude: -74.3245
-#  radius: 50
-#  icon: mdi:home
-  
 - name: notrabalho
   latitude: !secret key_lat_og
   longitude: !secret key_lon_og
   radius: 200
-  icon: mdi:airplane
- 
+  icon: mdi:worker
+
 - name: notrabalhocampera
   latitude: !secret key_lat_camp
   longitude: !secret key_lon_camp
   radius: 200
-  icon: mdi:airplane
-  
-  
-
-
-  
+  icon: mdi:worker
