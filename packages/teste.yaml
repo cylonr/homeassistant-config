@@ -1,0 +1,20 @@
+homeassistant:
+
+automation:
+
+############################################################# TESTE##########################################
+  - alias: Alarme auto
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001d86c17
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.auto_alarme
+        state: 'on'
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Em casa'    
+    action:
+      - service: script.alarmepromimityoff

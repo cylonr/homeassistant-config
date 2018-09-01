@@ -9,7 +9,7 @@
 #	Home Assistant - Rua
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-06-06
+#	Date		:	2018-09-01
 #	Description :	Set configuration to Anexo
 #--------------------------------------------------------------------
 
@@ -45,18 +45,18 @@ automation:
       - service: switch.turn_on
         entity_id: switch.luz1
 
-# Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 100.
-  - alias: Desliga as luzes da rua 4 minutos após o ultimo movimento com luminosidade abaixo dos 100.
+# Desliga as luzes da rua 10 minutos após o ultimo movimento com luminosidade (DO ANEXO) abaixo dos 100.
+  - alias: Desliga as luzes da rua 10 minutos após o ultimo movimento com luminosidade abaixo dos 100.
     initial_state: true
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001e51352
       to: 'off'
       for:
-        minutes: 4
+        minutes: 10
     condition:
       - condition: numeric_state
-        entity_id: sensor.illumination_158d0001e51352
+        entity_id: sensor.illumination_158d0001e516b8
         below: 100
       - condition: state
         entity_id: input_boolean.on_off_luzes_auto
@@ -85,7 +85,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e51352
-      above: 600
+      above: 400
     action:
       - service: switch.turn_off
         entity_id: switch.luz_petra

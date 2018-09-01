@@ -27,6 +27,10 @@ camera:
   - name: Cartaxo
     platform: generic
     still_image_url: https://www.yr.no/place/Portugal/Santarém/Cartaxo//meteogram.png
+    
+  - platform: ffmpeg
+    name: sricam
+    input: rtsp://192.168.1.105:554/onvif1
 
 ###############################################################################
 #                                                                             #

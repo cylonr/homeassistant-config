@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-06-24
+#	Date		:	2018-09-01
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -30,9 +30,14 @@ xiaomi_aqara:
 
 input_boolean:
 
-  proximity:
+  normal:
     name: Alarme - On/Off
     initial: 'off'
+    icon: 'mdi:gesture-double-tap'
+    
+  auto_alarme:
+    name: Alarme proximidade
+    initial: 'on'
     icon: 'mdi:gesture-double-tap'
 
 automation:
@@ -67,7 +72,7 @@ automation:
         to: 'on'
     condition:
       - condition: state
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
         state: 'on'
     action:
       service: script.alarme
@@ -77,7 +82,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: input_boolean.proximity
+      entity_id: input_boolean.normal
       to: 'on'
     action:
       - service: homeassistant.turn_on                
@@ -88,7 +93,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: input_boolean.proximity
+      entity_id: input_boolean.normal
       to: 'off'
     action:
       - service: homeassistant.turn_off            
@@ -153,7 +158,7 @@ automation:
     hide_entity: true
     trigger:
       - platform: state
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
         to: 'off'
         for: 
           minutes: 20
@@ -224,7 +229,7 @@ automation:
           message: "Alarme desativado MANUALMENTE na cozinha - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
       - service: homeassistant.turn_off
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
       - service: xiaomi_aqara.stop_ringtone
         data:
           gw_mac: !secret key_gateway2
@@ -269,7 +274,7 @@ automation:
           message: "Alarme desativado MANUALMENTE no anexo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
       - service: homeassistant.turn_off
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
       - service: xiaomi_aqara.stop_ringtone
         data:
           gw_mac: !secret key_gateway2
@@ -291,7 +296,7 @@ script:
     sequence:
       - delay: 0:05:00
       - service: homeassistant.turn_on
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
       - service: notify.my_pushbullet
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
@@ -300,7 +305,7 @@ script:
     sequence:
       - delay: 0:00:10
       - service: homeassistant.turn_on
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
       - service: notify.my_pushbullet
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
@@ -387,6 +392,44 @@ script:
       - service: switch.turn_off
         data:
           entity_id: switch.sirene
+
+  alarmepromimityoff:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10001
+          ringtone_vol: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
+      - delay: 0:00:01
+      - service: script.turn_off
+        data:
+          entity_id: script.atraso
+      - service: script.turn_off
+        data:
+          entity_id: script.alarme
+      - service: notify.my_pushbullet
+        data:
+          message: "Alarme desativado por proximidade - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:01
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.normal
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway4
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway6
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10006
+          ringtone_vol: 17
           
   alarmeoff:
     sequence:
@@ -410,7 +453,47 @@ script:
           message: "Alarme desativado pelo telemovel - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
       - service: homeassistant.turn_off
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway4
+      - service: xiaomi_aqara.stop_ringtone
+        data:
+          gw_mac: !secret key_gateway6
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10006
+          ringtone_vol: 17
+
+#DESLIGA O ALARME 15MIN APÓS CARREGAR NO BOTÃO DO TELEMOVEL - UTIL PARA A MOTA#
+  alarmeoff10:
+    sequence:
+      - delay: 0:15:00
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret key_gateway2
+          ringtone_id: 10001
+          ringtone_vol: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sirene
+      - delay: 0:00:01
+      - service: script.turn_off
+        data:
+          entity_id: script.atraso
+      - service: script.turn_off
+        data:
+          entity_id: script.alarme
+      - service: notify.my_pushbullet
+        data:
+          message: "Alarme desativado pelo telemovel - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
+      - delay: 0:00:01
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.normal
       - service: xiaomi_aqara.stop_ringtone
         data:
           gw_mac: !secret key_gateway2
@@ -435,7 +518,7 @@ script:
           ringtone_vol: 17
       - delay: 0:05:00
       - service: homeassistant.turn_on
-        entity_id: input_boolean.proximity
+        entity_id: input_boolean.normal
       - delay: 0:00:01
       - service: notify.my_pushbullet
         data:
@@ -445,10 +528,10 @@ sensor:
 
   - platform: template
     sensors:
-      proximity:
+      normal:
         friendly_name: 'Estado do alarme:'
         value_template: >
-            {%- if is_state("input_boolean.proximity", "on") -%}
+            {%- if is_state("input_boolean.normal", "on") -%}
               Ligado
              {% else %}
               Desligado

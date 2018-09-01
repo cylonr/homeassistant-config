@@ -1,0 +1,58 @@
+
+homeassistant:
+sensor:
+
+  - platform: mqtt
+    name: "Power"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Power }}"
+    unit_of_measurement: "W"
+    icon: mdi:power-plug
+
+  - platform: mqtt
+    name: "Voltage"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Voltage }}"
+    unit_of_measurement: "V"
+    icon: mdi:flash
+
+  - platform: mqtt
+    name: "Current"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Current }}"
+    unit_of_measurement: "A"
+    icon: mdi:power-socket
+
+  - platform: mqtt
+    name: "Energy today"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Today }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+
+  - platform: mqtt
+    name: "Energy yesterday"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Yesterday }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+
+  - platform: mqtt
+    name: "Energy total"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Total }}"
+    unit_of_measurement: "kWh"
+    icon: mdi:power-socket-eu
+
+  - platform: mqtt
+    name: "Power Factor"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.ENERGY.Factor }}"
+    icon: mdi:percent
+
+  - platform: mqtt
+    name: "Temp"
+    state_topic: "tele/Pzem/SENSOR"
+    value_template: "{{ value_json.DS18B20.Temperature }}"
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer

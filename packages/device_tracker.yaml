@@ -9,7 +9,7 @@
 #	Home Assistant - Device Tracker
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-05
+#	Date		:	2018-09-01
 #	Description :	Set configuration to Device Tracker
 #--------------------------------------------------------------------
 
@@ -31,8 +31,8 @@ device_tracker:
       Gateway3: 192.168.1.100
       RepAnexo: 192.168.1.71
       RepCasa: 192.168.1.83
-      LuisTele: 192.168.1.78
-      MonicaTele: 192.168.1.72
+      LuisTeleRouter: 192.168.1.108
+      MonicaTeleRouter: 192.168.1.98
       BhOnOfre: 192.168.1.97
       Pzem: 192.168.1.96
 
@@ -53,7 +53,7 @@ device_tracker:
     track_new_devices: True
     interval_seconds: 10
     consider_home: 20
-
+    
 binary_sensor:    
   - platform: device_tracker_sensor
     on_state_text: sim
@@ -79,37 +79,44 @@ sensor:
       luis: 
         friendly_name: 'Estado Luis'
         value_template: > 
-          {%- if is_state('device_tracker.luistele', 'not_home') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%}
+          {%- if is_state('device_tracker.luistelerouter', 'not_home') and is_state('device_tracker.luis', 'not_home') -%}
              Ausente
           {%- endif -%}
-          {%- if is_state('device_tracker.luistele', 'home') and is_state('device_tracker.xiaomi_mi4c', 'home') -%}
+          {%- if is_state('device_tracker.luistelerouter', 'home') and is_state('device_tracker.luis', 'home') -%}
              Em casa
           {%- endif -%}   
-          {%- if is_state('device_tracker.luistele', 'home') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%}
+          {%- if is_state('device_tracker.luistelerouter', 'home') and is_state('device_tracker.luis', 'not_home') -%}
              Em casa
           {%- endif -%}      
-          {%- if is_state('device_tracker.luistele', 'not_home') and is_state('device_tracker.xiaomi_mi4c', 'home') -%}
+          {%- if is_state('device_tracker.luistelerouter', 'not_home') and is_state('device_tracker.luis', 'home') -%}
              Em casa
           {%- endif -%}    
-          {%- if is_state('device_tracker.luistele', 'notrabalhocampera') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%} 
+          {%- if is_state('device_tracker.luistelerouter', 'not_home') and is_state('device_tracker.luis', 'notrabalho') -%} 
              No Trabalho
-          {%- endif -%}
+          {%- endif -%}    
 
       monica: 
         friendly_name: 'Estado Monica'
         value_template: > 
-          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'not_home') -%}
+          {%- if is_state('device_tracker.monicatelerouter', 'not_home') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%}
              Ausente
           {%- endif -%}
-          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'home') -%}
+          {%- if is_state('device_tracker.monicatelerouter', 'home') and is_state('device_tracker.xiaomi_mi4c', 'home') -%}
              Em casa
           {%- endif -%}   
-          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'home') and is_state('device_tracker.monicatele', 'not_home') -%}
+          {%- if is_state('device_tracker.monicatelerouter', 'home') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%}
              Em casa
           {%- endif -%}      
-          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'not_home') and is_state('device_tracker.monicatele', 'home') -%}
+          {%- if is_state('device_tracker.monicatelerouter', 'not_home') and is_state('device_tracker.xiaomi_mi4c', 'home') -%}
              Em casa
           {%- endif -%}    
-          {%- if is_state('device_tracker.xiaomi_mi4c_2', 'notrabalhocampera') and is_state('device_tracker.monicatele', 'not_home') -%} 
-             No Trabalho
-          {%- endif -%}
+#          {%- if is_state('device_tracker.monicatelerouter', 'notrabalhocampera') and is_state('device_tracker.xiaomi_mi4c', 'not_home') -%} 
+#             No Trabalho
+#          {%- endif -%}
+
+camera:
+
+  - name: luis_cam
+    platform: generic
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:green%7Clabel:JA%7C{{ states.device_tracker.luis.attributes.latitude }},{{ states.device_tracker.luis.attributes.longitude }}
+    limit_refetch_to_url_change: true
