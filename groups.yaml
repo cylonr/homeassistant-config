@@ -140,7 +140,7 @@ dispositivos_da_rede:
     - group.sonoffs
     - group.counter
     - group.rpi
-    - group.theme
+#    - group.theme
 
 dispositivos_na_rede:
   name: Dispositivos na rede
@@ -256,6 +256,26 @@ tab_cams:
   name: Cameras
   entities:
     - camera.sricam
+    
+################################################
+#                  COMBOIOS                    #
+################################################    
+comboios:
+  view: yes
+  name: Comboios
+  icon: mdi:train
+  entities:
+    - group.tab_cp1
+    - group.tab_cp2
+
+tab_cp1:
+  name: Horários
+  entities:
+    - sensor.linha0
+    - sensor.linha1
+    - sensor.linha2 
+    - sensor.linha3
+    - sensor.linha4
 
 ################################################
 #                   TOMADA                     #

@@ -55,6 +55,9 @@ switch.sirene:
 sensor.luis:
   custom_ui_state_card: state-card-custom-ui
   show_last_changed: true
+sensor.monica:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
 sensor.normal:
   custom_ui_state_card: state-card-custom-ui
   show_last_changed: true

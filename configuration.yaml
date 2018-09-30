@@ -31,6 +31,9 @@ homeassistant:
   customize: !include customize.yaml
   packages: !include_dir_named packages
   customize_glob: !include customize_glob.yaml
+  whitelist_external_dirs:
+    - /config
+    - /config/script
   
 config: 
 

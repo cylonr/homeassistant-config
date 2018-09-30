@@ -240,3 +240,11 @@ mi_a2:
   name: Mi A2
   picture:
   track: true
+
+bts2:
+  hide_if_away: false
+  icon:
+  mac: BT_20:C8:B3:00:02:C5
+  name: BT-S2
+  picture:
+  track: true

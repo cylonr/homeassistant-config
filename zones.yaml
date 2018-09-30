@@ -1,7 +1,7 @@
 - name: home
   latitude: !secret key_lat
   longitude: !secret key_lon
-  radius: 300
+  radius: 400
   icon: mdi:home
 
 - name: notrabalho
