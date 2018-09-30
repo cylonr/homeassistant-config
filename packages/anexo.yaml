@@ -23,7 +23,7 @@ input_datetime:
   luz4:
     name: OFF Anexo.
     has_time: true      
-    initial: '21:00:00'
+    initial: '20:00:00'
 
 automation:
 

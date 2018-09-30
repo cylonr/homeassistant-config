@@ -36,7 +36,7 @@ automation:
     initial_state: true
     trigger:
       platform: time
-      at: '04:10:00'
+      at: '05:15:00'
     action:
       service: notify.my_pushbullet
       data:
@@ -54,7 +54,7 @@ automation:
         entity_id: sensor.dark_sky_precip_probability
         above: '20'
     action:
-      service: notify.my_pushbullet
+      service: notify.luiszanzito
       data:
         message: "Há {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidadede chover amanhã."
 

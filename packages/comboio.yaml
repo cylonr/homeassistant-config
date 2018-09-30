@@ -9,46 +9,193 @@
 #	Home Assistant - Comboios
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-07-29
+#	Date		:	2018-09-29
 #	Description :	Set configuration to Comboios
 #--------------------------------------------------------------------
 
-automation:
+homeassistant:
 
-  - alias: comboio
-    trigger:
-      platform: time
-      at: '04:20:00'
-    condition:
-    - condition: template
-      value_template: >
-          {% if states.sensor.comboio_str_alv.state >= "25" %}                
-            true
-          {% else %}
-            false
-          {% endif %}
-    - condition: state
-      entity_id: binary_sensor.workday_sensor
-      state: 'on'
-    action:
-      - service: notify.luiszanzito
-        data:
-          title: "Home Assistant"            
-          message: "O comboio regional está atrasado {{ (((states.sensor.comboio_str_alv.state | int) - (25))) | int}} min - {{states.sensor.time.state}}"
+###############################################################################
+#                                                                             #
+#                           C U S T O M I Z E                                 #
+#                                                                             #
+###############################################################################   
+        
+  customize:
+ 
+    sensor.linha0:
+      icon: mdi:train
+      friendly_name: Primeiro Comboio
+    sensor.linha1:
+      icon: mdi:train
+      friendly_name: Segundo Comboio
+    sensor.linha2:
+      icon: mdi:train
+      friendly_name: Terceiro Comboio
+    sensor.linha3:
+      icon: mdi:train
+      friendly_name: Quarto Comboio
+    sensor.linha4:
+      icon: mdi:train
+      friendly_name: Quinto Comboio
+    sensor.linha5:
+      icon: mdi:train
+      friendly_name: Quinto Comboio
+
+
+shell_command:
+  comboio: 'bash /config/script/comboio.sh'
 
 sensor:
+#Linha0
 
-  - platform: google_travel_time
-    name: comboio_str_alv
-    api_key: !secret key_comboios
-    origin: !secret key_comboios1
-    destination: !secret key_comboios2
-    options:
-      mode: transit
-      transit_mode: train
-  
-binary_sensor:
+  - platform: file
+    name: linha0horachegada
+    file_path: /config/comboio.json
+    value_template: "{{ value_json.HorarioDetalhe.0.HoraChegada.split(' ')[1][:5] }}"
 
-  - platform: workday
-    country: PT
-    workdays: [mon, tue, wed, thu, fri]
+  - platform: file
+    name: linha0nome
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.0.Nome }}'
+    
+  - platform: file
+    name: linha0origem
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.0.EstacaoOrigem.Nome }}'    
+    
+  - platform: file
+    name: linha0destino
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.0.EstacaoDestino.Nome }}'    
+    
+  - platform: file
+    name: linha0atraso
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.0.EstadoComboio.Nome }}'
+
+  - platform: template
+    sensors:
+      linha0:
+        value_template: "Chegada à estação da Azambuja {{states.sensor.linha0horachegada.state}} Comboio {{states.sensor.linha0nome.state}} origem {{states.sensor.linha0origem.state}} destino {{states.sensor.linha0destino.state}} estado {{states.sensor.linha0atraso.state}}"
+      linha1:
+        value_template: "Chegada à estação da Azambuja {{states.sensor.linha1horachegada.state}} Comboio {{states.sensor.linha1nome.state}} origem {{states.sensor.linha1origem.state}} destino {{states.sensor.linha1destino.state}} estado {{states.sensor.linha1atraso.state}}"  
+      linha2:
+        value_template: "Chegada à estação da Azambuja {{states.sensor.linha2horachegada.state}} Comboio {{states.sensor.linha2nome.state}} origem {{states.sensor.linha2origem.state}} destino {{states.sensor.linha2destino.state}} estado {{states.sensor.linha2atraso.state}}"
+      linha3:
+        value_template: "Chegada à estação da Azambuja {{states.sensor.linha3horachegada.state}} Comboio {{states.sensor.linha3nome.state}} origem {{states.sensor.linha3origem.state}} destino {{states.sensor.linha3destino.state}} estado {{states.sensor.linha3atraso.state}}"
+      linha4:
+        value_template: "Chegada à estação da Azambuja {{states.sensor.linha4horachegada.state}} Comboio {{states.sensor.linha4nome.state}} origem {{states.sensor.linha4origem.state}} destino {{states.sensor.linha4destino.state}} estado {{states.sensor.linha4atraso.state}}"
+#Linha1
+  - platform: file
+    name: linha1horachegada
+    file_path: /config/comboio.json
+    value_template: "{{ value_json.HorarioDetalhe.1.HoraChegada.split(' ')[1][:5] }}"
+
+  - platform: file
+    name: linha1nome
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.1.Nome }}'
+
+  - platform: file
+    name: linha1origem
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.1.EstacaoOrigem.Nome }}'    
+    
+  - platform: file
+    name: linha1destino
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.1.EstacaoDestino.Nome }}'    
+    
+  - platform: file
+    name: linha1atraso
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.1.EstadoComboio.Nome }}'
+
+#Linha2
+  - platform: file
+    name: linha2horachegada
+    file_path: /config/comboio.json
+    value_template: "{{ value_json.HorarioDetalhe.2.HoraChegada.split(' ')[1][:5] }}"
+
+  - platform: file
+    name: linha2nome
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.2.Nome }}'
+    
+  - platform: file
+    name: linha2origem
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.22.EstacaoOrigem.Nome }}'    
+    
+  - platform: file
+    name: linha2destino
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.22.EstacaoDestino.Nome }}'    
+    
+  - platform: file
+    name: linha2atraso
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.2.EstadoComboio.Nome }}'
+
+#Linha3
+  - platform: file
+    name: linha3horachegada
+    file_path: /config/comboio.json
+    value_template: "{{ value_json.HorarioDetalhe.3.HoraChegada.split(' ')[1][:5] }}"
+
+  - platform: file
+    name: linha3nome
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.3.Nome }}'
+    
+  - platform: file
+    name: linha3origem
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.3.EstacaoOrigem.Nome }}'    
+    
+  - platform: file
+    name: linha3destino
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.3.EstacaoDestino.Nome }}'    
+    
+  - platform: file
+    name: linha3atraso
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.3.EstadoComboio.Nome }}'
+
+#Linha4
+  - platform: file
+    name: linha4horachegada
+    file_path: /config/comboio.json
+    value_template: "{{ value_json.HorarioDetalhe.4.HoraChegada.split(' ')[1][:5] }}"
+
+  - platform: file
+    name: linha4nome
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.4.Nome }}'
+    
+  - platform: file
+    name: linha4origem
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.4.EstacaoOrigem.Nome }}'    
+    
+  - platform: file
+    name: linha4destino
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.4.EstacaoDestino.Nome }}'    
+    
+  - platform: file
+    name: linha4atraso
+    file_path: /config/comboio.json
+    value_template: '{{ value_json.HorarioDetalhe.4.EstadoComboio.Nome }}'
+automation:
+
+  - alias: download ficheiro comboio
+    initial_state: true
+    trigger:
+      - platform: time
+        minutes: '/10'
+        seconds: '00'
+    action:
+      - service: shell_command.comboio

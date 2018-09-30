@@ -9,7 +9,7 @@
 #	Home Assistant - Telheiro
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-24
+#	Date		:	2018-09-20
 #	Description :	Set configuration to Telheiro
 #--------------------------------------------------------------------
 
@@ -19,11 +19,11 @@ input_datetime:
   luz1:
     name: ON Sonoffs Ext.
     has_time: true      
-    initial: '04:15:00'
+    initial: '05:20:00'
   luz2:
     name: OFF Sonoffs Ext.
     has_time: true      
-    initial: '04:39:00'
+    initial: '05:39:00'
 
 automation:
 

@@ -3,7 +3,7 @@ homeassistant:
 automation:
 
 ############################################################# TESTE##########################################
-  - alias: Alarme auto
+  - alias: Alarme auto1
     initial_state: true
     trigger:
       - platform: state
@@ -15,6 +15,12 @@ automation:
         state: 'on'
       - condition: state
         entity_id: sensor.luis
-        state: 'Em casa'    
+        state: 'Em casa'
+      - condition: state
+        entity_id: input_boolean.normal
+        state: 'on'        
     action:
       - service: script.alarmepromimityoff
+      - delay: 0:00:05
+      - service: homeassistant.turn_off            
+        entity_id: switch.plug_158d00015e8107

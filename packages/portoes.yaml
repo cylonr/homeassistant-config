@@ -91,31 +91,6 @@ automation:
           brightness: 80
           color_name: red
 
-## DESLIGA A LUZ DO GATEWAY DO HALL ÁS 21:00 PARA NÃO SE VER A LUZ Á NOITE NO NOSSO QUARTO.
-#
-#  - alias: Desliga led gateway
-#    trigger:
-#      platform: time
-#      at: '21:00' 
-#    action:
-#      - service: light.turn_off
-#        data_template:
-#          entity_id: light.gateway_light_7811dcb3556e
-
-# Desliga a luz do HALL 1 minuto após acender.
-  - alias: Desliga a luz do hall andar
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: light.gateway_light_7811dcb3556e
-      to: 'off'
-      for:
-        minutes: 1
-    action:
-      - service: light.turn_off
-        data_template:
-          entity_id: light.gateway_light_7811dcb3556e
-
 # Notifica o em Luis que o portão está fechado
   - alias: Portao fechado
     initial_state: true

@@ -93,7 +93,7 @@ sensor:
           {%- endif -%}    
           {%- if is_state('device_tracker.luistelerouter', 'not_home') and is_state('device_tracker.luis', 'notrabalho') -%} 
              No Trabalho
-          {%- endif -%}    
+          {%- endif -%}        
 
       monica: 
         friendly_name: 'Estado Monica'

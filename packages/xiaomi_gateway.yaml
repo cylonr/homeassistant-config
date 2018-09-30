@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-09-01
+#	Date		:	2018-09-02
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ automation:
         entity_id: sensor.monica
         state: 'Ausente'
     action:
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Ninguem em casa á 20 min. Ativar alarme. - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
@@ -199,6 +199,9 @@ automation:
           ringtone_id: 10010
           ringtone_vol: 17
       - service: script.atraso
+      - delay: 0:00:05
+      - service: shell_command.portaocarro 
+      - service: script.portaocarro
 
 # Desliga o SCRIPT do alarme e o alarme com o interruptor de 2 botões
   - alias: 'desliga alarme - COZINHA'
@@ -224,7 +227,7 @@ automation:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme desativado MANUALMENTE na cozinha - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -269,7 +272,7 @@ automation:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme desativado MANUALMENTE no anexo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -297,7 +300,7 @@ script:
       - delay: 0:05:00
       - service: homeassistant.turn_on
         entity_id: input_boolean.normal
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
           
@@ -306,7 +309,7 @@ script:
       - delay: 0:00:10
       - service: homeassistant.turn_on
         entity_id: input_boolean.normal
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
@@ -337,7 +340,7 @@ script:
           gw_mac: !secret key_gateway6
           ringtone_id: 1
           ringtone_vol: 100
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:25
@@ -410,7 +413,7 @@ script:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme desativado por proximidade - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -448,7 +451,7 @@ script:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme desativado pelo telemovel - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -488,7 +491,7 @@ script:
       - service: script.turn_off
         data:
           entity_id: script.alarme
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme desativado pelo telemovel - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:01
@@ -520,7 +523,7 @@ script:
       - service: homeassistant.turn_on
         entity_id: input_boolean.normal
       - delay: 0:00:01
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           message: "Alarme ativo - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
 
