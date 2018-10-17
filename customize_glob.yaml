@@ -61,4 +61,13 @@ sensor.monica:
 sensor.normal:
   custom_ui_state_card: state-card-custom-ui
   show_last_changed: true
+light.gateway_light_34ce0088aff1:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+light.gateway_light_7811dcdedcf1:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
+light.gateway_light_7811dcb3556e:
+  custom_ui_state_card: state-card-custom-ui
+  show_last_changed: true
 

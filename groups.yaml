@@ -260,22 +260,21 @@ tab_cams:
 ################################################
 #                  COMBOIOS                    #
 ################################################    
-comboios:
-  view: yes
-  name: Comboios
-  icon: mdi:train
-  entities:
-    - group.tab_cp1
-    - group.tab_cp2
-
-tab_cp1:
-  name: Horários
-  entities:
-    - sensor.linha0
-    - sensor.linha1
-    - sensor.linha2 
-    - sensor.linha3
-    - sensor.linha4
+#comboios:
+#  view: yes
+#  name: Comboios
+#  icon: mdi:train
+#  entities:
+#    - group.tab_cp1
+#
+#tab_cp1:
+#  name: Horários
+#  entities:
+#    - sensor.linha0
+#    - sensor.linha1
+#    - sensor.linha2 
+#    - sensor.linha3
+#    - sensor.linha4
 
 ################################################
 #                   TOMADA                     #

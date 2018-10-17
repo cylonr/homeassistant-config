@@ -248,3 +248,11 @@ bts2:
   name: BT-S2
   picture:
   track: true
+
+mi_a2_lite:
+  hide_if_away: false
+  icon:
+  mac: BT_F4:60:E2:D0:17:9F
+  name: Mi A2 lite
+  picture:
+  track: true
