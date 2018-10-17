@@ -45,19 +45,16 @@ automation:
       - service: switch.turn_on
         entity_id: switch.luz1
 
-# Desliga as luzes da rua 10 minutos após o ultimo movimento com luminosidade (DO ANEXO) abaixo dos 100.
-  - alias: Desliga as luzes da rua 10 minutos após o ultimo movimento com luminosidade abaixo dos 100.
+# Desliga as luzes da rua 10 minutos após o group.todos estar on e o input_boolean.on_off_luzes_auto estar on
+  - alias: Desliga as luzes da rua 10 minutos após o group.todos estar on e o input_boolean.on_off_luzes_auto estar on.
     initial_state: true
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001e51352
-      to: 'off'
+      entity_id: group.todos
+      to: 'on'
       for:
         minutes: 10
     condition:
-      - condition: numeric_state
-        entity_id: sensor.illumination_158d0001e516b8
-        below: 100
       - condition: state
         entity_id: input_boolean.on_off_luzes_auto
         state: 'on'

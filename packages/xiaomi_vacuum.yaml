@@ -64,11 +64,11 @@ sensor:
             {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.filter_left }}
           friendly_name: Filtro
           unit_of_measurement: 'horas'
-          
+
       xiaomi_succao_aspirador:
         friendly_name: 'Velocidade de Sucção'
         value_template: "{{states.vacuum.xiaomi_vacuum_cleaner.attributes.fan_speed}}"
-        
+
       xiaomi_erro_aspirador:
         friendly_name: 'Erros'
         value_template: >
@@ -126,7 +126,7 @@ automation:
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
           fan_speed: Turbo
- 
+
 #Coloca o aspirador em modo maximo
   - alias: Modo maximo
     trigger:

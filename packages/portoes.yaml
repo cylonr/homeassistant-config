@@ -76,19 +76,11 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-      - service: light.turn_off
-        data_template:
-          entity_id: light.gateway_light_7811dcb3556e
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 250
-          color_name: red
-      - service: light.turn_on
-        data_template:
-          entity_id: light.gateway_light_7811dcb3556e
-          brightness: 80
           color_name: red
 
 # Notifica o em Luis que o portão está fechado
@@ -121,19 +113,11 @@ automation:
       - service: light.turn_off
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
-      - service: light.turn_off
-        data_template:
-          entity_id: light.gateway_light_7811dcb3556e
       - delay: 00:00:01
       - service: light.turn_on
         data_template:
           entity_id: light.gateway_light_34ce0088aff1
           brightness: 250
-          color_name: green
-      - service: light.turn_on
-        data_template:
-          entity_id: light.gateway_light_7811dcb3556e
-          brightness: 80
           color_name: green
 
 # Liga os SONOFFs quando o portão abrir á noite e desliga 7 minutos depois
@@ -205,7 +189,7 @@ script:
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.portaocarro
-          
+
 group:
 
   todos:
@@ -217,8 +201,7 @@ group:
       - switch.luz1
       - switch.luz2
 
-
-###############################################################################
+      ###############################################################################
 #                                                                             #
 #                           D E S A T I V O S                                 #
 #                                                                             #

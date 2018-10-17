@@ -9,7 +9,7 @@
 #	Home Assistant - Gateway
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-09-02
+#	Date		:	2018-10-16
 #	Description :	Set configuration to Gateway
 #--------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ automation:
       entity_id: group.sensoresportajanela
       state: 'on'
     action:
-      - service: notify.my_pushbullet
+      - service: notify.luiszanzito
         data:
           title: "Home Assistant"
           message: >
@@ -291,7 +291,30 @@ automation:
         data:
           gw_mac: !secret key_gateway2
           ringtone_id: 10006
-          ringtone_vol: 17         
+          ringtone_vol: 17
+
+## Desliga o alarme por proximidade após abrir o portão
+  - alias: Desliga o alarme por proximidade após abrir o portão
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001d86c17
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.auto_alarme
+        state: 'on'
+      - condition: state
+        entity_id: sensor.luis
+        state: 'Em casa'
+      - condition: state
+        entity_id: input_boolean.normal
+        state: 'on'        
+    action:
+      - service: script.alarmepromimityoff
+      - delay: 0:00:05
+      - service: homeassistant.turn_off            
+        entity_id: switch.plug_158d00015e8107
 
 script:
 
@@ -340,7 +363,7 @@ script:
           gw_mac: !secret key_gateway6
           ringtone_id: 1
           ringtone_vol: 100
-      - service: notify.luiszanzito
+      - service: notify.my_pushbullet
         data:
           message: "Alarme a tocar em casa - {{states.sensor.date.state}} às {{states.sensor.time.state}}"
       - delay: 0:00:25

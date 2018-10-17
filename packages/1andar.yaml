@@ -24,10 +24,10 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d0001e53332
       to: 'on'
-    condition:
-      condition: numeric_state
-      entity_id: sensor.illumination_7811dcdedcf1
-      below: '500'
+#    condition:
+#      condition: numeric_state
+#      entity_id: sensor.illumination_7811dcdedcf1
+#      below: '500'
     action:
       - service: light.turn_on
         data_template:
@@ -42,10 +42,10 @@ automation:
       platform: state
       entity_id: binary_sensor.motion_sensor_158d000222ccca
       to: 'on'
-    condition:
-      condition: numeric_state
-      entity_id: sensor.illumination_7811dcb3556e
-      below: '500'
+#    condition:
+#      condition: numeric_state
+#      entity_id: sensor.illumination_7811dcb3556e
+#      below: '500'
     action:
       - service: light.turn_on
         data_template:

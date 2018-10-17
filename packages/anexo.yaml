@@ -9,7 +9,7 @@
 #	Home Assistant - Anexo
 #--------------------------------------------------------------------
 #	Author		:	Luis Belo
-#	Date		:	2018-03-25
+#	Date		:	2018-10-03
 #	Description :	Set configuration to Anexo
 #--------------------------------------------------------------------
 
@@ -19,11 +19,11 @@ input_datetime:
   luz3:
     name: ON Anexo.
     has_time: true      
-    initial: '07:00:00'
+    initial: '08:00:00'
   luz4:
     name: OFF Anexo.
     has_time: true      
-    initial: '20:00:00'
+    initial: '19:00:00'
 
 automation:
 
@@ -63,8 +63,8 @@ automation:
       data:      
         entity_id: switch.anexo     
 
-# Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 50
-  - alias: Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 50
+# Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 20
+  - alias: Desliga a luz do anexo 5 minutos após o ultimo movimento e quando temos LUX inferior a 20
     initial_state: true
     trigger:
       platform: state
@@ -75,7 +75,7 @@ automation:
     condition:
       condition: numeric_state
       entity_id: sensor.illumination_158d0001e516b8
-      below: '50'
+      below: '20'
     action:
       service: switch.turn_off
       data:

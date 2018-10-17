@@ -72,7 +72,7 @@ binary_sensor:
       - device_tracker.Pzem
 
 sensor:
-  
+
   - platform: template
     sensors:
           

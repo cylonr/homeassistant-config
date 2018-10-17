@@ -49,10 +49,3 @@ sensor:
     state_topic: "tele/Pzem/SENSOR"
     value_template: "{{ value_json.ENERGY.Factor }}"
     icon: mdi:percent
-
-  - platform: mqtt
-    name: "Temp"
-    state_topic: "tele/Pzem/SENSOR"
-    value_template: "{{ value_json.DS18B20.Temperature }}"
-    unit_of_measurement: "°C"
-    icon: mdi:thermometer

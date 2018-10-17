@@ -24,24 +24,22 @@ sensor:
       - precip_probability
       - temperature
       - humidity
-      - temperature_max
-      - temperature_min
       - hourly_summary
       - daily_summary
 
 automation:
 
 # Informa o Luis da temperatura do quarto da Carolina e o estado do tempo na rua.
-  - alias: Estado do tempo
-    initial_state: true
-    trigger:
-      platform: time
-      at: '05:15:00'
-    action:
-      service: notify.my_pushbullet
-      data:
-        message: "Bom dia , estão {{ states.sensor.temperature_158d0001ab1740.state}} graus no quarto da Carolina. Hoje o céu está {{ states.sensor.dark_sky_summary.state }} e estão neste momento {{ states.sensor.temp_rua__petra.state }} graus e {{ states.sensor.humi_rua__petra.state }}% de humidade. A temperatura máxima vai ser de {{ states.sensor.dark_sky_daily_high_temperature.state }} graus e {{ states.sensor.dark_sky_daily_low_temperature.state }} graus de mínima. Existe {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidade de chover hoje.{% if states('sensor.dark_sky_precip_probability') | int > 50 %} Não te esqueças de levar o chapéu de chuva. Tem um bom dia chuvoso ;){% else %} Tem um bom dia.{% endif %}"
-        title: "Home Assistant"
+#  - alias: Estado do tempo
+#    initial_state: true
+#    trigger:
+#      platform: time
+#      at: '05:15:00'
+#    action:
+#      service: notify.my_pushbullet
+#      data:
+#        message: "Bom dia , estão {{ states.sensor.temperature_158d0001ab1740.state}} graus no quarto da Carolina. Hoje o céu está {{ states.sensor.dark_sky_summary.state }} e estão neste momento {{ states.sensor.temp_rua__petra.state }} graus e {{ states.sensor.humi_rua__petra.state }}% de humidade. A temperatura máxima vai ser de {{ states.sensor.dark_sky_daily_high_temperature.state }} graus e {{ states.sensor.dark_sky_daily_low_temperature.state }} graus de mínima. Existe {{ states.sensor.dark_sky_precip_probability.state }}% de probabilidade de chover hoje.{% if states('sensor.dark_sky_precip_probability') | int > 50 %} Não te esqueças de levar o chapéu de chuva. Tem um bom dia chuvoso ;){% else %} Tem um bom dia.{% endif %}"
+#        title: "Home Assistant"
 
 # Informa o Luis da probabilidade de chuva para o dia seguinte.
   - alias: Chove Amanhã

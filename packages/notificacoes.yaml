@@ -24,7 +24,7 @@ automation:
       entity_id: binary_sensor.sonoff_anexo
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -39,7 +39,7 @@ automation:
       entity_id: binary_sensor.sonoff_anexo_rua
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -54,7 +54,7 @@ automation:
       entity_id: binary_sensor.sonoff_telheiro
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -69,7 +69,7 @@ automation:
       entity_id: binary_sensor.sonoff_petra
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -84,7 +84,7 @@ automation:
       entity_id: binary_sensor.device_tracker_camanexo
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -99,7 +99,7 @@ automation:
       entity_id: binary_sensor.device_tracker_camtelheiro
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -114,7 +114,7 @@ automation:
       entity_id: binary_sensor.device_tracker_camcarolina
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -129,7 +129,7 @@ automation:
       entity_id: device_tracker.gateway1
       to: 'not_home'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -144,7 +144,7 @@ automation:
       entity_id: device_tracker.gateway2
       to: 'not_home'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -159,7 +159,7 @@ automation:
       entity_id: device_tracker.gateway3
       to: 'not_home'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -174,7 +174,7 @@ automation:
       entity_id: binary_sensor.device_tracker_repanexo
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -189,7 +189,7 @@ automation:
       entity_id: binary_sensor.device_tracker_repcasa
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -204,7 +204,7 @@ automation:
       entity_id: binary_sensor.device_tracker_pzem
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -219,7 +219,7 @@ automation:
       entity_id: binary_sensor.device_tracker_BhOnOfre
       to: 'off'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
@@ -234,7 +234,7 @@ automation:
       entity_id: sensor.temperature_158d0001fa763c
       to: 'unavailable'
       for:
-        minutes: 10
+        minutes: 30
     action:
     - service: notify.luiszanzito
       data:
